@@ -1,0 +1,84 @@
+<!-- Template :: Snippets List -->
+<script id="inspirations-list-template" type="text/x-handlebars-template">
+	{{#if inspirations}}
+		
+		{{#everyNth inspirations 6}}
+		{{#if @isModZeroNotFirst}}
+		</div>
+		{{/if}}
+		{{#if @isModZero}}
+		<div class="slidee-child boxsize">
+			<ul id="inspirations-wrapper__list" class="inspirations-wrapper__list nomargin nobullets borderB-anim clearfix horizontal image-top">
+				{{/if}}
+				
+				{{#each images}}
+				
+				
+				<li class="item boxsize color white posRel" data-inspirations-id="{{this._id}}" >
+					<!-- Favourite Flag Corner -->
+					{{#compare this.isStarred "==" "true"}}
+					<span class="favourite-corner arrow bigger arrow-cornerTR red twhite"><i class="ion-star"></i></span>
+					{{/compare}}
+					
+					<div class="item-controls style1">
+						<a href="javascript:;" onclick="moduleInspirations.editInspiration('{{this.id}}', '{{this._id}}', '/database/uploads/images/inspirations/{{this}}')" data-toggle="modal" data-target="#modalAddEditInspirations" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/inspirations/{{this}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+						
+						<a href="javascript:;" onclick="moduleInspirations.deleteInspiration('{{this.id}}', '{{this._id}}', '{{this}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+						
+						<div class="make-favourite posRel eleinlineblock nomargin">								
+							<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-bookmark-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+							
+							<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+						</div>							
+					</div>
+					
+					<header class="posRel clearfix">
+						<div class="inspiration-image posRel" style="background: url(/database/uploads/images/inspirations/{{this}}) no-repeat 0 0; background-size: cover;">
+							
+							<div class="inspiration-header padding10px posAbs bwide dark50">
+								<span class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+									{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+									{{this}}
+									{{/dateFormat}}
+								</span>
+								
+								{{#if this.category}}
+								<span class="metadata category"><i class="ion-folder"></i> {{this.category}}</span>
+								{{/if}}
+							</div>
+						</div>
+					</header>
+					
+					<div class="inspiration-content padding25px minh100px posAbs">
+						<a class="inspiration-title titillium w400" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">{{this.title}}</a>
+						
+						{{#if this.description}}
+						<div class="inspiration-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+							<div class="more-content">{{{this.description}}}</div>
+						</div>
+						{{/if}}
+					</div>
+				</li>
+				{{/each}}
+				{{#if @isLast}}
+			</ul>
+		</div>
+		{{/if}}
+		{{/everyNth}}
+		
+		{{else}}
+		
+		<!-- Info Message if no list items are available -->
+		<div class="alert alert-block alert-info js-alert">
+			<h4>Info!</h4>
+			No inspiration are available in the selected category.
+		</div>
+		
+		{{/if}}
+	</script>
+	
+	<!-- Template :: Snippets Details -->
+	
+	<!--=============================================
+		START :: Handlebars Partials ( Sub Templates )
+	=================================================-->	

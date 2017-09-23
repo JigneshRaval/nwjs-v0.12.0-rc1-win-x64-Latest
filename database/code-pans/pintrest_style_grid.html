@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	<style class="code-editor-style">
+body{/*Gracias por ver :D*/
+  background-color:#ECF0F1;
+}
+.c1,.c2,.c3,.c4,.c5{
+
+  background-color:#fff;
+  margin:4px;
+  width:220px;
+  font-size:3em;
+  position:absolute;
+  color:#d9d9d9;
+  
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}
+span{
+  left: 50%;
+	top: 50%;
+	position: absolute;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.c1{
+  height:100px;
+}
+.c2{
+  height:200px;
+}
+.c3{
+  height:230px;
+}
+.c4{
+  height:150px;
+}
+.c5{
+  height:270px;
+}
+.cf:after{
+	clear: both;
+}
+.cf:before, .cf:after {
+    content: " ";
+    display: table;
+}</style>
+</head>
+	<body>
+	<div id="productos" class="cf">
+  <div class="c1"><span>1</span></div>
+  <div class="c4"><span>2</span></div>
+  <div class="c3"><span>3</span></div>
+  <div class="c1"><span>4</span></div>
+  <div class="c5"><span>5</span></div>
+  <div class="c2"><span>6</span></div>
+  <div class="c1"><span>7</span></div>
+  <div class="c5"><span>8</span></div>
+  <div class="c2"><span>9</span></div>
+  <div class="c3"><span>10</span></div>
+  <div class="c1"><span>11</span></div>
+  <div class="c3" ><span>12</span></div>
+  <div class="c1"><span>13</span></div>
+  <div class="c5"><span>14</span></div>
+  <div class="c2"><span>15</span></div>
+  <div class="c3"><span>16</span></div>
+  <div class="c1"><span>17</span></div>
+  <div class="c3" ><span>18</span></div>
+  <div class="c5"><span>19</span></div>
+  <div class="c2"><span>20</span></div>
+  <div class="c1"><span>21</span></div>
+  <div class="c5"><span>22</span></div>
+  <div class="c2"><span>23</span></div>
+  <div class="c3"><span>24</span></div>
+  <div class="c1"><span>25</span></div>
+  <div class="c3" ><span>26</span></div>
+  <div class="c1"><span>27</span></div>
+  <div class="c5"><span>28</span></div>
+  <div class="c2"><span>29</span></div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script id="userScript">var width = $(window).width();
+var columnas=0;
+var limite;
+var centrar;
+var sumColumnas;
+var cantProductoFila;
+window.onload = function() { 
+  positionPublicacion();
+};
+
+$(window).resize(function(){positionPublicacion();});
+
+  function positionPublicacion(){
+    width = $(document).width();
+    cantProductoFila=width/230;
+    console.log("Cantidad de filas: "+parseInt(cantProductoFila));
+    console.log("Anchura :"+width);
+    columnas=0;
+    limite=parseInt(cantProductoFila);
+    centrar=(width-(limite*230))/2;
+    sumColumnas=[limite];
+    $("#productos").children().each(function(i,j){
+    var tamano;
+    if(i<limite){
+      sumColumnas[columnas]=0;
+    }
+    $(this).css({"left":centrar+(columnas*230)+"px", "top":(sumColumnas[columnas])+"px"});
+    if(i<limite){
+      tamano = $(this).height();
+      sumColumnas[columnas]=tamano+10;
+    }
+    if(i>=limite){
+      tamano = $(this).height();
+      sumColumnas[columnas]+=tamano+10;
+    }
+    columnas++;
+    if((i+1)%limite==0){columnas=0;}
+  });
+}</script>
+</body>
+	</html>

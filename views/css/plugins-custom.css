@@ -1,0 +1,27 @@
+/*--------------------------------
+Plugins Customizations
+----------------------------------*/
+/* = CodeMirror ===========*/
+.CodeMirror { height: 100%; min-height: 100px; }
+/* .CodeMirror-scroll { overflow: hidden !important; min-height: 300px; } */
+
+/* CodeMirror: Theme changes ==*/
+.cm-s-lesser-dark span.cm-qualifier { color: #7B7777; }
+.cm-s-lesser-dark span.cm-attribute { color: #CC7C00; }
+.cm-s-lesser-dark { line-height: 1.6em; }
+
+
+.js-scrollbar.light .mCS-dark-2.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar { background-color: rgba(255, 255, 255, 0.90); }
+.mCSB_scrollTools { z-index: 5; }
+
+/* = Progress.css ===*/
+.progressjs-inner { position: relative; }
+.progressjs-theme-red .progressjs-inner:after { content: ""; position: absolute; top: -8px; right: -2px; box-shadow: 0 4px 15px red; width: 65px; height: 10px; /* z-index: -1; */ border-radius: 50px; }
+
+/* = Lightgallery ========*/
+#lightGallery-Gallery .thumb_cont .thumb_info .count { font-weight: normal; }
+#lightGallery-Gallery .thumb_cont .thumb { background-color: #FFF; border-radius: 0; }
+#lightGallery-Gallery .thumb_cont .thumb > img { padding: 5px; }
+
+/* = jquery.fs.zoomer.css ========*/
+.zoomer { position: absolute; top: 0; }

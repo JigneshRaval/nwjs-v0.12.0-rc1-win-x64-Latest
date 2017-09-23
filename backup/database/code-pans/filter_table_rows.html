@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	<style class="code-editor-style">
+</style>
+</head>
+	<body>
+	<input id="searchInput" value="Type To Filter">
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th>Column1</th>
+            <th>Column2</th>
+        </tr>
+    </thead>
+    <tbody id="fbody">
+        <tr>
+            <td>cat</td>
+            <td>one</td>
+        </tr>
+        <tr>
+            <td>dog</td>
+            <td>two</td>
+        </tr>
+        <tr>
+            <td>cat</td>
+            <td>three</td>
+        </tr>
+        <tr>
+            <td>moose</td>
+            <td>four</td>
+        </tr>
+        <tr>
+            <td>mouse</td>
+            <td>five</td>
+        </tr>
+        <tr>
+            <td>dog</td>
+            <td>six</td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script id="userScript">$("#searchInput").keyup(function () {
+    //split the current value of searchInput
+    var data = this.value.split(" ");
+    //create a jquery object of the rows
+    var jo = $("#fbody").find("tr");
+    if (this.value == "") {
+        jo.show();
+        return;
+    }
+    //hide all the rows
+    jo.hide();
+
+    //Recusively filter the jquery object to get results.
+    jo.filter(function (i, v) {
+        var $t = $(this);
+        for (var d = 0; d < data.length; ++d) {
+            if ($t.is(":contains('" + data[d] + "')")) {
+                return true;
+            }
+        }
+        return false;
+    })
+    //show the rows that match.
+    .show();
+}).focus(function () {
+    this.value = "";
+    $(this).css({
+        "color": "black"
+    });
+    $(this).unbind('focus');
+}).css({
+    "color": "#C0C0C0"
+});</script>
+</body>
+	</html>

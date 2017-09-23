@@ -1,0 +1,71 @@
+var cssJsLibrariesObj = {
+	resources : [
+	{
+		title : "jQuery",
+		items : [
+		{ url : "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/", fileName : "jquery.min.js", type : "js", name : "jQuery 2.1.3" }
+		]
+	},
+	{
+		title : "jQuery Mobile",
+		items : [
+		{ url : "https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/", fileName : "jquery.mobile.min.css",  type : "css", name : "jQuery Mobile 1.4.3 CSS"  },
+		{ url : "https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/", fileName : "jquery.mobile.min.js", type : "js", name : "jQuery Mobile 1.4.3"  }
+		]
+	},
+	{
+		title : "jQuery UI",
+		items : [
+		{ url : "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/", fileName : "jquery-ui.css", type : "css", name : "jQuery UI 1.11.3 CSS"  },
+		{ url : "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/", fileName : "jquery-ui.min.js", type : "js", name : "jQuery UI  1.11.3"  }
+		]
+	},
+	{
+		title : "Twitter Bootstrap",
+		items : [
+		{ url : "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/", fileName : "bootstrap.css", type : "css", name : "Twitter Bootstrap 3.3.2 css"  },
+		{ url : "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/", fileName : "bootstrap.min.js", type : "js", name : "Twitter Bootstrap 3.3.2 JS"  }
+		]
+	},
+	{
+		title : "Handlebars",
+		items : [
+		{ url : "https://cdn.jsdelivr.net/handlebarsjs/3.0.0/", fileName : "handlebars.js", type : "js", name : "Handlebars 3.0.0"  },
+		]
+	},
+	{
+		title : "Angular.js",
+		items : [
+		{ url : "https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/", fileName : "angular-material.min.css", type : "css", name : "Angular Material 0.7.0 CSS" },
+		{ url : "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/", fileName : "angular.min.js", type : "js", name : "Angular.js 1.3.13" },
+		{ url : "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/", fileName : "angular-animate.min.js", type : "js", name : "Angular Animate 1.3.6" },
+		{ url : "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/", fileName : "angular-aria.min.js", type : "js", name : "Angular ARIA 1.3.6"  },
+		{ url : "https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/", fileName : "angular-material.min.js", type : "js", name : "Angular Material 0.7.0"  }
+		]
+	},
+	{
+		title : "DOJO",
+		items : [
+		{ url : "https://ajax.googleapis.com/ajax/libs/dojo/1.10.3/dojo/", fileName : "dojo.js", type : "js", name : "DOJO 1.10.3"  }
+		]
+	},
+	{
+		title : "Misc. Chart Libraries",
+		items : [
+		{ url : "https://cdn.jsdelivr.net/c3/0.1.42/", fileName : "c3.css", type : "css", name : "C3 Chart Library CSS"  },
+		{ url : "https://cdn.jsdelivr.net/c3/0.1.42/", fileName : "c3.min.js", type : "js", name : "C3 Chart Library JS"  },
+		{ url : "https://cdn.jsdelivr.net/chart.js/0.1.3/", fileName : "Chart.min.js", type : "js", name : "Chart.js 0.1.3 JS"  },
+		{ url : "https://cdn.jsdelivr.net/chart.js/1.0.1-beta.4/", fileName : "Chart.min.js", type : "js", name : "Chart.js 1.0.1-beta.4 JS"  },
+		{ url : "https://cdn.jsdelivr.net/chartist.js/latest/", fileName : "chartist.min.css", type : "css", name : "Chartist 0.7 CSS"  },
+		{ url : "https://cdn.jsdelivr.net/chartist.js/latest/", fileName : "chartist.min.js", type : "js", name : "Chartist 0.7 JS"  }
+		]
+	},
+	{
+		title : "SVG Libraries",
+		items : [
+		{ url : "https://cdn.jsdelivr.net/snap.svg/0.3.0/", fileName : "snap.svg-min.js", type : "js", name : "snap.svg 0.3.0 JS", tooltip : "A JavaScript SVG library for the modern web. Learn more at snapsvg.io." },
+		{ url : "https://cdn.jsdelivr.net/svg.js/1.0.1/", fileName : "svg.min.js", type : "js", name : "SVG.js 1.01 JS", tooltip : "A lightweight library for manipulating and animating SVG. Svg.js has no dependencies and aims to be as small as possible. The base library is 3k gzipped, with all bells and whistles about 5k." }
+		]
+	}
+	]
+}

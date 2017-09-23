@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="" manifest="demo.appcache">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Coder's Cubes : Snippets</title>
+
+		<!-- Load All CSS Files here -->
+		<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/plugins/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/plugins/summernote.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jPages.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/plugins/selectize.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.snippet.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/prism.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.mCustomScrollbar.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.core.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/dropdowns-enhancement.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/uploadfile.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/lightGallery.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/progressjs.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.fs.zoomer.css" />
+
+		<link rel="stylesheet" type="text/css" title="default" id="styleSyntaxHighlighter" href="css/highlighter/default.css">
+
+		<link rel="stylesheet" type="text/css" href="css/plugins-custom.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/snippets.css" />
+		<link rel="stylesheet" type="text/css" href="css/components.css" />
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+
+		<!-- Load All JS Files here -->
+		<script type="text/javascript" src="../database/left-nav-panel.json"></script>
+		<script type="text/javascript" src="../database/snippets-languages.json"></script>
+		<script type="text/javascript" src="../database/syntax-highlighters.json"></script>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/node-webkit-fn.js"></script>
+		<script type="text/javascript" src="js/common-onload-functions.js"></script>
+
+		<script type="text/javascript">
+			var loadJSONDataFiles = {
+				files : [
+				{id : 1, name : "snippets-tmpl", path : "templates/snippets-tmpl.html", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 2, name : "categories-tmpl", path : "templates/categories-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 3, name : "tags-tmpl", path : "templates/tags-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 4, name : "assets-panel-tmpl", path : "templates/assets-panel-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' }
+				]
+			};
+
+			webkitWinModule.maximizeWin();
+		</script>
+
+		<!-- <script>
+			cachedScriptsArr.apply(arryCommonScripts,
+			["/plugins/slick.js",
+			"/plugins/jquery.paginate.my.js",
+			"/plugins/jquery.highlight.js",
+			"/plugins/highlight.pack.js",
+			"/plugins/lightGallery.js",
+			"/common-functions.js",
+			"/modules-common-functions.js",
+			"/modules/module-snippets.js" ]);
+
+			$.getScript( arryCommonScripts , function( jqXhr ) {
+			//console.log("jqXhr :: ", jqXhr );
+			});
+		</script> -->
+		<style>
+			.demo .zoomer_wrapper {    border: 1px solid #dddddd;
+			border-radius: 3px;
+			height: 500px;
+			margin: 10px 0;
+			overflow: hidden;
+			width: 100%;}
+		</style>
+	</head>
+
+	<body class="page-snippets opened">
+		<input type="hidden" name="hdnMode" id="hdnMode" value="add" />
+		<!-- Highlight Text in the content
+			<div class="" style="z-index: 5;position: fixed; bottom: 0; right: 0;">
+			<input type="text" name="txtHighlightText" id="txtHighlightText" />
+			<a href="javascript:;" class="lnkNextHighlight">Next</a>
+			<a href="javascript:;" class="lnkPrevHighlight">Prev</a>
+		</div>-->
+
+		<!-- START :: View External link in the Iframe -->
+		<div class="iframeURLBrowser">
+			<a href="javascript:;" class="close-iframeURLBrowser">&times;</a>
+			<p class="iframe-loader"></p>
+			<iframe src="" class="" id="iframeExternalURL"></iframe>
+		</div>
+
+		<!-- START :: Window Toolbar -->
+		<div class="top-edge">
+			<div class="app-controls" style="display: block;">
+				<div id="WindowToolbar" class="fl">
+					<a href="javascript:;" onclick="webkitWinModule.closeWin()" type="button" class="btnCloseApp twhite" data-toggle="tooltip" data-placement="bottom" title="Close">
+						<i class="ion-close-round"></i>
+					</a>
+
+					<a href="javascript:;" onclick="webkitWinModule.minimizeWin()" type="button" class="btnMinimize" data-toggle="tooltip" data-placement="bottom" title="Minimize">
+						<i class="glyphicon glyphicon-minus"></i>
+					</a>
+
+					<a href="javascript:;" onclick="webkitWinModule.maximizeWin()" type="button" class="btnToggleFullScreen" data-toggle="tooltip" data-placement="bottom" title="Maximize">
+						<i class="glyphicon glyphicon-fullscreen"></i>
+					</a>
+
+					<a href="javascript:;" onclick="webkitWinModule.reloadWin()" type="button" class="btnReloadApp" data-toggle="tooltip" data-placement="bottom" title="Reload Application">
+						<i class="ion-refresh"></i>
+					</a>
+
+					<a href="javascript:;" onclick="webkitWinModule.showDevTool()" type="button" class="btnDevToolbar" data-toggle="tooltip" data-placement="bottom" title="Developer Toolbar">
+						<i class="ion-gear-b"></i>
+					</a>
+				</div>
+				<h3 class="text-muted alignR fr oswald w400 uppercasetext" style="-webkit-app-region: drag">Coder's Cubes : Bookmarks</h3>
+			</div>
+		</div>
+		<!-- END :: Window Toolbar -->
+
+		<link rel="import" href="imports/modals-overlays.html">
+		<link rel="import" href="imports/asset-panel.html">
+
+		<!-- START :: All the Handlebars Templates -->
+		<div id="handlebars-templates-wrapper">
+
+		</div>
+
+		<script type="text/javascript">
+			loadJSONTemplate(loadJSONDataFiles);
+			showPageLoadProgress();
+		</script>
+		<!-- END :: All the Handlebars Templates -->
+
+		<div class="loading-indicator top-bar">
+			<div class="loading-loader">
+				<i class="ion-loading-c eleinlineblock"></i>
+			</div>
+		</div>
+
+		<div class="content-area-wrapper full-height">
+
+			<!--===========================================
+				START : Categories and Tags Listing panel
+			===============================================-->
+			<section class="assets-panel flex-item color10 posRel">
+				<!-- Data will load Dynamically -->
+			</section>
+			<!--===========================================
+				END : Categories and Tags Listing panel
+			===============================================-->
+
+			<div class="snippets-wrapper posRel flex-item" style="display: flex; flex-flow: row wrap;">
+				<!-- START :: Header Section -->
+				<header class="main-header posRel clearfix purple7">
+					<a href="javascript:;" class="expand-icon-panel fl"><i class="ion-navicon-round"></i></a>
+					<span class="main-header-title oswald w300 uppercasetext fontSize15em fl eleinlineblock">Snippets</span>
+					<ul class="header-controls nomargin nopadding nobullets fr">
+						<li>
+							<a href="snippets.html" class="">Snippets</a>
+						</li>
+						<li>
+							<a href="bookmarks.html" class="">Bookmarks</a>
+						</li>
+						<li>
+							<a href="tasks.html" class="">Tasks</a>
+						</li>
+						<li>
+							<a href="inspirations.html" class="">Inspirations</a>
+						</li>
+						<li>
+							<a href="webtools.html" class="" data-toggle="dropdown">WebTools</a>
+							<ul class="dropdown-menu nomargin nopadding nobullets clearfix">
+								<li>
+									<a href="webtools.html"><i class="jicon-snippets"></i>
+										<span>Codepen</span>
+									</a>
+								</li>
+								<li>
+									<a href="tool-sass.html"><i class="jicon-snippets"></i>
+										<span>SASS</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:;" data-toggle="dropdown"><i class="jicon-apps" data-toggle="tooltip" data-placement="bottom" title="Explore Applications"></i></a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-apps" role="menu" aria-labelledby="dLabel">
+								<ul class="nomargin nopadding nobullets clearfix">
+									<li class="active">
+										<a href="snippets.html"><i class="jicon-snippets"></i>
+											<span>Snippets</span>
+										</a>
+									</li>
+									<li>
+										<a href="bookmarks.html"><i class="jicon-bookmarks"></i>
+											<span>Bookmarks</span>
+										</a>
+									</li>
+									<li>
+										<a href="tasks.html"><i class="jicon-tasks"></i>
+											<span>Tasks</span>
+										</a>
+									</li>
+									<li>
+										<a href="inspirations.html"><i class="jicon-gallery"></i>
+											<span>Inspirations</span>
+										</a>
+									</li>
+
+									<li>
+										<a href="webtools.html"><i class="jicon-webtools"></i>
+											<span>Web Tools</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;"><i class="jicon-stats"></i>
+											<span>Stats</span>
+										</a>
+									</li>
+									<!-- <li>
+										<a href="javascript:;" title="Category"><i class="jicon-cat"></i>
+										<span>Categories</span>
+										</a>
+										</li>
+										<li>
+										<a href="javascript:;" title="Tags"><i class="jicon-tags"></i>
+										<span>Tags</span>
+										</a>
+									</li>-->
+									<li>
+										<a href="javascript:;"><i class="jicon-favourite"></i>
+											<span>Favourites</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:;" class="lnkOpenModal_Settings"><i class="jicon-settings" data-toggle="tooltip" data-placement="bottom" title="View Settings"></i></a>
+						</li>
+					</ul>
+				</header>
+				<!-- END :: Header Section -->
+
+
+				<div class="grid-flex eq-height">
+					<!-- START :: Content Panel LEFT -->
+					<div class="flex-columns flex-col-four noRpadding">
+
+						<ul id="snippets-wrapper__list" class="snippets-wrapper__list nomargin nopadding nobullets js-expand-collapse-wrapper borderL-anim clearfix color white">
+							<!-- Snippets List will be loaded here -->
+						</ul>
+
+						<div class="pagination-wrapper pagination-wrapper-footer padding15px alignC purple7 twhite posRel">
+							<div id="snippets-wrapper__list-pagination" class="custom-pagination-btns">
+								<a id="snippets-wrapper__list-previous" href="#"><i class="ion-chevron-left"></i></a>
+								<span class="pagination-legend twhite">Page <input type="text" id="snippets-wrapper__list-goto-page" name="snippets-wrapper__list-goto-page" /> of <em>10</em></span>
+
+								<a id="snippets-wrapper__list-next" href="#"><i class="ion-chevron-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- END :: Content Panel LEFT -->
+
+					<!-- START :: Content Panel :: RIGHT -->
+					<div class="flex-columns flex-col-eight" style="overflow-y:scroll; max-height: 93vh; border-left: 1px solid #EEE;">
+
+
+						<div class="js-scrollbar" data-scrollbar-theme="dark-2" style="max-height: 100%;">
+							<div class="snippets-wrapper__detail">
+
+							</div>
+						</div>
+
+					</div>
+					<!-- END :: Content Panel :: RIGHT -->
+				</div>
+			</div>
+
+		</div>
+
+		<!-- START :: Custome Modal Overlay with Animation
+			<a href="javascript:;" class="" data-toggle="open-overlay" data-modalid="#modalTest">Open modal</a>
+			<div class="modal-overlay" id="modalTest">
+			<div class="modal-overlay-bg"></div>
+			<div class="modal-overlay-content animated bounceInDown">
+			<header class="modal-overlay-header">
+			<h3>Title</h3>
+			<a href="javascript:;" class="modal-overlay-close" data-toggle="close-overlay">&times;</a>
+			</header>
+			<article class="modal-overlay-body">
+			<p>TEst</p>
+			<p>test</p>
+			<div class="summernote" style="display: none;">summernote 2</div>
+			</article>
+			<footer class="modal-overlay-footer">
+
+			</footer>
+			</div>
+		</div>-->
+		<!-- END :: Custome Modal Overlay with Animation -->
+		<!--===========================================
+			START : Categories and Tags Listing panel
+		===============================================-->
+		<script>
+			// HTML5 :: Include one html file into another and display
+			var arrImportHTMLFiles = [
+			{ contentId : ['#modalAddSnippetForm', '#modalSettings'], bindArea : 'body' },
+			{ contentId : ['#assetPanelWrapper'], bindArea : '.assets-panel' }
+			];
+
+			includeModalOverlays(arrImportHTMLFiles);
+
+			// Common Application Functions like Window Minimize, Close, Maximize
+			webkitWinModule.init({});
+
+			// Generate Left Navigation Sticky panel
+			generateLeftNavPanel(leftNavPanelObj);
+
+			$(function() {
+
+			});
+		</script>
+
+
+		<!---->
+		<script type="text/javascript" src="js/handlebars-v3.0.0.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/plugins/moment.js"></script>
+
+		<script type="text/javascript" src="js/handlebars.helpers.js"></script>
+
+		<script type="text/javascript" src="js/plugins/jquery.form-validator.min.js"></script>
+
+		<script type="text/javascript" src="js/plugins/summernote.js"></script>
+		<script type="text/javascript" src="js/plugins/jPages.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.paginate.my.js"></script>
+		<script type="text/javascript" src="js/plugins/alertify.js"></script>
+		<script type="text/javascript" src="js/plugins/selectize.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.bootstrap-growl.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.highlight.js"></script>
+		<script type="text/javascript" src="js/plugins/highlight.pack.js"></script>
+		<script type="text/javascript" src="js/plugins/lightGallery.js"></script>
+		<script type="text/javascript" src="js/plugins/intense.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/plugins/dropdowns-enhancement.js"></script>
+		<script type="text/javascript" src="js/plugins/bootstrap-colorpicker.js"></script>
+
+		<script type="text/javascript" src="js/plugins/jquery.fastLiveFilter.js"></script>
+		<script type="text/javascript" src="js/plugins/mousetrap.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.uploadfile.js"></script>
+
+		<script type="text/javascript" src="js/common-functions.js"></script>
+		<script type="text/javascript" src="js/modules-common-functions.js"></script>
+
+		<script src="js/modules/module-upload.js"></script>
+		<script src="js/modules/module-categories.js"></script>
+		<script src="js/modules/module-tags.js"></script>
+		<script src="js/modules/module-main.js"></script>
+		<script src="js/modules/module-snippets.js"></script>
+		<script>
+			//define a worker
+			/*
+			var worker = new Worker('worker.js');
+			worker.addEventListener('message', function(e) {
+				processListSnippets(e.data)
+			}, false);
+			*/
+		</script>
+		<script>
+		function ab2str(buf) {
+  return String.fromCharCode.apply(null, new Uint16Array(buf));
+}
+
+			var w;
+
+			function startWorker() {
+				if(typeof(Worker) !== "undefined") {
+					if(typeof(w) === "undefined") {
+						w = new Worker('worker.js');
+					}
+					w.onmessage = function(e) {
+						processListSnippets(e.data)
+					};
+				} else
+				{
+					document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
+				}
+			}
+
+			function stopWorker() {
+				if(typeof(w) !== "undefined") {
+				w.terminate();
+
+				w = undefined;
+				}
+			}
+		</script>
+	</body>
+</html>

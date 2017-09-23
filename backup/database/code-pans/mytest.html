@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css" />
+<style class="code-editor-style">
+body { margin: 50px; }</style>
+</head>
+	<body>
+	<script id="entry-template" type="text/x-handlebars-template">
+			<div class="entry">
+		<h1>{{title}}</h1>
+		<div class="body">
+			{{body}}
+		</div>
+              <p>
+                {{name}}
+              </p>
+	</div>
+</script>
+
+<div id="temp"></div>
+
+<p>Handlebars Example</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/handlebarsjs/2.0.0/handlebars.min.js"></script>
+
+<script id="userScript">$(function () {
+	$('[data-toggle="tooltip"]').tooltip()
+	
+	
+	var context = {title: "My New Post", body: "This is my first post!", name : "Hiren Panchal"};
+	var source   = $("#entry-template").html();
+	var template = Handlebars.compile(source);
+	
+	var html    = template(context);
+	$('#temp').html(html);
+})</script>
+</body>
+	</html>

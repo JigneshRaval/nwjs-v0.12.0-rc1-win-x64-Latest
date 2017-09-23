@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	<style class="code-editor-style">
+.flash { display: none; width: 90%; margin: 0 auto; padding: 10px; position: absolute; top: 0; background: rgba(0,0,0,0.5); color: #fff; text-align: center; }
+body {
+padding-top: 50px;
+font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+font-size: 16px;
+}
+form {
+float: left;
+width: 40%;
+}
+.messages {
+float: right;
+width: 45%;
+}</style>
+</head>
+	<body>
+	<div class="flash"></div>
+<form action="get" method="">
+<label>Send a Message:</label> <input type="text" name="message" />
+<input type="submit" value="Submit">
+</form>
+<div class="messages">
+<h2>Messages Recieved</h2>
+<ul class="recieved_messages">
+</ul>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script id="userScript">var pubsub = {
+sendMessage: function() {
+message = $("input").val();
+$("body").trigger("messageReceived", { message: message});
+return false;
+},
+displayMessage: function(data) {
+$("body").trigger("messageDisplayed");
+li = $("<li />").text(data.message).css("display", "none");
+$("ul").append(li);
+$("ul>li").last().fadeIn()
+},
+flashMessage: function() {
+$(".flash").text("you've got a new message")
+.fadeIn(500, function() {
+var that = this;
+setTimeout(function() {
+$(that).fadeOut(500);
+}, 2000);
+});
+},
+bindEvents: function() {
+$("form").on("submit",function() {
+pubsub.sendMessage();
+return false;
+});
+$("body").on("messageReceived", function(event,data) {
+pubsub.displayMessage(data);
+});
+$("body").on("messageDisplayed", function(event, data) {
+pubsub.flashMessage();
+});
+},
+init: function() {
+this.bindEvents();
+}
+};
+$(function() {
+pubsub.init();
+});</script>
+</body>
+	</html>

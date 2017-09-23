@@ -1,0 +1,289 @@
+<!-- Template :: Snippets List -->
+<script id="tasks-list-template" type="text/x-handlebars-template">
+	{{#if group}}
+		{{#each group}}
+		<li>
+	<h3 class="">{{@key}}</h3>
+	<article class="">
+		<li class="task-list-header item posRel">
+			<div class="grid-table grid-table-fixed">
+				
+				<div class="grid-table-row">
+					<div class="grid-cell" style="width: 50px;"></div>
+					<div class="grid-cell" style="width: 30px;"></div>
+					<div class="grid-cell" style="width: 25px;"></div>
+					<div class="grid-cell" style="width: 25px;"></div>
+					<div class="grid-cell" style="width: 30%;">Task</div>
+					<div class="grid-cell">Start Date</div>
+					<div class="grid-cell">Due Date</div>
+					<div class="grid-cell">Assigned To</div>
+					<div class="grid-cell">Status</div>
+					<div class="grid-cell" style="width:70px;">Actions</div>
+				</div>
+				
+			</div>
+		</li>
+		{{> tasks-list this}}
+	</article>
+</li>
+{{/each}}
+{{else}}
+<li class="task-list-header item posRel">
+	<div class="grid-table grid-table-fixed">
+		
+		<div class="grid-table-row">
+			<div class="grid-cell" style="width: 50px;"></div>
+			<div class="grid-cell" style="width: 30px;"></div>
+			<div class="grid-cell" style="width: 25px;"></div>
+			<div class="grid-cell" style="width: 25px;"></div>
+			<div class="grid-cell" style="width: 30%;">Task</div>
+			<div class="grid-cell">Start Date</div>
+			<div class="grid-cell">Due Date</div>
+			<div class="grid-cell">Assigned To</div>
+			<div class="grid-cell">Status</div>
+			<div class="grid-cell" style="width:70px;">Actions</div>
+		</div>
+		
+	</div>
+</li>
+{{> tasks-list}}
+{{/if}}
+</script>
+
+<!--=============================================
+	START :: Handlebars Partials ( Sub Templates )
+=================================================-->
+<script id="tasks-list-partial" type="text/x-handlebars-template">
+	
+	
+	{{#if records}}
+		{{#each records}}
+		
+		<li class="item posRel" data-snippet-id="{{this._id}}">
+		
+		<div class="grid-table grid-table-fixed">
+		<div class="grid-table-row">
+		
+		<div class="grid-cell" style="width: 50px;">
+		
+	<span class="js-expand-collapse" data-toggle-expand-collapse="true" data-toggle="tooltip" data-placement="top" title="More Detail"><i class="ion-chevron-right"></i></span>
+	
+	
+</div>
+
+<div class="grid-cell" style="width: 30px;">
+	<div class="checkbox-group normal posRel">
+		<input type="checkbox" id="chkTask_{{this._id}}" name="chkTask_{{this._id}}" data-taskdb-id="{{this._id}}" {{#compare this.archived "==" "true"}}checked="{{this.archived}}" {{/compare}}/>
+		<label for="chkTask_{{this._id}}" class=""><i></i></label>
+	</div>
+</div>
+
+<div class="grid-cell" style="width: 25px;">
+	{{#if remindMe}}
+	
+	<a href="javascript:;" class="has-popover popover-extcontent" tabindex="0" data-toggle="popover" data-container="body" data-trigger="focus" title="Popover title" data-html="true" data-content=''>
+		<i class="ion-ios-bell fontSize12em" data-toggle="tooltip" data-placement="top" title="Reminder has been set to {{this.remindMe}}"></i>
+	</a>
+	
+	<div class="pop-content pop-content-reminder" style="display:none;">
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Hourly');" data-reminder-type="Hourly">Hourly</a><br/>
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Daily');" data-reminder-type="Daily">Daily</a><br/>
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Weekly');" data-reminder-type="Weekly">Weekly</a>
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Weekly');" data-reminder-type="Weekly">Clear Reminder</a>
+	</div>
+	
+	{{else}}
+	
+	<a href="javascript:;" class="has-popover popover-extcontent" tabindex="0" data-toggle="popover" data-container="body" data-trigger="focus" title="Popover title" data-html="true">
+		<i class="ion-ios-bell-outline fontSize12em" data-toggle="tooltip" data-placement="top" title="Set Reminder"></i>
+	</a>
+	
+	<div class="pop-content pop-content-reminder" style="display:none;">
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Hourly');" data-reminder-type="Hourly">Hourly</a><br/>
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Daily');" data-reminder-type="Daily">Daily</a><br/>
+		<a href="javascript:;" onclick="moduleTasks.setReminder('{{this.id}}', '{{this._id}}', 'Weekly');" data-reminder-type="Weekly">Weekly</a>
+	</div>
+	{{/if}}
+</div>
+
+<div class="grid-cell" style="width: 25px;">
+	<span class="priority {{this.priority}}" data-toggle="tooltip" data-placement="top" title="{{this.priority}}"></span>
+</div>
+
+<div class="grid-cell w500" style="width: 30%;">{{this.title}}</div>
+
+<div class="grid-cell notextwrap">
+	<span class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+		{{#dateFormat this.startDate format="DD/MM/YYYY hh:mm A"}}
+		{{this}}
+		{{/dateFormat}}
+	</span>
+</div>
+
+<div class="grid-cell notextwrap">
+	<span class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+		{{#dateFormat this.dueDate format="DD/MM/YYYY hh:mm A"}}
+		{{this}}
+		{{/dateFormat}}
+	</span>
+</div>
+
+<div class="grid-cell">
+	<span class="metadata assigned-to uppercasetext"><i class="ion-person"></i> {{this.assignedTo}}</span>
+</div>
+
+<div class="grid-cell">
+	<!-- <span class="metadata task-status uppercasetext">
+		In Progress
+	</span> -->
+	
+	<div class="progress-bar-module posRel color gray666" data-toggle="tooltip" data-placement="top" data-container="body" title="{{this.taskProgress}}% Completed">
+		<strong>{{this.taskProgress}}%</strong>
+		<span
+		{{#compare this.taskProgress "<=" "20"}}class="color red posAbs"{{/compare}}
+		{{#xif " this.taskProgress > '20' && this.taskProgress <= '40' " }}class="color yellow posAbs"{{/xif}}
+		{{#xif " this.taskProgress > '40' && this.taskProgress <= '70' " }}class="color blue posAbs"{{/xif}} {{#compare this.taskProgress ">" "70"}}class="color green posAbs"{{/compare}}
+		style="width:{{this.taskProgress}}%;"></span>
+	</div>
+</div>
+
+<div class="grid-cell" style="width:70px;">
+	<div class="item-controls style1">
+		<a href="javascript:;" onclick="_mainModule.getDetail('{{this._id}}');" data-toggle="modal" data-target="#modalAddEditTasksForm" data-snippet-id="{{this.id}}"><i class="ion-edit fontSize12em" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
+		
+		<a href="javascript:;" onclick="_mainModule.deleteRec({ _id : '{{this._id}}'});" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash fontSize12em" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+	</div>
+</div>
+
+</div>
+</div>
+<div class="js-expand-collapse-content task-more-details" style="display:none;">
+	<div class="padding20px">
+		{{#if this.subTasks}}
+		<article class="sub-tasks-wrapper padding10px">
+			
+			{{> sub-tasks}}
+			
+		</article>
+		{{/if}}
+		<div class="alignC">
+			<a href="javascript:;" class="lnkShowSubTaskForm button small color blue">Add Sub Task</a>
+			<div class="grid-row color white" style="display:none;">
+				<div class="grid-columns grid-col-six padding20px">
+					<h4>Add Single Sub Task</h4>
+					<form id="frmAddSubTask" name="frmAddSubTask" class="">
+						<div class="form-group">
+							<input type="text" class="form-control" id="txtSubTaskTitle" name="txtSubTaskTitle" placeholder="Sub Task Title">
+						</div>
+						<div class="form-group">
+							<!-- Date Picker : Start -->
+							<div class="input-group date-picker" id="dateSubTaskDueDate">
+								<span class="input-group-addon datepickerbutton">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+								<input type="text" name="txtSubTaskDueDate" id="txtSubTaskDueDate" data-mask="99/99/9999 99:99 aa" class="action-date-input form-control" placeholder="DD/MM/YYYY HH:MM AM|PM" data-form-field="dueDate" />
+								<span class="input-group-addon date-picker-clear" data-toggle="tooltip" data-original-title="Clear Date">
+									<span class="glyphicon glyphicon-remove"></span>
+								</span>
+							</div>
+							<!-- Date Picker : End -->
+						</div>
+						<button type="submit" name="submitSubTask" id="submitSubTask" class="btn btn-primary" onclick="moduleTasks.addSubTask(this, '{{this._id}}')">Add</button>
+					</form>
+				</div>
+				<div class="grid-columns grid-col-six padding20px">
+					<h4>Add Bulk Sub Task</h4>
+					<em>Type all your sub tasks each on a separate line</em>
+					<div class="bulk-subtask-form-wrapper"  style="display:block;">
+						<textarea name="txtAreaBlukSubTasks" id="txtAreaBlukSubTasks" rows="5" class="width100" placeholder="Add Sub Tasks in Bulk."></textarea>
+						<button type="submit" name="submitBulkSubTask" id="submitBulkSubTask" class="btn btn-primary margin5px" data-taskdb-id="{{this._id}}">Add in Bulk</button>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</div>
+		
+		{{#if this.description}}
+		<div class="task-description padding10px margin10px color white">
+			{{{this.description}}}
+		</div>
+		{{/if}}
+		
+		{{#if this.note}}
+		<div class="task-note padding10px margin10px">
+			{{{this.note}}}
+		</div>
+		{{/if}}
+	</div>
+</div>
+
+</li>
+{{/each}}
+{{else}}
+<!-- Info Message if no list items are available -->
+<div class="alert alert-block alert-info js-alert">
+	<h4>Info!</h4>
+	No snippets are available in the selected category or tag.
+</div>
+{{/if}}
+</script>
+
+<script id="sub-tasks-partial" type="text/x-handlebars-template">
+	<table border="0" cellpadding="5" class="table table-bordered color white nomargin">
+	<thead>
+	<tr>
+<th></th>
+<th>Steps</th>
+<th>Due Date</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+	{{#each this.subTasks}}
+	<tr>
+		<td class="alignC">
+			<div class="checkbox-group normal posRel">
+				<input type="checkbox" id="chkSubTask_{{../this._id}}_{{@index}}" name="chkSubTask_{{../this._id}}_{{@index}}" data-taskdb-id="{{../this._id}}" data-subtask-id="{{@index}}" {{#compare this.status "==" "Completed"}}checked="{{this.status}}" {{/compare}}/>
+				<label for="chkSubTask_{{../this._id}}_{{@index}}" class=""><i></i></label>
+			</div>
+		</td>
+		<td width="50%">
+			<p class="title-sub-task">{{this.title}}</p>
+			<div class="input-group" style="display:none;">
+				<input type="text" name="txtSubTaskTitle" id="txtSubTaskTitle" value="{{this.title}}" class="form-control boxsize width100" aria-describedby="basic-addon1"/>
+				
+				<span class="input-group-addon" id="basic-addon1" onclick="moduleTasks.saveSingleSubTask(this, '{{@index}}', '{{../this._id}}')" data-snippet-id="{{@index}}"><i class="ion-checkmark fontSize12em" data-toggle="tooltip" data-placement="top" title="Save"></i></span>
+				
+				<span class="input-group-addon" id="basic-addon1" onclick="moduleTasks.cancelSubTaskToEdit(this)"><i class="ion-close fontSize12em" data-toggle="tooltip" data-placement="top" title="Cancel"></i></span>
+			</div>
+		</td>
+		<td>{{this.dueDate}}</td>
+		<td class="alignC">
+			{{#compare status "==" "Completed"}}
+			<span class="label label-success">Completed</span><br/>
+			{{/compare}}
+			{{#compare status "==" "inprogress"}}
+			<span class="label label-info">In Progress</span><br/>
+			{{/compare}}
+			{{#compare status "==" "overdue"}}
+			<span class="label label-warning">Overdue</span><br/>
+			{{/compare}}
+			
+			{{#compare status "==" "Pending"}}
+			<span class="label label-default">Pending</span><br/>
+			{{/compare}}
+		</td>
+		<td class="alignC">
+			<a href="javascript:;" onclick="moduleTasks.showSubTaskToEdit(this)" data-snippet-id="{{@index}}"><i class="ion-edit fontSize12em" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
+			
+			<a href="javascript:;" onclick="moduleTasks.deleteSubTask('{{@index}}', '{{../this._id}}')" data-snippet-id="{{@index}}"><i class="glyphicon glyphicon-trash fontSize12em" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+		</td>
+	</tr>
+	{{/each}}
+</tbody>
+</table>
+</script>

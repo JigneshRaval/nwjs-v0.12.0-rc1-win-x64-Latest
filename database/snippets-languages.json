@@ -1,0 +1,18 @@
+var snippetLanguagesJSON = {
+	"languages" : [
+	{ id : 1, language : "html", title : "HTML" },
+	{ id : 2, language : "html5", title : "HTML5" },
+	{ id : 3, language : "xml", title : "XML" },
+	{ id : 4, language : "css", title : "CSS" },
+	{ id : 5, language : "scss", title : "SCSS" },
+	{ id : 6, language : "less", title : "Less" },
+	{ id : 7, language : "javascript", title : "JavaScript" },
+	{ id : 8, language : "json", title : "JSON" },	
+	{ id : 9, language : "coffeescript", title : "CoffeeScript" },
+	{ id : 10, language : "cpp", title : "C++" },
+	{ id : 11, language : "cs", title : "C#" },
+	{ id : 12, language : "java", title : "Java" },	
+	{ id : 13, language : "markdown", title : "Markdown" },
+	{ id : 14, language : "handlebars", title : "Handlebars" }
+	]
+}

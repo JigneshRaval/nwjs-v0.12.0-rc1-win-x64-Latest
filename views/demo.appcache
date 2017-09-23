@@ -1,0 +1,37 @@
+CACHE MANIFEST
+      
+# This is a comment
+
+CACHE:
+snippets.html
+
+css/fonts.css
+css/ionicons.css
+css/font-awesome.min.css
+css/plugins/animate.css
+css/bootstrap.css
+css/bootstrap-custom.css
+css/plugins/summernote.css
+css/plugins/jPages.css
+css/plugins/selectize.default.css
+css/plugins/jquery.snippet.css
+css/plugins/prism.css
+css/plugins/jquery.mCustomScrollbar.css
+css/plugins/alertify.core.css
+css/plugins/alertify.bootstrap.css
+css/plugins/dropdowns-enhancement.css
+css/plugins/bootstrap-colorpicker.css
+css/plugins/uploadfile.css
+css/plugins/lightGallery.css
+css/plugins/progressjs.css
+css/plugins/jquery.fs.zoomer.css
+css/plugins-custom.css
+css/layout.css
+css/snippets.css
+css/components.css
+css/global.css
+js/jquery.min.js
+
+../database/left-nav-panel.json
+../database/snippets-languages.json
+../database/syntax-highlighters.json

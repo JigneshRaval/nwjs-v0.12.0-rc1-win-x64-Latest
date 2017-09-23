@@ -1,0 +1,120 @@
+<!-- Template :: Snippets List -->
+<script id="snippets-list-template" type="text/x-handlebars-template">
+	
+	{{#if snippets}}
+		{{#each snippets}}
+		
+		<li class="item" data-snippet-id="{{this._id}}">
+		<header class="clearfix posrelative">
+	<span class="fl js-expand-collapse"><i class="ion-ios7-arrow-forward"></i></span>
+	
+	<div class="make-favourite fl" data-toggle="tooltip" data-placement="top" title="Mark as Favourite">
+
+		<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+
+		<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios7-star-outline"></i></label>
+	</div>
+	
+	<h3 class="fl w500 js-expand-collapse cursor-hand">
+		{{this.title}}
+	</h3>
+	<a href="javascript:;" class="metadata date fr uppercasetext"><i class="jicon px24 jicon-clock"></i>
+		{{#dateFormat this.dateCreated format="DD MMMM YYYY"}} 
+		{{this}} 
+		{{/dateFormat}}
+	</a>
+</header>
+
+<div class="snippets-wrapper__content posrelative js-expand-collapse-content">
+	<div class="padding15px">
+		{{#if this.code1}}
+		<p>{{this.description}}</p>
+		{{/if}}
+		
+		{{#if this.code1}}
+		<pre>
+			<code class="language-{{this.category}}">{{this.code1}}</code>
+		</pre>
+		{{/if}}
+		
+		{{#if this.code2}}
+		<pre>
+			<code class="language-{{this.category}}">{{this.code2}}</code>
+		</pre>
+		{{/if}}
+		
+	</div>
+</div>
+<footer class="uppercasetext">
+	<a href="javascript:;" class="category"><i class="glyphicon glyphicon-folder-close" data-toggle="tooltip" data-placement="top" title="Category"></i>{{this.category}}</a>
+	<a href="javascript:;" class="tags"><i class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="Tags"></i>
+		{{#splitString this.tags "[\,]+"}}
+		<span class="tag tag-css">{{this}}</span>
+		{{/splitString}}
+	</a>
+</footer>
+
+<div class="item-controls style2">
+	<a href="javascript:;" onclick="moduleSnippets.editSnippet('{{this.id}}', '{{this._id}}')" data-toggle="modal" data-target="#modalAddSnippetForm" data-snippet-id="{{this.id}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
+	
+	<a href="javascript:;" onclick="moduleSnippets.deleteSnippet('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+	
+	<a href="javascript:;" class="attachments" data-toggle="popover" data-placement="left" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="glyphicon glyphicon-paperclip" data-toggle="tooltip" data-placement="top" title="Attachments"></i></a>
+</div>
+
+</li>
+{{/each}}
+{{else}}
+<!-- Info Message if no list items are available -->
+<div class="alert alert-block alert-info js-alert">
+	<h4>Info!</h4>
+	No snippets are available in the selected category or tag.
+</div>
+{{/if}}
+</script>
+
+<!-- Template :: Categories -->
+<script id="categories-list-template" type="text/x-handlebars-template">
+<li class="cat-all active"><a href="javascript:;" data-category="all" data-category-id="0"><i class="ion-folder"></i> All <span class="badge fr ball">{{this.totalRecords}}</span></a></li>
+{{#each categories}}
+<li><a href="javascript:;" data-category="{{this.name}}" data-category-id="{{this.cid}}"><i class="ion-folder"></i> {{this.name}} <span class="badge fr ball">{{this.snipcount}}</span></a></li>
+{{/each}}
+</script>
+
+<!-- Template :: Manage Categories  -->
+<script id="manage-categories-list-template" type="text/x-handlebars-template">
+	{{#each categories}}
+	<li class="boxsize animated fadeInLeft" data-category="{{this.name}}" data-category-id="{{this.cid}}">
+<a href="javascript:;" data-category="{{this.name}}" data-category-id="{{this.cid}}">{{this.name}}</a> 
+
+<div class="item-controls style2">
+	<a href="javascript:;" class="lnkEditCategory"><i class="ion-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a> 
+	<a href="javascript:;" class="lnkDeleteCategory" onclick="moduleSnippets.deleteCategory(this);"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+</div>
+</li>
+{{/each}}
+</script>
+
+<!-- Template :: Tags -->
+<script id="tags-list-template" type="text/x-handlebars-template">
+	{{#each tags}}
+<a href="javascript:;" data-tag="{{this.tagName}}" data-tag-id="{{this.cid}}" class="tag tag-{{this.tagName}}" style="background-color:{{this.tagColor}};">{{this.tagName}}</a>
+{{/each}}
+</script>
+
+<!-- Template :: Manage Tags  -->
+<script id="manage-tags-list-template" type="text/x-handlebars-template">
+	{{#each tags}}
+	<li class="boxsize animated fadeInLeft" data-tag="{{this.tagName}}" data-tag-id="{{this.cid}}" data-tag-color="{{this.tagColor}}">
+	{{#if this.tagColor}}
+<span class="tag-color uppercasetext" style="background-color:{{this.tagColor}};" data-toggle="tooltip" data-placement="top" title="{{this.tagColor}}"></span>
+{{/if}}
+<a href="javascript:;" data-tag="{{this.tagName}}" data-tag-id="{{this.cid}}">{{this.tagName}}</a> 
+
+<div class="item-controls style2">
+	<a href="javascript:;" class="lnkEditTag"><i class="ion-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a> 
+	<a href="javascript:;" class="lnkDeleteTag" onclick="moduleSnippets.deleteTag(this);"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+</div>
+</li>
+{{/each}}
+</script>

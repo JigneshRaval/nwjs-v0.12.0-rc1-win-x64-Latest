@@ -1,0 +1,11 @@
+var leftNavPanelObj = {
+	"items" : [
+	{ "id" : 1, "name" : "Snippets", "iconClass" : "snippets", "subnav" : false },
+	{ "id" : 2, "name" : "Bookmarks", "iconClass" : "bookmarks", "subnav" : false },
+	{ "id" : 3, "name" : "Tasks", "iconClass" : "tasks", "subnav" : false },
+	{ "id" : 4, "name" : "Inspirations", "iconClass" : "inspirations", "subnav" : false },
+	{ "id" : 5, "name" : "Web Tools", "iconClass" : "webtools", "subnav" : false },
+	{ "id" : 6, "name" : "Favourites", "iconClass" : "favourite", "subnav" : false },
+	{ "id" : 7, "name" : "Stats", "iconClass" : "stats", "subnav" : false }
+	]
+}

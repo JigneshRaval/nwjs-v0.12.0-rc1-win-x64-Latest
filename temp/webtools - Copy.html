@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Coder's Cubes : Bookmarks</title>
+		
+		<!-- Load All CSS Files here -->
+		<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-mfizz.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/summernote.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/hint.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jPages.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/selectize.default.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/plugins/jquery.snippet.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/prism.css" /> -->
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.mCustomScrollbar.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.core.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/dropdowns-enhancement.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/uploadfile.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/lightGallery.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.autocomplete.css" />
+		
+		<!-- <link rel="stylesheet" type="text/css" title="default" id="styleSyntaxHighlighter" href="css/highlighter/default.css"> -->
+		
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/bookmarks.css" />
+		<link rel="stylesheet" type="text/css" href="css/components.css" />		
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		<!-- <link rel="stylesheet" href="editr/editr.css"> -->
+		<link rel="stylesheet" href="css/plugins/split-pane.css" />
+		<!-- The style sheet below is not part of the split-pane plugin. Feel free to use it, or style things your own way. -->
+		<link rel="stylesheet" href="css/plugins/pretty-split-pane.css" />
+		<link rel="stylesheet" href="css/codemirror/codemirror.css" />
+		<link rel="stylesheet" href="css/codemirror/theme/ambiance.css" />
+		
+		<!-- Load All JS Files here -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/node-webkit-fn.js"></script>
+		<!-- <script type="text/javascript" src="js/desktopNotification.js"></script> -->
+		
+		<script type="text/javascript">
+			function loadJSONTemplate(templatesPathObj) {				
+				//console.log(templatesPathObj);
+				$.each(templatesPathObj.files, function(key, value) {					
+					if(value.filetype == "json") {						
+						$('head').append('<script type="text/javascript" src="'+value.path+'"><\/script>');
+					}
+					else if(value.filetype == "html") {
+						console.log(value.path,value.container);
+						$(value.container).load(value.path);						
+					}
+				});
+			}
+			
+			var loadJSONDataFiles = {
+				files : [
+				{id : 1, name : "bookmarks-tmpl", path : "templates/bookmarks-tmpl.html", filetype: "html", container : '#handlebars-templates-wrapper'  }
+				]
+			};
+		</script>
+	</head>
+	
+    <body class="body-bg-1 bookmarks-page">
+		<div id='status' style='display: none;'></div>
+		<!-- START :: All the Handlebars Templates -->
+        <div id="handlebars-templates-wrapper">
+			
+		</div>
+		<script type="text/javascript">loadJSONTemplate(loadJSONDataFiles);</script>
+		
+        <div class="loading-indicator top-bar">
+            <div class="loading-loader">
+                <i class="ion-loading-c eleinlineblock"></i>
+			</div>
+		</div>
+		
+		<!-- START :: Window Toolbar -->
+		<div class="app-controls grid-table twhite">
+			<div class="grid-table-row">
+				<h3 class="text-muted grid-cell grid-cell-nine malign" style="-webkit-app-region: drag">Coder's Cubes</h3>
+				<div id="WindowToolbar" class="grid-cell grid-cell-three">
+					<div class="fr">
+						<a href="javascript:;" onclick="webkitWinModule.minimizeWin()" type="button" class="btnMinimize" data-toggle="tooltip" data-placement="bottom" title="Minimize Application">
+							<i class="glyphicon glyphicon-minus"></i>
+						</a>
+						
+						<a href="javascript:;" onclick="webkitWinModule.maximizeWin()" type="button" class="btnToggleFullScreen" data-toggle="tooltip" data-placement="bottom" title="Maximize Application">
+							<i class="glyphicon glyphicon-fullscreen"></i>
+						</a>
+						
+						<a href="javascript:;" onclick="webkitWinModule.reloadWin()" type="button" class="btnClose" data-toggle="tooltip" data-placement="bottom" title="Reload Application">
+							<i class="ion-refresh"></i>
+						</a>
+						<a href="javascript:;" onclick="webkitWinModule.showDevTool()" type="button" class="btnClose" data-toggle="tooltip" data-placement="bottom" title="Developer Toolbar">
+							<i class="ion-gear-b"></i>
+						</a>
+						<a href="javascript:;" onclick="webkitWinModule.closeWin()" type="button" class="btnClose color red twhite" data-toggle="tooltip" data-placement="bottom" title="Close Application">
+							<i class="ion-close-round"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END :: Window Toolbar -->
+		
+        <div class="grid-table grid-table-fixed main-area-wrapper">
+            <div class="grid-table-row">
+                <div class="grid-cell talign color wet-asphalt control-panel">
+                    <p class="center-aligned nomargin">
+                        <a href="index.html" class="logo"><img src="images/jrsnipp-logo-new.png" /></a>
+					</p>
+					
+					
+                    <aside class="js-accordion-section">
+                        <!--<span class="logo"><img src="images/jrsnipp-logo-new.png" /></span>-->
+                        <ul class="nomargin nopadding nobullets">
+                            <li>
+                                <a href="snippets.html"><i class="jicon-snippets"></i>
+                                    <span><em class="arrow small arrow-left"></em>Snippets</span>
+								</a>
+                                <div class="control-panel-subnav">
+                                    <ol>
+                                        <li>
+                                            <a href="#" class="button medium color green lnkAddNewSnippet" data-toggle="modal" data-target="#modalAddSnippetForm"><i class="ion-plus"></i> Add New Snippet</a>
+										</li>
+									</ol>
+								</div>
+							</li>
+                            <li>
+                                <a href="javascript:;"><i class="jicon-favourite"></i>
+                                    <span><em class="arrow small arrow-left"></em> Favourites</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="tasks.html"><i class="jicon-tasks"></i>
+                                    <span><em class="arrow small arrow-left"></em> Tasks</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="inspirations.html"><i class="jicon-inspirations"></i>
+                                    <span><em class="arrow small arrow-left"></em> Inspirations</span>
+								</a>
+							</li>
+                            <li class="active">
+                                <a href="javascript:;"><i class="jicon-bookmarks"></i>
+                                    <span><em class="arrow small arrow-left"></em> Bookmarks</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="webtools.html"><i class="jicon-webtools"></i>
+                                    <span><em class="arrow small arrow-left"></em> Web Tools</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="javascript:;"><i class="jicon-stats"></i>
+                                    <span><em class="arrow small arrow-left"></em> Stats</span>
+								</a>
+							</li>
+							<li>
+                                <a href="javascript:;" class="lnkShowFooterPanel"><i class="jicon-stats"></i>
+                                    <span><em class="arrow small arrow-left"></em> More</span>
+								</a>
+							</li>
+						</ul>
+					</aside>
+					
+				</div>
+                <div class="grid-cell grid-cell-ten talign">
+                    <div class="main-wrapper">
+                        <!--================================
+                            START : Snippets Listing View
+						====================================-->
+                        <section class="content-wrapper posRel full-height">
+							
+                            <article class="bookmarks-wrapper posRel full-height">
+                                <div class="grid-table full-height">
+                                    <div class="grid-table-row">
+										
+                                        <!-- START :: Column -->
+                                        <div class="grid-cell grid-cell-three talign color white" style="display:none;">
+											
+                                            <!-- START : Content Header -->
+                                            <article class="content-header clearfix">
+												
+                                                <!-- START :: Pagination Top -->
+                                                <div class="pagination-wrapper nopadding">
+                                                    <div class="grid-row green9">
+                                                        <div class="grid-columns grid-col-seven center-aligned">
+                                                            <!-- wrapped custom buttons for easier styling -->
+                                                            <div class="padding10px">
+                                                                <div class="custom-pagination-btns">
+                                                                    <a href="javascript:;" class="prevPage twhite"><i class="ion-chevron-left"></i></a>
+                                                                    <span class="pagination-legend twhite"></span>
+                                                                    <a href="javascript:;" class="nextPage twhite"><i class="ion-chevron-right"></i></a>
+																</div>
+															</div>
+															
+														</div>
+														
+                                                        <div class="grid-columns grid-col-five alignR">
+                                                            <a href="javascript:;" class="lnkShowSearchPanel"><i class="ion-android-search"></i></a>
+														</div>
+														
+													</div>
+													
+                                                    <div class="search-wrapper margin10px" style="display: none;">
+                                                        <form id="frmSearch" name="frmSearch" class="posrelative">
+                                                            <div class="input-group">
+                                                                <div class="btn-group">
+                                                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Filter by <span class="caret"></span></button>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><input type="radio" id="radioTitle" name="radioGrpFilterBy" value="title"><label for="radioTitle">Title</label></li>
+                                                                        <li><input type="radio" id="radioCategory" name="radioGrpFilterBy" value="category"><label for="radioCategory">Category</label></li>
+                                                                        <li><input type="radio" id="radioDate" name="radioGrpFilterBy" value="date"><label for="radioDate">Date</label></li>
+                                                                        <li><input type="radio" id="radioTags" name="radioGrpFilterBy" value="tags"><label for="radioTags">Tags</label></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><input type="radio" id="radioAll" name="radioGrpFilterBy" value="all"><label for="radioAll">All</label></li>
+																	</ul>
+																</div>
+																
+                                                                <input type="text" id="txtSearch" name="txtSearch" placeholder="Search Snippet" class="form-control" autofocus />
+                                                                <a href="javascript:;" class="posabsolute lnkClearSearch" style="display:none;" onclick="clearSearch(this)">&times;</a>
+															</div><!-- /input-group -->
+														</form>
+													</div>
+													
+												</div>
+                                                <!-- END :: Pagination Top -->
+												
+											</article>
+                                            <!-- END : Content Header -->
+										</div>
+                                        <!-- END :: Column -->
+										
+                                        <!-- START :: Column -->
+                                        <div class="grid-cell grid-cell-eight talign posRel">
+                                            <!-- START :: Header Section -->
+                                            <header class="main-header posRel clearfix">
+                                                <span class="main-header-title titillium w500 fontSize18em fl eleinlineblock">Bookmarks</span>
+                                                <ul class="header-controls nomargin nopadding nobullets fr">
+                                                    <li>
+                                                        <a href="javascript:;" data-toggle="dropdown"><i class="jicon-apps" data-toggle="tooltip" data-placement="bottom" title="Explore Applications"></i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-apps" role="menu" aria-labelledby="dLabel">
+                                                            <ul class="nomargin nopadding nobullets clearfix">
+                                                                <li class="active">
+                                                                    <a href="snippets.html"><i class="jicon-snippets"></i>
+                                                                        <span>Snippets</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;" title="Category"><i class="jicon-cat"></i>
+                                                                        <span>Categories</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;" title="Tags"><i class="jicon-tags"></i>
+                                                                        <span>Tags</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;"><i class="jicon-favourite"></i>
+                                                                        <span>Favourites</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="tasks.html"><i class="jicon-tasks"></i>
+                                                                        <span>Tasks</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="inspirations.html"><i class="jicon-gallery"></i>
+                                                                        <span>Inspirations</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="bookmarks.html"><i class="jicon-bookmarks"></i>
+                                                                        <span>Bookmarks</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="webtools.html"><i class="jicon-webtools"></i>
+                                                                        <span>Web Tools</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;"><i class="jicon-stats"></i>
+                                                                        <span>Stats</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</li>
+                                                    <li>
+                                                        <a href="javascript:;" data-toggle="dropdown"><i class="jicon-settings" data-toggle="tooltip" data-placement="bottom" title="View Settings"></i></a>
+                                                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+                                                            <li><a href="#" class="lnkOpenModalManageCategories" data-toggle="modal" data-target="#modalManageCategories"><i class="ion-folder fontSize15em"></i> Manage Categories</a></li>
+                                                            <li><a href="#" data-toggle="modal" data-target="#modalManageTags"><i class="ion-ios-pricetag fontSize15em"></i> Manage Tags</a></li>
+                                                            <li><a href="javascript:;"  class="lnkOpenModal_Settings"><i class="ion-ios-gear fontSize15em"></i> Settings</a></li>
+														</ul>
+													</li>
+                                                    <li>
+                                                        <a href="javascript:;" class="expand-icon-panel" data-toggle="tooltip" data-placement="bottom" title="View Categories and Tags"><i class="ion-navicon-round"></i></a>
+													</li>
+												</ul>
+											</header>
+                                            <!-- END :: Header Section -->
+											
+											
+											<!-- <div class="bookmark-controls style1 clearfix ">
+												<a href="javascript:;" class="lnkAddNewBookmark boxsize" data-toggle="tooltip" data-placement="top" title="Add New Bookmark"><i class="ion-plus"></i></a>
+												<a href="javascript:;" class="lnkAddNewSnippet boxsize" data-toggle="tooltip" data-placement="top" title="Bookmark Settings"><i class="ion-settings"></i></a>
+												<a href="javascript:;" class="lnkAddNewSnippet boxsize" data-toggle="tooltip" data-placement="top" title="Refresh List"><i class="ion-loop"></i></a>
+											</div> -->
+											
+											
+                                            <div class="grid-table grid-table-fixed full-height">
+                                                <div class="grid-table-row">
+                                                    <div class="grid-cell grid-cell-twelve talign posRel">
+														<div class="bookmark-controls style2 clearfix">
+															<div class="fr">
+																<a href="javascript:;" class="lnkAddNewBookmark boxsize" data-toggle="tooltip" data-placement="top" title="Add New Bookmark" data-container="body"><i class="ion-plus"></i></a>
+																
+																<a href="javascript:;" class="lnkViewStarredList boxsize" data-toggle="tooltip" data-placement="top" title="Favourites" data-container="body"><i class="ion-star"></i></a>
+																
+																<a href="javascript:;" class="lnkToggleGridView boxsize" data-toggle="tooltip" data-placement="top" title="Toggle Grid View" data-container="body"><i class="ion-android-apps"></i></a>
+																
+																<a href="javascript:;" class="lnkReloadList boxsize" data-toggle="tooltip" data-placement="top" title="Refresh List" data-container="body" onclick="moduleBookmarks.listAllBookmarks('all');"><i class="ion-android-refresh"></i></a>
+															</div>
+															<div class="fr">
+																<div class="pagination-wrapper alignC padding10px">
+																	<div class="holder" id="holder-bookmarks"></div>
+																</div>
+															</div>
+														</div>
+														
+														<style>
+															.split-pane-divider {
+															background: #aaa;
+															}
+															#left-component {
+															width: 26em;
+															}
+															#my-divider {
+															left: 26em; /* Same as left component width */
+															width: 5px;
+															}
+															#right-component {
+															left: 26em;  /* Same as left component width */
+															margin-left: 5px;  /* Same as divider width */
+															}
+															
+															
+															
+															
+															
+															#html-component, #css-component, #js-component {
+															min-height: 10em;
+															
+															}
+															
+															#html-component {
+															bottom: 70%;
+															margin-bottom: 5px;
+															
+															}
+															
+															#html-component-divider {
+															bottom: 70%;
+															height: 5px;
+															}
+															
+															#bottom-divider {
+															height: 70%;
+															min-height: 300px;
+															}
+															
+															#css-component {
+															bottom: 50%;
+															margin-bottom: 5px;
+															}
+															
+															#css-component-divider {
+															bottom: 50%;
+															height: 5px;
+															}
+															
+															#js-component {
+															
+															height: 50%
+															}
+															.result-view-pane .mCSB_container {
+															height: 100%;
+															}
+														</style>
+														<div class="split-pane fixed-left">
+															<div class="split-pane-component" id="left-component">
+																
+																
+																
+																<div class="split-pane fixed-bottom">
+																	<div class="split-pane-component js-scrollbar" id="html-component">
+																		
+																		<article class="html-code-box">
+																			<textarea name="txtAreaHTML" id="txtAreaHTML">HTML</textarea>
+																		</article>
+																		
+																	</div>
+																	
+																	<div class="split-pane-divider" id="html-component-divider"></div>
+																	
+																	<div class="split-pane-component js-scrollbar" id="bottom-divider">
+																		<div class="split-pane fixed-bottom">
+																			<div class="split-pane-component js-scrollbar" id="css-component">
+																				
+																				<article class="css-code-box">
+																					<textarea name="txtAreaCSS" id="txtAreaCSS">CSS</textarea>
+																				</article>
+																				
+																			</div>
+																			
+																			<div class="split-pane-divider" id="css-component-divider"></div>
+																			
+																			<div class="split-pane-component js-scrollbar" id="js-component">
+																				
+																				<article class="javascript-code-box">
+																					<textarea name="txtAreaJS" id="txtAreaJS"></textarea>
+																				</article>
+																				
+																			</div>
+																		</div>
+																	</div>
+																	
+																	
+																</div>
+															</div>
+															
+															<div class="split-pane-divider" id="my-divider"></div>
+															
+															<div class="split-pane-component js-scrollbar result-view-pane" id="right-component" style="max-height:100%;">
+																<div class="live-view-wrapper full-height posRel">
+																	<iframe id="iframe1" class="" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts" allowtransparency="true" allowfullscreen="true" style="border:0;width: 100%;height:100%;"></iframe>
+																</div>
+															</div>
+														</div>
+														
+														
+														<!-- START :: Result List Area -->
+														<div class="posRel result-area-wrapper">
+															<div class="editr editr--light" data-item="flat-ui" data-files-html="switch.html;radio.html" data-files-css="main.less;switch.css;radio.css"></div>
+														</div>
+														<!-- END :: Result List Area -->
+														
+														<div class="talign color wet-asphalt panel-left width20">
+															<div class="">
+																<!--===========================================
+																	START : Categories and Tags Listing panel
+																===============================================-->
+																<h3 class="active"><!-- <i class="ion-chevron-down"></i> --> <span>Categories</span> <i class="ion-plus fr" data-toggle="tooltip" title="Add New Category" data-placement="left"></i></h3>
+																<article class="categories-section control-panel__content js-accordion-section">
+																	<!-- START: Categories Panel -->
+																	<div class="" id="categories">
+																		<!-- <h3 class="titillium w500 fontSize15em padding10px nomargin">Categories</h3> -->
+																		<form id="frmAddNewCategory" name="frmAddNewCategory" class="padding10px color gray-light" style="display: none;">
+																			<input type="hidden" name="hdnSelectedCategory" id="hdnSelectedCategory" value="" />
+																			<div class="input-group">
+																				<input type="text" name="txtAddCategory" id="txtAddCategory" class="form-control" placeholder="Add Category" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please provide category name" />
+																				<div class="input-group-btn">
+																					<button type="submit" class="btn btn-default" onclick="moduleBookmarks.addCategory();"><i class="ion-plus"></i></button>
+																					
+																				</div><!-- /btn-group -->
+																			</div><!-- /input-group -->
+																		</form>
+																		<div class="js-scrollbar" style="max-height: 300px;">
+																			<ul class="panel-categories nomargin nopadding nobullets">
+																				
+																			</ul>
+																		</div>
+																	</div>
+																	<!-- END: Categories Panel -->
+																</article>
+																
+																<!-- START: Tags Panel -->
+																<!--
+																	<h3 class="active"><span>Tags</span> <i class="ion-plus fr" data-toggle="tooltip" title="Add New Tag" data-placement="left"></i></h3>
+																	<article class="tags-section control-panel__content js-accordion-section">
+																	
+																	<div class="tab-pane" id="tags">
+																	<form id="frmAddNewTag" name="frmAddNewTag" class="padding10px color gray-light" style="display: none;">
+																	<div class="input-group">
+																	<input type="text" name="txtAddTag" id="txtAddTag" class="form-control" placeholder="Add Tag" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please provide valid tag name" />
+																	
+																	<div class="input-group-btn">
+																	<button type="submit" class="btn btn-default" onclick="moduleBookmarks.addSingleTag();"><i class="ion-plus"></i></button>
+																	</div>
+																	</div>
+																	<br/>
+																	<div class="input-group setTagColor">
+																	<input type="text" name="txtTagColor" id="txtTagColor" class="form-control" placeholder="Select Tag Color" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please Select Color for the tag." />
+																	<span class="input-group-addon"><i></i></span>
+																	</div>
+																	</form>
+																	
+																	<div class="tags-wrapper padding10px">
+																	<a href="javascript:;" class="tag tag-css">CSS</a>
+																	<a href="javascript:;" class="tag tag-js">JavaScript</a>
+																	<a href="javascript:;" class="tag tag-bootstrap">Bootstrap</a>
+																	<a href="javascript:;" class="tag tag-scss">SASS</a>
+																	</div>
+																	</div>
+																	
+																	</article>
+																-->
+																<!-- END: Categories Panel -->
+																
+																<!--===========================================
+																	START : Categories and Tags Listing panel
+																===============================================-->
+															</div>
+														</div>
+														
+														<!--
+															<div class="pagination-wrapper pagination-wrapper-footer padding15px alignC purple7 twhite posRel">
+															<div class="holder" id="holder-bookmarks"></div>
+															</div>
+														-->
+													</div>
+													
+												</div>
+											</div>
+											
+											
+										</div>
+										<!-- END :: Column -->
+									</div>
+								</div>
+								
+							</article>
+						</section>
+						<!--================================
+							END : Snippets Listing View
+						====================================-->
+						
+						<!-- START : Footer -->
+						<footer class="footer-wrapper">
+							<div class="grid-row">
+								<div class="grid-columns grid-col-ten">
+									<p>Copyright 2014 Your name</p>
+								</div>
+								<div class="grid-columns grid-col-two alignR">
+									<a href="javascript:;" class="lnkHideFooterPanel"><i class="ion-chevron-left"></i></a>
+								</div>
+							</div>
+							
+						</footer>
+						<!-- END : Footer -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/handlebars-v2.0.0.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/plugins/moment.js"></script>		
+		<script type="text/javascript" src="js/handlebars.helpers.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/jquery.form-validator.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="js/plugins/summernote.js"></script>
+		<script type="text/javascript" src="js/plugins/jPages.js"></script>
+		<script type="text/javascript" src="js/plugins/alertify.js"></script>
+		<script type="text/javascript" src="js/plugins/selectize.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.bootstrap-growl.min.js"></script>
+		<script type="text/javascript" src="js/plugins/highlight.pack.js"></script>
+		<script type="text/javascript" src="js/plugins/lightGallery.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/sly.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.autocomplete.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/plugins/dropdowns-enhancement.js"></script>
+		<script type="text/javascript" src="js/plugins/bootstrap-colorpicker.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.fastLiveFilter.js"></script>
+		<script type="text/javascript" src="js/plugins/mousetrap.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.uploadfile.js"></script>
+		<script type="text/javascript" src="js/common-functions.js"></script>
+		<script type="text/javascript" src="js/modules-common-functions.js"></script>
+		<script type="text/javascript" src="js/plugins/split-pane.js"></script>
+		<script type="text/javascript">
+			webkitWinModule.init({});
+		</script>
+		
+		
+		<script src="js/plugins/codemirror.js"></script>
+		<script src="js/codemirror/mode/xml/xml.js"></script>
+		<script src="js/codemirror/mode/javascript/javascript.js"></script>
+		<script src="js/codemirror/mode/css/css.js"></script>
+		<script src="js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="js/codemirror/addon/edit/matchbrackets.js"></script>
+		<!-- <script src="http://cdn.jsdelivr.net/ace/1.1.01/min/ace.js"></script>
+			<script src="http://cdn.jsdelivr.net/ace/1.1.01/min/ext-emmet.js"></script>
+			<script src="editr/libs/ext.emmet.js"></script>
+			<script src="editr/libs/parser.coffeescript.js"></script>
+			<script src="editr/libs/parser.less.js"></script>
+		<script src="editr/editr.js"></script> -->
+		<script>
+			
+			var codeEditorOpts, codeEditorModule = {
+				base_tpl : "<!doctype html>\n" +
+				"<html>\n" +
+				"<head>" +
+				"<meta charset=\"utf-8\">" +
+				"<title>Test</title>" +
+				"<\/head>" +
+				"<body>" +
+				'<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"><\/script>' +
+				"<\/body>" +
+				"<\/html>",
+				htmlEditor : CodeMirror.fromTextArea(document.getElementById("txtAreaHTML"), {
+					lineNumbers: true,
+					mode: "text/html",
+					matchBrackets: true,
+					theme : "ambiance",
+					lineWrapping : true,
+					onChange: function (inst, changes) {
+						//render();
+						console.log("Test onchange");
+					}
+				}),
+				cssEditor : CodeMirror.fromTextArea(document.getElementById("txtAreaCSS"), {
+					lineNumbers: true,
+					mode: "text/html",
+					matchBrackets: true,
+					theme : "ambiance",
+					lineWrapping : true,
+					onChange: function (inst, changes) {
+						//render();
+						console.log("Test onchange");
+					}
+				}),
+				jsEditor : CodeMirror.fromTextArea(document.getElementById("txtAreaJS"), {
+					lineNumbers: true,
+					mode: "text/html",
+					matchBrackets: true,
+					theme : "ambiance",
+					lineWrapping : true,
+					onChange: function (inst, changes) {
+						//render();
+						console.log("Test onchange");
+					}
+				}),
+				init : function(settings) {
+					codeEditorOpts = settings;
+				},
+				initEditors : function() {
+					
+				},
+				getEditorVal : function(editor) {
+					console.log("2 ", editor.getValue());
+					return editor.getValue();
+				},
+				setEditorVal : function(editor, value) {
+					console.log("2 ", editor.setValue(value));
+					return editor.setValue(value);
+				},
+				prepareSource : function() {
+					var html = codeEditorModule.htmlEditor.getValue(),
+					css = codeEditorModule.cssEditor.getValue(),
+					js = codeEditorModule.jsEditor.getValue(),
+					src = '';
+					
+					// HTML
+					src = this.base_tpl.replace('<\/body>', html + '<\/body>');
+					
+					// CSS
+					css = '<style class="code-editor-style">' + css + '<\/style>';
+					src = src.replace('<\/head>', css + '<\/head>');
+					
+					// Javascript
+					js = '<script>' + js + '<\/script>';
+					src = src.replace('<\/body>', js + '<\/body>');
+					
+					return src;
+				},
+				
+				setIframeContent : function() {
+					
+					var source = this.prepareSource();
+					console.log("Source ..", source);
+					
+					var iframe = document.querySelector('#iframe1'),
+					iframe_doc = iframe.contentDocument;
+					
+					iframe_doc.open();
+					iframe_doc.write(source);
+					iframe_doc.close();
+				}
+			};
+			
+			
+			var delay = (function(){
+				var timer = 0;
+				return function(callback, ms){
+					clearTimeout (timer);
+					timer = setTimeout(callback, ms);
+				};
+			})();
+			
+			$(document).ready(function() {
+				//codeEditorModule.initEditors();
+				//codeEditorModule.setIframeContent();
+				var ttt = codeEditorModule.getEditorVal(codeEditorModule.cssEditor);
+				//codeEditorModule.setEditorVal(codeEditorModule.cssEditor, ".ppp { border : 1px }");
+				
+				var htmlEditorInst = codeEditorModule.htmlEditor;
+				
+				codeEditorModule.htmlEditor.on('keyup', function() {
+					delay(function(){
+						console.log('Hi, func called');
+						codeEditorModule.setIframeContent();
+					}, 2000 );
+				});
+				codeEditorModule.cssEditor.on('keyup', function() {
+					delay(function(){
+						console.log('Hi, func called');
+						codeEditorModule.setIframeContent();
+					}, 2000 );
+				});
+				codeEditorModule.jsEditor.on('keyup', function() {
+					delay(function(){
+						console.log('Hi, func called');
+						codeEditorModule.setIframeContent();
+					}, 2000 );
+				});
+				
+				
+				/*$('.editr').each(function() {
+					//new Editr({ el: this });
+					new Editr({
+					el: this,
+					theme: 'clouds',
+					path: 'editr/items',
+					view: 'vertical', //  horizontal, vertical, cartesian
+					//gistProxyURL: 'editr/libs/proxy.gist.php',
+					callback: function(editr) {
+					console.log(editr, this);
+					
+					var divId = $('.editr').find('.editr__editor').attr('id');
+					console.log(divId);
+					var editor = ace.edit(divId);
+					editor.on("blur", function() {
+					var tt = editor.getValue();
+					console.log("TTTT: ",tt);
+					});
+					
+					}
+					});
+					});
+				*/
+				
+				$('div.split-pane').splitPane();
+				//$('#iframe1').contents().find('body').html("<h1 style='text-align: center;'>This IS an iframe</h1>");
+				
+			});
+			
+			
+			/*
+				setInterval(function() {
+				codeEditorModule.setIframeContent();
+				}, 6000);
+			*/
+		</script>
+		<!--<script src="js/modules/module-bookmarks.js"></script> -->
+		<!--<script>
+			(function() {
+			
+			// Base template
+			var base_tpl =
+			"<!doctype html>\n" +
+			"<html>\n" +
+			"<head>" +
+			"<meta charset=\"utf-8\">" +
+			"<title>Test</title>" +
+			"<\/head>" +
+			"<body>" +
+			"<\/body>" +
+			"<\/html>";
+			
+			var prepareSource = function() {
+			var html = html_editor.getValue(),
+			css = css_editor.getValue(),
+			js = js_editor.getValue(),
+			src = '';
+			
+			// HTML
+			src = base_tpl.replace('<\/body>', html + '<\/body>');
+			
+			// CSS
+			css = '<style>' + css + '<\/style>';
+			src = src.replace('<\/head>', css + '<\/head>');
+			
+			// Javascript
+			js = '<script>' + js + '<\/script>';
+			src = src.replace('<\/body>', js + '<\/body>');
+			
+			return src;
+			};
+			
+			var render = function() {
+			var source = prepareSource();
+			
+			var iframe = document.querySelector('#output iframe'),
+			iframe_doc = iframe.contentDocument;
+			
+			iframe_doc.open();
+			iframe_doc.write(source);
+			iframe_doc.close();
+			};
+			
+			
+			// EDITORS
+			
+			// CM OPTIONS
+			var cm_opt = {
+			mode: 'text/html',
+			gutter: true,
+			lineNumbers: true,
+			
+			onChange: function (inst, changes) {
+			render();
+			}
+			};
+			
+			// HTML EDITOR
+			var html_box = document.querySelector('#html textarea');
+			var html_editor = CodeMirror.fromTextArea(html_box, cm_opt);
+			
+			// CSS EDITOR
+			cm_opt.mode = 'css';
+			var css_box = document.querySelector('#css textarea');
+			var css_editor = CodeMirror.fromTextArea(css_box, cm_opt);
+			
+			// JAVASCRIPT EDITOR
+			cm_opt.mode = 'javascript';
+			var js_box = document.querySelector('#js textarea');
+			var js_editor = CodeMirror.fromTextArea(js_box, cm_opt);
+			
+			// SETTING CODE EDITORS INITIAL CONTENT
+			html_editor.setValue('<p>Hello World</p>');
+			css_editor.setValue('body { color: red; }');
+			
+			
+			// RENDER CALL ON PAGE LOAD
+			// NOT NEEDED ANYMORE, SINCE WE RELY
+			// ON CODEMIRROR'S onChange OPTION THAT GETS
+			// TRIGGERED ON setValue
+			// render();
+			
+			
+			// NOT SO IMPORTANT - IF YOU NEED TO DO THIS
+			// THEN THIS SHOULD GO TO CSS
+			
+			/*
+			Fixing the Height of CodeMirror.
+			You might want to do this in CSS instead
+			of JS and override the styles from the main
+			codemirror.css
+			*/
+			var cms = document.querySelectorAll('.CodeMirror');
+			for (var i = 0; i < cms.length; i++) {
+			
+			cms[i].style.position = 'absolute';
+			cms[i].style.top = '30px';
+			cms[i].style.bottom = '0';
+			cms[i].style.left = '0';
+			cms[i].style.right = '0';
+			}
+			cms = document.querySelectorAll('.CodeMirror-scroll');
+			for (i = 0; i < cms.length; i++) {
+			cms[i].style.height = '100%';
+			}
+			
+			}());
+		</script>-->
+		<!-- START : Add Snippet Form Modal -->
+		<div class="modal fade" id="modalAddBookmarkForm" tabindex="-1" role="dialog" aria-labelledby="modalAddBookmarkFormLabel" aria-hidden="true">
+			<div class="modal-dialog width70">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="modalAddBookmarkFormLabel">Add New Bookmark</h4>
+					</div>
+					<form name="frmAddEditBookmark" id="frmAddEditBookmark" action="addEditBookmark" method="POST" role="form">
+						<div class="modal-body">
+							<input type="hidden" name="hdnBookmarkId" id="hdnBookmarkId" value="0" data-form-field="_id"/>
+							<input type="hidden" name="hdnMode" id="hdnMode" value="add"/>
+							
+							<div class="row">
+								<div class="col-md-7">
+									
+									<div class="form-group">
+										<label for="txtBookmarkURL">Bookmark URL <i class="ion-information-circled" data-toggle="tooltip" data-placement="top" title="Paste URL below"></i></label>
+										<input type="url" class="form-control" id="txtBookmarkURL" name="txtBookmarkURL" placeholder="Paste URL Here" data-form-field="url" data-validation="required" data-validation-error-msg="Please provide url" onblur="moduleBookmarks.getURLDetails();" />
+									</div>
+									
+									<div class="form-group">
+										<label for="txtBookmarkTitle">Title</label>
+										<input type="text" class="form-control" id="txtBookmarkTitle" name="txtBookmarkTitle" placeholder="Title" data-form-field="title" data-validation="required" data-validation-error-msg="Please provide url" />
+									</div>
+									
+									<div class="form-group">
+										<label for="optBookmarkCategory">Category</label>
+										<select name="optBookmarkCategory" id="optBookmarkCategory" data-form-field="categoryId" placeholder="Select category">
+											<option value="">Select category</option>
+										</select>
+									</div>
+									
+									<div class="form-group">
+										<label for="txtBookmarkKeywords">Keywords</label>
+										<input type="text" class="form-control" placeholder="Select or Add Tags" id="txtBookmarkKeywords" name="txtBookmarkKeywords" data-form-field="Keywords" />
+									</div>
+									
+									
+								</div>
+								<div class="col-md-5">
+									<div class="help-block">
+										<i class="ion-information-circled" data-toggle="tooltip" data-placement="top" title="Paste URL below"></i>
+										Paste URL in the "URL" field on the Left side (which you want to keep as bookmark) and press "Tab" key. It will automatically fetch data from the given website URL like Title, Image, Keywords and Description.
+									</div>
+									<div class="bookmark-default-image form-group">
+										<label for="imagePreview">Bookmark Image</label>
+										<input type="text" value="" id="uploadImageURL" name="uploadImageURL" placeholder="Upload Image using URL" class="form-control" data-form-field="" />
+										<div class="posRel">
+											<img src="" id="imagePreview" style="max-width: 100%;"/>
+											<p class="alignC nomargin posAbs cover dark50"><a href="javascript:;" class="lnkChangeDefaultImage twhite">Change Image</a></p>
+										</div>
+									</div>
+									<!--
+										<div class="bookmark-upload-image-url form-group">
+										<label for="imagePreview">Upload Image using URL</label>
+										<input type="text" value="" id="uploadImageURL" name="uploadImageURL" placeholder="Upload Image using URL" class="form-control" data-form-field="" onblur="moduleBookmarks.uploadImageFromURL();" />
+										
+										<div class="posRel">
+										<img src="" id="imagePreview" style="max-width: 100%;"/>
+										<p class="alignC nomargin posAbs cover dark50"><a href="javascript:;" class="lnkChangeUploadImageURL twhite">Change Image</a></p>
+										</div>
+										</div>
+									-->
+									<div class="attachments-upload" style="display:none;">
+										<div class="padding25px color white">
+											<!-- <h4 class="fancy-title bline small posRel noTmargin w500">Upload Images <i class="ion-close-circled fr"></i></h4> -->
+											
+											<div id="fileuploader">Upload</div>
+											
+											<!-- <p class="alignC padding10px"><a href="javascript:;" id="startUpload" class="button medium color green">Start Upload</a></p> -->
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-12">
+									
+									<div class="form-group">
+										<label for="txtareaBookmarkDescription">Description</label>
+										<textarea class="form-control" name="txtareaBookmarkDescription" id="txtareaBookmarkDescription" data-form-field="description" rows="5"></textarea>
+									</div>
+									
+									<div class="form-group">
+										<label for="txtareaNote">Note</label>
+										<textarea class="form-control" name="txtareaNote" id="txtareaNote" data-form-field="note" rows="5"></textarea>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<input type="submit" id="btnAddSnippet" name="btnAddSnippet" class="btn btn-primary" onclick="moduleBookmarks.addEditBookmark()" value="Save" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END : Add Snippet Form Modal -->
+		
+		<!-- START : Manage Categories Modal -->
+		<div class="modal" id="modalManageCategories" tabindex="-1" role="dialog" aria-labelledby="modalManageCategoriesLabel" aria-hidden="true">
+			<div class="modal-dialog width70">
+				<div class="modal-content">
+					<form name="frmEditCategory" id="frmEditCategory" action="editCategory" method="POST" role="form">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title" id="modalManageCategoriesLabel">Manage Categories</h4>
+						</div>
+						
+						<div class="color gray-light padding15px bb bgray">
+							<div class="input-group">
+								<input type="text" name="txtEditCategory" id="txtEditCategory" class="form-control" placeholder="Edit Category" />
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-primary" onclick="moduleBookmarks.editCategory();"><i class="ion-plus"></i></button>
+								</div><!-- /btn-group -->
+							</div><!-- /input-group -->
+						</div>
+						
+						<div class="modal-body">
+							
+							<ul class="manage-categories-listing datalist-table three-col nomargin nopadding nobullets clearfix borderL-anim" id="manage-categories__listing">
+								
+							</ul>
+							
+							<div class="pagination-wrapper center-aligned">
+								<div class="holder" id="holder-category"></div>
+							</div>
+							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END : Manage Categories Modal -->
+		
+		<!-- START : Manage Tags Modal -->
+		<div class="modal fade" id="modalManageTags" tabindex="-1" role="dialog" aria-labelledby="modalManageTagsLabel" aria-hidden="true">
+			<div class="modal-dialog width70">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="modalManageTagsLabel">Manage Tags : Edit</h4>
+					</div>
+					<!-- START : Edit Tag Form -->
+					<div class="color gray-light padding15px bb bgray">
+						<form name="frmEditTag" id="frmEditTag" class="row" action="editTag" method="POST" role="form">
+							
+							<div class="col-xs-5">
+								<label for="txtEditTag">Tag Name</label>
+								<input type="text" name="txtEditTag" id="txtEditTag" class="form-control" placeholder="Edit Tag" />
+							</div>
+							<div class="col-xs-5">
+								<label for="txtEditTagColor">Tag Color</label>
+								<div class="input-group editTagColor" data-container=".editTagColor" data-color="blue">
+									<input type="text" name="txtEditTagColor" id="txtEditTagColor" class="form-control" placeholder="Edit Tag Color" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please Select Color for the tag." />
+									<span class="input-group-addon"><i></i></span>
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<label for="" class="eleblock">&nbsp;</label>
+								<button type="button" class="btn btn-primary" onclick="moduleBookmarks.editTag();">Save</button>
+							</div>
+							
+						</form>
+					</div>
+					<!-- END : Edit Tag Form -->
+					
+					<div class="modal-body">
+						<ul class="manage-tags-listing datalist-table three-col nomargin nopadding nobullets clearfix borderL-anim" id="manage-tags__listing">
+							
+						</ul>
+						
+						<div class="pagination-wrapper center-aligned">
+							<div class="holder" id="holder-tags"></div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- END : Manage Tags Modal -->
+		
+		
+		<!-- START : Settings Modal -->
+		<div class="modal fade" id="modalSettings" tabindex="-1" role="dialog" aria-labelledby="modalSettingsLabel" aria-hidden="true">
+			<div class="modal-dialog width70">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="modalSettingsLabel">Settings</h4>
+					</div>
+					
+					
+					<div class="modal-body">
+						<div role="tabpanel">
+							
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Syntax Highlighter</a></li>
+								<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+								<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+								<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+							</ul>
+							
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="home">
+									<div class="grid-row">
+										<div class="grid-columns grid-col-six">
+											<h4 class="titillium w400">Select Theme for Syntax Highlighter</h4>
+											<div class="js-scrollbar" style="max-height: 400px;">
+												<div class="data-list-container">
+													
+												</div>
+											</div>
+										</div>
+										
+										<div class="grid-columns grid-col-six">
+											<h4 class="titillium w400">Preview of Selected Theme</h4>
+											<pre><code>&lt;?xml version="1.0"?&gt;
+												&lt;response value="ok" xml:lang="en"&gt;
+												&lt;text&gt;Ok&lt;/text&gt;
+												&lt;comment html_allowed="true"/&gt;
+												&lt;ns1:description&gt;&lt;![CDATA[
+												CDATA is &lt;not&gt; magical.
+												]]&gt;&lt;/ns1:description&gt;
+												&lt;a&gt;&lt;/a&gt; &lt;a/&gt;
+												&lt;/response&gt;
+												
+												
+												&lt;!DOCTYPE html&gt;
+												&lt;title&gt;Title&lt;/title&gt;
+												
+												&lt;style&gt;body {width: 500px;}&lt;/style&gt;
+												
+												&lt;script type="text/javascript"&gt;
+												function $init() {
+												return true;
+												}
+												&lt;/script&gt;
+												
+												&lt;body&gt;
+												&lt;p checked class="title" id='title'&gt;Title&lt;/p&gt;
+												&lt;span&gt;Title&lt;/span&gt;
+												&lt;!-- here goes the rest of the page --&gt;
+											&lt;/body&gt;</code></pre>
+										</div>
+									</div>
+									
+								</div>
+								<div role="tabpanel" class="tab-pane" id="profile">...</div>
+								<div role="tabpanel" class="tab-pane" id="messages">...</div>
+								<div role="tabpanel" class="tab-pane" id="settings">...</div>
+							</div>
+							
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="btnSaveSettings">Save</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- END : Manage Tags Modal -->
+	</body>
+</html>	

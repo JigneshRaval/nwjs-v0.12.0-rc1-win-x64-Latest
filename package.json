@@ -1,0 +1,31 @@
+{
+  "name": "dev-alley",
+  "main": "loader.html",
+  "window": {
+    "title": "Dev Alley",
+    "icon": "views/images/jrsnipp-logo-new.png",
+    "width": 800,
+    "height": 500,
+    "min_width": 800,
+    "min_height": 500,
+    "frame": false,
+    "toolbar": false,
+    "resizable": true,
+    "show": true
+  },
+  "inject-js-start": "test2.js",
+  "scripts": {
+    "start": "nodewebkit"
+  },
+  "dependencies": {
+    "compression": "^1.6.1",
+    "express": "^4.10.6",
+    "locallydb": "0.0.5",
+    "moment": "*",
+    "node-sass": "^2.0.1"
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "node-remote": "<local>"
+}

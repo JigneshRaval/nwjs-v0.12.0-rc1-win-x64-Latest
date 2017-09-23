@@ -1,0 +1,549 @@
+/* Chrome fix example */
+/*
+	@font-face {font-family: 'chunk-webfont';
+	src: url('../../includes/fonts/chunk-webfont.eot');
+	src: url('../../includes/fonts/chunk-webfont.eot?#iefix') format('eot'),
+	url('../../includes/fonts/chunk-webfont.woff') format('woff'),
+	url('../../includes/fonts/chunk-webfont.ttf') format('truetype'),
+	url('../../includes/fonts/chunk-webfont.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;}
+	
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {font-family: 'chunk-webfont';
+	src: url('../../includes/fonts/chunk-webfont.svg') format('svg');
+	}
+	}
+	
+	
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-Regular-webfont.svg#Open_Sans') format('svg'),
+	url('../fonts/OpenSans-ExtraBoldItalic-webfont.svg#Open_Sans') format('svg');
+	}
+	}
+	
+	
+	@font-face {
+	font-family: 'robotoregular';
+	src: url('../fonts/Roboto-Regular-webfont.eot');
+	src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Roboto-Regular-webfont.woff') format('woff'),
+	url('../fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+	url('../fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}*/
+
+/*----------------------------
+	START : Oswald
+------------------------------*/
+@font-face {
+	font-family: 'Oswald';
+	src: url('../fonts/oswald-light-webfont.eot');
+	src: url('../fonts/oswald-light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/oswald-light-webfont.woff2') format('woff2'),
+	url('../fonts/oswald-light-webfont.woff') format('woff'),
+	url('../fonts/oswald-light-webfont.ttf') format('truetype'),
+	url('../fonts/oswald-light-webfont.svg#oswaldlight') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('../fonts/oswald-regular-webfont.eot');
+	src: url('../fonts/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/oswald-regular-webfont.woff2') format('woff2'),
+	url('../fonts/oswald-regular-webfont.woff') format('woff'),
+	url('../fonts/oswald-regular-webfont.ttf') format('truetype'),
+	url('../fonts/oswald-regular-webfont.svg#oswald_regularregular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('../fonts/oswald-medium-webfont.eot');
+	src: url('../fonts/oswald-medium-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/oswald-medium-webfont.woff2') format('woff2'),
+	url('../fonts/oswald-medium-webfont.woff') format('woff'),
+	url('../fonts/oswald-medium-webfont.ttf') format('truetype'),
+	url('../fonts/oswald-medium-webfont.svg#oswaldmedium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('../fonts/oswald-demibold-webfont.eot');
+	src: url('../fonts/oswald-demibold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/oswald-demibold-webfont.woff2') format('woff2'),
+	url('../fonts/oswald-demibold-webfont.woff') format('woff'),
+	url('../fonts/oswald-demibold-webfont.ttf') format('truetype'),
+	url('../fonts/oswald-demibold-webfont.svg#oswalddemibold') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+
+
+/*----------------------------
+	START : Roboto
+------------------------------*/
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Thin-webfont.eot');
+	src: url('../fonts/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Roboto-Thin-webfont.woff') format('woff'),
+	url('../fonts/Roboto-Thin-webfont.ttf') format('truetype'),
+	url('../fonts/Roboto-Thin-webfont.svg#RobotoThin') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Light-webfont.eot');
+	src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Roboto-Light-webfont.woff') format('woff'),
+	url('../fonts/Roboto-Light-webfont.ttf') format('truetype'),
+	url('../fonts/Roboto-Light-webfont.svg#RobotoLight') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Regular-webfont.eot');
+	src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Roboto-Regular-webfont.woff') format('woff'),
+	url('../fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+	url('../fonts/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Medium-webfont.eot');
+	src: url('../fonts/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Roboto-Medium-webfont.woff') format('woff'),
+	url('../fonts/Roboto-Medium-webfont.ttf') format('truetype'),
+	url('../fonts/Roboto-Medium-webfont.svg#RobotoMedium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Bold-webfont.eot');
+	src: url('../fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Roboto-Bold-webfont.woff') format('woff'),
+	url('../fonts/Roboto-Bold-webfont.ttf') format('truetype'),
+	url('../fonts/Roboto-Bold-webfont.svg#RobotoBold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+/*----------------------------
+	END : Roboto
+------------------------------*/
+@font-face {
+	font-family: 'exo_2.0regular';
+	src: url('../fonts/Exo2.0-Regular-webfont.eot');
+	src: url('../fonts/Exo2.0-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Exo2.0-Regular-webfont.woff') format('woff'),
+	url('../fonts/Exo2.0-Regular-webfont.ttf') format('truetype'),
+	url('../fonts/Exo2.0-Regular-webfont.svg#exo_2.0regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}
+
+
+/*----------------------------
+	START : Open Sans
+------------------------------*/
+/* Light */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-Light-webfont.eot');
+	src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-Light-webfont.svg#OpenSans_Light') format('svg');
+	font-weight: 200;
+	font-style: normal;
+}
+
+/* Light Italic */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-LightItalic-webfont.eot');
+	src: url('../fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-LightItalic-webfont.svg#OpenSans_LightI') format('svg');
+	font-weight: 200;
+	font-style: italic;
+}
+
+/* Regular */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-Regular-webfont.eot');
+	src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-Regular-webfont.svg#OpenSans_Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* Italic */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-Italic-webfont.eot');
+	src: url('../fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-Italic-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-Italic-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-Italic-webfont.svg#OpenSans_Italic') format('svg');
+	font-weight: normal;
+	font-weight: 400;
+	font-style: italic;
+}
+
+/* Semibold */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-Semibold-webfont.eot');
+	src: url('../fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-Semibold-webfont.svg#OpenSans_SemiBold') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
+/* Semibold Italic */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-SemiboldItalic-webfont.eot');
+	src: url('../fonts/OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-SemiboldItalic-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-SemiboldItalic-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-SemiboldItalic-webfont.svg#OpenSans_SemiBoldI') format('svg');
+	font-weight: 500;
+	font-style: italic;
+}
+
+/* Bold */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-Bold-webfont.eot');
+	src: url('../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-Bold-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-Bold-webfont.svg#OpenSans_Bold') format('svg');
+	font-weight: bold;
+	font-weight: 700;
+	font-style: normal;
+}
+
+/* Bold Italic */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-BoldItalic-webfont.eot');
+	src: url('../fonts/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-BoldItalic-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-BoldItalic-webfont.svg#OpenSans_BoldI') format('svg');
+	font-weight: bold;
+	font-weight: 700;
+	font-style: italic;
+}
+
+/* Extra Bold */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-ExtraBold-webfont.eot');
+	src: url('../fonts/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-ExtraBold-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-ExtraBold-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-ExtraBold-webfont.svg#OpenSans_ExBold') format('svg');
+	font-weight: 900;
+	font-style: normal;
+}
+
+/* Extra Bold Italic */
+@font-face {
+	font-family: 'Open_Sans';
+	src: url('../fonts/OpenSans-ExtraBoldItalic-webfont.eot');
+	src: url('../fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+	url('../fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
+	url('../fonts/OpenSans-ExtraBoldItalic-webfont.svg#OpenSans_ExBoldI') format('svg');
+	font-weight: 900;
+	font-style: italic;
+}
+/*----------------------------
+	END : Open Sans
+------------------------------*/
+
+/*----------------------------
+	START : Titillium
+------------------------------*/
+/* TitilliumWeb fonts */
+@font-face {
+	font-family: 'TitilliumBdRegular';
+	src: url('../fonts/titillium-black-webfont.eot');
+	src: url('../fonts/titillium-black-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-black-webfont.woff') format('woff'),
+	url('../fonts/titillium-black-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-black-webfont.svg#TitilliumBdRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TitilliumBdItalic';
+	src: url('../fonts/titillium-boldupright-webfont.eot');
+	src: url('../fonts/titillium-boldupright-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-boldupright-webfont.woff') format('woff'),
+	url('../fonts/titillium-boldupright-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-boldupright-webfont.svg#TitilliumBdItalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-thin-webfont.eot');
+	src: url('../fonts/titillium-thin-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-thin-webfont.woff') format('woff'),
+	url('../fonts/titillium-thin-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-thin-webfont.svg#TitilliumThin') format('svg');
+	font-weight: 200;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-thinitalic-webfont.eot');
+	src: url('../fonts/titillium-thinitalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-thinitalic-webfont.woff') format('woff'),
+	url('../fonts/titillium-thinitalic-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-thinitalic-webfont.svg#TitilliumThinI') format('svg');
+	font-weight: 200;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-light-webfont.eot');
+	src: url('../fonts/titillium-light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-light-webfont.woff') format('woff'),
+	url('../fonts/titillium-light-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-light-webfont.svg#TitilliumLight') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-lightitalic-webfont.eot');
+	src: url('../fonts/titillium-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-lightitalic-webfont.woff') format('woff'),
+	url('../fonts/titillium-lightitalic-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-lightitalic-webfont.svg#TitilliumLightI') format('svg');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-regular-webfont.eot');
+	src: url('../fonts/titillium-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-regular-webfont.woff') format('woff'),
+	url('../fonts/titillium-regular-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-regular-webfont.svg#TitilliumReg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-regularitalic-webfont.eot');
+	src: url('../fonts/titillium-regularitalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-regularitalic-webfont.woff') format('woff'),
+	url('../fonts/titillium-regularitalic-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-regularitalic-webfont.svg#TitilliumRegI') format('svg');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-semibold-webfont.eot');
+	src: url('../fonts/titillium-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-semibold-webfont.woff') format('woff'),
+	url('../fonts/titillium-semibold-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-semibold-webfont.svg#Titillium_SemiBold') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-semibolditalic-webfont.eot');
+	src: url('../fonts/titillium-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-semibolditalic-webfont.woff') format('woff'),
+	url('../fonts/titillium-semibolditalic-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-semibolditalic-webfont.svg#Titillium_SemiBoldI') format('svg');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-bold-webfont.eot');
+	src: url('../fonts/titillium-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-bold-webfont.woff') format('woff'),
+	url('../fonts/titillium-bold-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-bold-webfont.svg#TitilliumBold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Titillium';
+	src: url('../fonts/titillium-bolditalic-webfont.eot');
+	src: url('../fonts/titillium-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-bolditalic-webfont.woff') format('woff'),
+	url('../fonts/titillium-bolditalic-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-bolditalic-webfont.svg#TitilliumBoldI') format('svg');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'TitilliumUpItalic';
+	src: url('../fonts/titillium-lightupright-webfont.eot');
+	src: url('../fonts/titillium-lightupright-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-lightupright-webfont.woff') format('woff'),
+	url('../fonts/titillium-lightupright-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-lightupright-webfont.svg#TitilliumUpItalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TitilliumUpBold';
+	src: url('../fonts/titillium-regularupright-webfont.eot');
+	src: url('../fonts/titillium-regularupright-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-regularupright-webfont.woff') format('woff'),
+	url('../fonts/titillium-regularupright-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-regularupright-webfont.svg#TitilliumUpBold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TitilliumUpBoldItalic';
+	src: url('../fonts/titillium-semiboldupright-webfont.eot');
+	src: url('../fonts/titillium-semiboldupright-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-semiboldupright-webfont.woff') format('woff'),
+	url('../fonts/titillium-semiboldupright-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-semiboldupright-webfont.svg#TitilliumUpBoldItalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TitilliumUpRegular';
+	src: url('../fonts/titillium-thinupright-webfont.eot');
+	src: url('../fonts/titillium-thinupright-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/titillium-thinupright-webfont.woff') format('woff'),
+	url('../fonts/titillium-thinupright-webfont.ttf') format('truetype'),
+	url('../fonts/titillium-thinupright-webfont.svg#TitilliumUpRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*----------------------------
+	END : Titillium
+------------------------------*/
+
+/*----------------------------
+	START : BEBAS & BEBAS NEU
+------------------------------*/
+/* BEBAS web font */
+@font-face {
+	font-family: 'BEBAS'; /*semilight*/
+	src: url('../fonts/BEBAS-webfont.eot');
+	src: url('../fonts/BEBAS-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/BEBAS-webfont.woff') format('woff'),
+	url('../fonts/BEBAS-webfont.ttf') format('truetype'),
+	url('../fonts/BEBAS-webfont.svg#BEBAS') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'bebas_neuelight';
+	src: url('../fonts/bebasneue_light-webfont.eot');
+	src: url('../fonts/bebasneue_light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/bebasneue_light-webfont.woff2') format('woff2'),
+	url('../fonts/bebasneue_light-webfont.woff') format('woff'),
+	url('../fonts/bebasneue_light-webfont.ttf') format('truetype'),
+	url('../fonts/bebasneue_light-webfont.svg#bebas_neuelight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}
+
+@font-face {
+	font-family: 'bebas_neuebook';
+	src: url('../fonts/bebasneue_book-webfont.eot');
+	src: url('../fonts/bebasneue_book-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/bebasneue_book-webfont.woff2') format('woff2'),
+	url('../fonts/bebasneue_book-webfont.woff') format('woff'),
+	url('../fonts/bebasneue_book-webfont.ttf') format('truetype'),
+	url('../fonts/bebasneue_book-webfont.svg#bebas_neuebook') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'bebas_neuebold';
+	src: url('../fonts/bebasneue_bold-webfont.eot');
+	src: url('../fonts/bebasneue_bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/bebasneue_bold-webfont.woff2') format('woff2'),
+	url('../fonts/bebasneue_bold-webfont.woff') format('woff'),
+	url('../fonts/bebasneue_bold-webfont.ttf') format('truetype'),
+	url('../fonts/bebasneue_bold-webfont.svg#bebas_neuebold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'bebas_neue_regularregular';
+	src: url('../fonts/bebasneue_regular-webfont.eot');
+	src: url('../fonts/bebasneue_regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/bebasneue_regular-webfont.woff2') format('woff2'),
+	url('../fonts/bebasneue_regular-webfont.woff') format('woff'),
+	url('../fonts/bebasneue_regular-webfont.ttf') format('truetype'),
+	url('../fonts/bebasneue_regular-webfont.svg#bebas_neue_regularregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'bebas_neuethin';
+	src: url('../fonts/bebasneue_thin-webfont.eot');
+	src: url('../fonts/bebasneue_thin-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/bebasneue_thin-webfont.woff2') format('woff2'),
+	url('../fonts/bebasneue_thin-webfont.woff') format('woff'),
+	url('../fonts/bebasneue_thin-webfont.ttf') format('truetype'),
+	url('../fonts/bebasneue_thin-webfont.svg#bebas_neuethin') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*----------------------------
+	END : BEBAS & BEBAS NEU
+------------------------------*/

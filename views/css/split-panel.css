@@ -1,0 +1,61 @@
+/*=================================
+	Code Editor : Split View
+===================================*/
+
+.page-wrap { position: absolute; top: 50px; width: 100%; z-index: -1; height: calc(100% - 50px); overflow: hidden; opacity: 0; transition: opacity 0.3s ease; }
+.page-wrap.active { opacity: 1; z-index: 4;  }
+.panel-wrapper { display: flex; height: 100%; position: relative; background-color: #DDE5EA; }
+.panel { margin: 0; height: 100%; border: 0px; border-radius: 0; }
+
+/* = Editor Section 		======================*/
+.panel-editors { display: flex; flex-direction: column; width: 100%; height: 100%; position: relative; }
+.panel-editors { min-width: 0; }
+.panel-editors { flex-shrink : 0; width: 35%; }
+
+.panel-child { background-color: #FFF; height: 33.33%; box-sizing: border-box; overflow: hidden; position: relative; }
+.panel-child .editor-holder { position: absolute; top: 0; left: 0; right:0; bottom: 0; margin: 0; border: 0px; margin-top: 35px; overflow: hidden; }
+.panel-html { top: 0; background-color: #FFF; max-height: 100%; width: 100%; flex: 2; overflow: auto; }
+.panel-css, 
+.panel-js { width: 100%; position:relative; bottom:0!important; top:auto!important; }
+
+.panel-css .ui-resizable-n, 
+.panel-js .ui-resizable-n { top: 0; }
+
+.panel-content { overflow: hidden; }
+.panel-css .panel-content, 
+.panel-js .panel-content { margin-top: 7px; }
+
+/* = Full Screen View of HTML,CSS or JS Editor 	==============*/
+.panel .panel-expanded { position: absolute; z-index: 100; top: 0; left: 0; right: 0; bottom: 0; height: 100% !important; width: 100vw; transition: width 0.3s ease-in-out; }
+body.opened .panel .panel-expanded { width: calc(100vw - 23vw); transition: width 0.3s ease-in-out; }
+.panel .panel-expanded .ui-resizable-handle { display: none; }
+.panel .panel-expanded .panel-content { margin-top: 0; }
+
+.panel-header {line-height: 25px; padding: 5px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.3); background-color: #FFF; position: relative; z-index: 5; width: 100%; }
+.panel-header h3 { font-size: 12px; float: left; margin: 0; line-height: 25px; }
+.panel-header .panel-options { float: right; }
+
+/* = Result View Section 		======================*/
+.panel-view-area { position: relative; width: 100%; z-index: 5; overflow: hidden; }
+.panel-view-area iframe { background: none repeat scroll 0 0 #ffffff; border: 0 none; height: 100%; left: 0; position:absolute; top: 0; width: 100%; z-index: 2; }
+
+/* = jQuery UI Resizable 		=====================*/
+.ui-resizable-handle { background-color: #DDE5EA; }
+.ui-resizable-handle:hover { background-color: #AEC4D2; }
+.ui-resizable-s { bottom: 0; }
+.ui-resizable-e span, 
+.ui-resizable-w span, 
+.resizer.vertical span { position: absolute; background-color: #34AAFF; display: inline-block; height: 50px; width: 7px; top: 50%; transform: translateY(-50%); cursor: pointer; }
+.ui-resizable-n span { position: absolute; background-color: #34AAFF; display: inline-block; height: 7px; width: 30px; left: 50%; transform: translateX(-50%); cursor: pointer; }
+
+.resizer{ background-color: #DDE5EA; height:100%; width: 7px; cursor:col-resize; flex-shrink:0; left:0 !important; position:relative; z-index:5}
+
+.width-readout{position:absolute;bottom:5px;background:#eee;color:#333;padding:1px 4px;border-radius:10px;font-size:9px;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.5);box-shadow:0 1px 1px rgba(0,0,0,0.5);}
+
+.drag-cover{position:absolute;z-index:201;top:0;right:0;left:0;bottom:0;display:none}
+
+/* = CodeMirror Customization 	=====================*/
+/* .CodeMirror { height: 100%; } */
+.CodeMirror .CodeMirror-gutters { height: 100% !important; }
+
+.posAbs.cover-only { top: 0; right: 0; bottom: 0; left: 0; }

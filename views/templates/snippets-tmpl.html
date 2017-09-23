@@ -1,0 +1,321 @@
+<!-- Template :: Snippets List -->
+<script id="snippets-list-template" type="text/x-handlebars-template">
+    {{#if records}}
+        {{#each records}}
+		
+        <li class="item padding10px" data-snippet-id="{{this._id}}">
+        <header class="posrelative clearfix">
+		<!-- <span class="fl js-expand-collapse" data-toggle-expand-collapse="false"><i class="ion-ios-arrow-forward"></i></span> -->
+		
+		<div class="make-favourite fr posRel">
+		
+        <input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+		
+	<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" title="Mark as Favourite"></i></label>
+	
+	<a href="javascript:;" class="attachments eleblock" data-toggle="popover" data-placement="left" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="glyphicon glyphicon-paperclip" data-toggle="tooltip" data-placement="top" title="Attachments"></i></a>
+</div>
+
+<div class="fl width85">
+	<h3 class="w500 js-expand-collapse cursor-hand" data-toggle-expand-collapse="false">
+		<div class="occupations-content" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+			<div class="more-content" data-content-display-type="full">{{this.title}}</div>
+		</div>
+		
+	</h3>
+	<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+		{{#dateFormat this.dateCreated format="DD MMMM YYYY"}}
+		{{this}}
+		{{/dateFormat}}
+	</a>
+	<em class="metadata">{{this.category}}</em>
+</div>
+</header>
+<div class="item-controls style1">
+    <a href="javascript:;" data-toggle="modal" data-target="#modalAddSnippetForm" data-db-id="{{this._id}}" data-snippet-id="{{this.id}}" class="js-edit-snippet"><i class="ion-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a><!-- onclick="moduleSnippets.editSnippet('{{this.id}}', '{{this._id}}')"  -->
+	
+    <a href="javascript:;" data-db-id="{{this._id}}" data-snippet-id="{{this.id}}" class="js-delete-snippet"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a><!-- onclick="_mainModule.deleteRec({ _id : '{{this._id}}'});" -->
+</div>
+
+</li>
+{{/each}}
+{{else}}
+<!-- Info Message if no list items are available -->
+<div class="alert alert-block alert-info js-alert">
+    <h4>Info!</h4>
+    No snippets are available in the selected category or tag.
+</div>
+{{/if}}
+</script>
+
+<!-- Template :: Snippets Detail View -->
+<script id="snippets-details-template" type="text/x-handlebars-template">
+    {{#if recordDetail}}
+        {{#each recordDetail}}
+        <div class="snippets-wrapper__content posRel animated color white" data-snippet-id="{{this._id}}">
+		
+        <header class="padding25px bb bgray3 posRel">
+	<h1 class="fontSize2em titillium w400">{{this.title}}</h1>
+	
+    <div class="snippets-wrapper__metainfo uppercasetext">
+        <a href="javascript:;" class="category"><i class="glyphicon glyphicon-folder-close" data-toggle="tooltip" data-placement="top" title="Category"></i>{{this.category}}</a>
+        <span class="eleinlineblock"><i class="glyphicon glyphicon-calendar" data-toggle="tooltip" data-placement="top" title="Tags"></i> {{#dateFormat this.dateCreated format="DD MMMM YYYY"}}{{this}}{{/dateFormat}}</span>
+		
+        <span class="tags eleinlineblock"><i class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="Tags"></i>
+            {{#splitString this.tags "[\,]+"}}
+            <span class="tag tag-css" style="background-color: #{{this.tagColor}};">{{this}}</span>
+            {{/splitString}}
+		</span>
+		{{#if this.refSite}}
+		<a href="{{this.refSite}}" title="{{this.refSite}}" target="_blank" class="eleinlineblock"><i class="ion-link" data-toggle="tooltip" data-placement="top" title="Reference URL"></i> Website</a>
+		{{/if}}
+	</div>
+</header>
+
+<article class="content padding30px color white">
+	<!--<div class="fancy-tittle1 filled"><span>This is sub title</span></div>-->
+    {{#if this.description}}
+    <div class="snippet-description">
+        {{{this.description}}}
+	</div>
+    {{/if}}
+	
+	
+    <div class="snippet-code">
+        {{#if this.codes}}
+        {{#each codes}}
+        {{#if this.code}}
+		<pre><code class="{{this.codeLanguage}}" data-language="{{this.codeLanguage}}">{{{code this.code}}}</code></pre>
+        {{/if}}
+        {{/each}}
+        {{/if}}
+	</div>
+	
+	<div class="snippet-demos">
+		<p class="alignC"><a href="javascript:;" class="button color blue">Add Live Demo</a></p>
+		<article id="">
+			<form name="frmSnipDemo" id="frmSnipDemo">
+				<div role="tabpanel">
+					
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#snipDemoHTML" aria-controls="snipDemoHTML" role="tab" data-toggle="tab">HTML</a></li>
+						<li role="presentation"><a href="#snipDemoCSS" aria-controls="snipDemoCSS" role="tab" data-toggle="tab">CSS</a></li>
+						<li role="presentation"><a href="#snipDemoJS" aria-controls="snipDemoJS" role="tab" data-toggle="tab">JavaScript</a></li>
+						<li role="presentation"><a href="#SnipDemoResult" aria-controls="SnipDemoResult" role="tab" data-toggle="tab">Result</a></li>
+					</ul>
+					
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="snipDemoHTML">
+							<p></p>
+							<div class="form-group">
+								<textarea name="txtAreaSnipDemoHTML" id="txtAreaSnipDemoHTML" rows="10" class="form-control"></textarea>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="snipDemoCSS">
+							<div class="form-group">
+								<textarea name="txtAreaSnipDemoCSS" id="txtAreaSnipDemoCSS" rows="10" class="form-control"></textarea>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="snipDemoJS">
+							<div class="form-group">
+								<textarea name="txtAreaSnipDemoJS" id="txtAreaSnipDemoJS" rows="10" class="form-control"></textarea>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="SnipDemoResult">
+							<iframe name="" id=""></iframe>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+			</form>
+		</article>
+	</div>
+</article>
+{{#if this.note}}
+<div class="snippet-note">
+	{{this.note}}
+</div>
+{{/if}}
+<!-- START :: Snippets Footer -->
+<footer class="snippets-wrapper__footer grid-table">
+	
+    <ul class="nomargin nopadding nobullets snippets-wrapper__footer-tabs clearfix">
+        <li class="active">
+            <a href="javascript:;" id="lnkShowAttachments" class="titillium"><i class="glyphicon glyphicon-paperclip"></i> Attachments {{#if this.images.length}}<span class="circle medium color red6 twhite w400">{{data.images.length}}</span>{{/if}} <!-- <span class="fr"><i class="ion-chevron-down"></i></span> --></a>
+		</li>
+        <li class="">
+            <a href="javascript:;" id="lnkShowComments" class="titillium"><i class="glyphicon glyphicon-comment"></i> Comments {{#if this.comments.length}}<span class="circle medium color red6 twhite w400">{{this.comments.length}}</span>{{/if}} <!-- <span class="fr"><i class="ion-chevron-down"></i></span> --></a>
+		</li>
+	</ul>
+	
+    <section class="snippets-wrapper__footer-content">
+        <section class="active attachments-wrapper">
+            <h3 class="titillium twhite color wet-asphalt">Attachments <!-- <span class="circle medium color red6 twhite w400">{{data.images.length}}</span> --> <a href="#" class="lnkShowUploadForm twhite" data-toggle="modal" data-target="#modalUploadImages"><i class="ion-upload"></i> Upload Images</a></h3>
+			
+            <div class="padding25px color white">
+                <div class="attachments-preview">
+                    <!-- <h4 class="noTmargin titillium"><i class="glyphicon glyphicon-paperclip"></i> Attachments</h4> -->
+                    <ul class="nomargin nopadding nobullets simple-list inline six-col clearfix" id="lightGallery">
+                        {{#each images}}
+                        <li>
+                            <div data-src="../database/uploads/images/snippets/{{this}}" class="lightGallery-image-wrapper">
+                                <a href="javascript:;" data-toggle="tooltip" title="{{this}}" data-placement="top"><img src="../database/uploads/images/snippets/{{this}}" /></a>
+								
+								<!-- <div class="demo">
+									<div class="zoomer_wrapper">
+									<img src="http://formstone.it/files/demo/nasa-bw-1.jpg">
+									</div>
+								</div> -->
+								
+								
+							</div>
+							
+                            <i class="lnkRemoveImg" data-image-name="{{this}}">&times;</i>
+						</li>
+                        {{/each}}
+					</ul>
+				</div>
+                <!-- Start : Inline Overlay : Drag and Drop Cards Image Overlay
+                    <div class="inline-overlay js-inline-overlay boxsize padding20px" id="inline_overlay_cards">
+                    <div class="color white padding20px posrelative boxsize">
+                    <a href="javascript:;" class="inline-overlay--close-overlay"></a>
+                    <article class="width50" style="max-height:100%;overflow:auto;">
+					
+                    </article>
+                    </div>
+				</div>-->
+                <!-- End : Inline Overlay -->
+			</div>
+		</section>
+		
+        <section class="comments-wrapper">
+            <h3 class="titillium twhite  color wet-asphalt">Comments <a href="javascript:;" class="twhite lnkWriteSnippetComment"><i class="ion-edit"></i> Write Comment</a></h3>
+			
+            <div class="comments-form-wrapper padding25px color gray-light2 bb bgray" style="display: none;">
+                <form name="frmSnippetComments" id="frmSnippetComments" action="addEditSnippetComment" method="post">
+                    <input type="hidden" name="hdnSnippetCommentMode" id="hdnSnippetCommentMode" value="add" />
+                    <input type="hidden" name="hdnSnippetCommentId" id="hdnSnippetCommentId" value="0" />
+                    <div class="form-group">
+                        <textarea name="textareaSnippetComment" id="textareaSnippetComment" rows="5" class="form-control summernote"></textarea>
+					</div>
+                    <p class="alignC">
+                        <input type="submit" name="submitSaveComment" id="submitSaveComment" class="button small color green" value="Add Comment" data-snippet-id="{{this._id}}" onclick="moduleSnippets.addEditSnippetComment('{{this._id}}', this);"/>
+                        <a href="javascript:;" class="lnkCloseCommentForm button small color blue">Close</a>
+					</p>
+				</form>
+			</div>
+			
+            <div class="color white" id="snipComments">
+                {{> snippet-comments}}
+			</div>
+		</section>
+		
+		
+	</section>
+	
+</footer>
+<!-- END :: Snippets Footer -->
+
+<!-- START :: Modal : Upload Images -->
+<div class="modal fade" id="modalUploadImages" tabindex="-1" role="dialog" aria-labelledby="modalUploadImagesLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="ion-close-circled fr"></i></span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="modalUploadImagesLabel">Upload Images </h4>
+			</div>
+            <div class="modal-body">
+                <div class="attachments-upload">
+                    <div class="padding25px color white">
+                        <!-- <h4 class="fancy-title bline small posRel noTmargin w500">Upload Images <i class="ion-close-circled fr"></i></h4> -->
+						
+                        <div id="fileuploader">Upload</div>
+						
+                        <p class="alignC padding10px"><a href="javascript:;" id="startUpload" class="button medium color green">Start Upload</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END :: Modal : Upload Images -->
+
+</div>
+
+{{/each}}
+{{else}}
+<!-- Info Message if no list items are available -->
+<div class="alert alert-block alert-info js-alert">
+    <h4>Info!</h4>
+    No snippets are available in the selected category or tag.
+</div>
+{{/if}}
+</script>
+
+
+
+<!-- Template :: Syntax Highlighter Themes  -->
+<script id="syntax-highlighters-template" type="text/x-handlebars-template">
+    <ul class="syntax-highlighters-listing datalist-table nomargin padding10px nobullets clearfix borderL-anim radio-group normal large-text">
+    {{#each themes}}
+    <li class="padding5px boxsize">
+    <input type="radio" name="radioSyntax" id="radioSyntax_{{id}}" value="{{styleSheetName}}" />
+<label for="radioSyntax_{{id}}" class="w400"><i></i> <span>{{styleSheetName}}</span></label>
+</li>
+{{/each}}
+</ul>
+</script>
+
+<!-- Template :: Syntax Highlighter Languages  -->
+<script id="languages-template" type="text/x-handlebars-template">
+<option value="">Select Language</option>
+
+{{#each languages}}
+<option value="{{this.language}}">{{this.language}}</option>
+{{/each}}
+</script>
+
+<!--=============================================
+    START :: Handlebars Partials ( Sub Templates )
+=================================================-->
+<script id="snippet-comments-partial" type="text/x-handlebars-template">
+    {{#if this.comments}}
+        <ul class="comments-listing nomargin nopadding nobullets 111">
+        {{#stripes this.comments "even" "odd"}}
+        <li class="comments-listing-item item-{{stripeClass}} clearfix grid-table" data-commentid="{{this.commentId}}">
+        <div class="grid-table-row">
+        <div class="comments-listing-metadata grid-cell grid-cell-three padding20px">
+        <img src="../images/dummy/works20-481x360.jpg" width="100px" class="fl" />
+	<span class="eleblock">{{this.author}}</span>
+    <span class="date">
+        <i class="ion-calendar"></i> {{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+        {{this}}
+        {{/dateFormat}}
+	</span>
+</div>
+<div class="comments-listing-description posRel grid-cell grid-cell-nine talign">
+    <!-- <span class="arrow medium arrow-left"></span> -->
+	
+    <article>
+        <div class="description">
+            {{{this.description}}}
+		</div>
+        <a href="javascript:" class="fr lnkShowCommentControls"><i class="ion-android-more-vertical"></i></a>
+        <div class="comments-listing-controls fr">
+            <a href="javascript:;" class="" onclick="moduleSnippets.editComment({{this.commentId}},'{{../this._id}}');"><i class="ion-edit"></i></a>
+            <a href="javascript:;" class="" onclick="moduleSnippets.deleteComment({{this.commentId}},'{{../this._id}}');"><i class="glyphicon glyphicon-trash"></i></a>
+		</div>
+	</article>
+</div>
+</div>
+</li>
+{{/stripes}}
+</ul>
+{{else}}
+<p class="nomargin alignC w500 padding10px">No Comments yet. <a href="javascript:;" class="lnkAddNewComment underlined">Add Comment</a></p>
+{{/if}}
+</script>

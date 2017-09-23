@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Coder's Cubes : Snippets</title>
+		
+		<!-- Load All CSS Files here -->
+		<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-mfizz.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/summernote.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/hint.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jPages.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/selectize.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.snippet.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/prism.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.mCustomScrollbar.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.core.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/dropdowns-enhancement.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/uploadfile.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/lightGallery.css" />
+		
+		<link rel="stylesheet" type="text/css" title="default" id="styleSyntaxHighlighter" href="css/highlighter/default.css">
+		
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/snippets.css" />
+		<link rel="stylesheet" type="text/css" href="css/components.css" />
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/handlebars-v3.0.0.js"></script>
+		<script type="text/javascript" src="js/node-webkit-fn.js"></script>
+		<script type="text/javascript" src="js/common-onload-functions.js"></script>
+		
+		<script type="text/javascript">
+			/*
+				nw:version
+				===================
+				node-webkit v0.11.3
+				node.js v0.11.13-pre
+				Chromium 38.0.2125.104
+				commit hash: 22e4cf6-395f1cd-49872e2-f2f89e2-d9a9d39-cdd879e
+			*/
+		</script>
+		
+		<style>
+			body { background: url(images/bg/2075744308_0b2e1ec4f6_o.png); background-size: cover; }
+			.glass {
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			}
+			
+			#svg-image {
+			filter: url(#svg-blur);
+			-webkit-transform: translate(-50px, -100px);
+			transform: translate(-50px, -100px);
+			}
+			
+			#svg-mask {
+			-webkit-transform: translate(50px, 100px);
+			transform: translate(50px, 100px);
+			}
+			
+			
+			.home-dashboard {width: 80%; margin-top: 3em; margin-bottom: 3em; /* box-shadow: 0 2px 3px rgba(0,0,0,0.5); */}
+			.home-dashboard .home-dashboard-box { min-height: 240px;}
+			.home-dashboard-box-photos {background-image: url(../images/bg/bg-9.jpg); background-size: cover; }
+			
+			.home-dashboard-box h3 { font-size: 2em; }
+			.home-dashboard-box h3 a, .home-dashboard-box h3 a i { color: rgba(0,0,0,0.1); }
+			.home-dashboard-box:hover h3 a i { color: rgba(0,0,0,0.5); }
+			.home-dashboard-header { background-color: rgba(255,255,255,0.3); }
+			.home-dashboard .counts { display: inline-block; border-radius : 100px; padding: 3px 5px; font-style: normal; background-color: rgba(0, 0, 0, 0.20);  font-size: 13px; font-weight: 500;}
+			.dashboard-icon { text-align: center; min-height: 100px; margin-top: 2em; }
+			.dashboard-icon i {display: inline-block; background-image: url(../images/icons/dashboard-icons.png); background-repeat: no-repeat;}
+			.dashboard-icon-todo { height: 60px; width: 66px;  background-position: 0 0;}
+			.dashboard-icon-snippets {height: 60px; width: 66px;  background-position: -68px 0;}
+			.dashboard-icon-bookmarks {height: 67px; width: 40px;  background-position: -131px 0;}
+			.dashboard-icon-photos {height: 54px; width: 66px;  background-position: -177px -7px;}
+			.dashboard-icon-webtools {height: 60px; width: 66px;  background-position: 0 -76px;}
+			
+			
+			.home-dashboard-white {width: 90%; margin-top: 3em; margin-bottom: 3em; /* box-shadow: 0 2px 3px rgba(0,0,0,0.5); background-color: #FFF; */ }
+			.home-dashboard-white .home-dashboard-white-box { min-height: 240px; padding: 2%; width: 25%; display: inline-block; vertical-align: top; }
+			.home-dashboard-white-box-photos {background-image: url(../images/bg/bg-9.png); background-size: cover; }
+			
+			.home-dashboard-white-box h3 { font-size: 2em; }
+			.home-dashboard-white-box h3 a, .home-dashboard-white-box h3 a i { color: rgba(0,0,0,0.1); }
+			.home-dashboard-white-box:hover h3 a i { color: rgba(0,0,0,0.5); }
+			.home-dashboard-white .counts { display: inline-block; border-radius : 100px; padding: 3px 5px; font-style: normal; background-color: rgba(0, 0, 0, 0.20);  font-size: 13px; font-weight: 500;}
+			.dashboard-icon { text-align: center; min-height: 100px; margin-top: 2em; }
+			.dashboard-icon i {display: inline-block; background-image: url(../images/icons/dashboard-icons.png); background-repeat: no-repeat;}
+			.dashboard-icon-todo { height: 60px; width: 66px;  background-position: 0 0;}
+			.dashboard-icon-snippets {height: 60px; width: 66px;  background-position: -68px 0;}
+			.dashboard-icon-bookmarks {height: 67px; width: 40px;  background-position: -131px 0;}
+			.dashboard-icon-photos {height: 54px; width: 66px;  background-position: -177px -7px;}
+			.dashboard-icon-webtools {height: 60px; width: 66px;  background-position: 0 -76px;}
+			
+		</style>
+	</head>
+	
+	<body class="dashboard-page">
+		<!-- START :: Window Toolbar -->
+		<div class="top-edge">			
+			<div class="app-controls" style="display: block;">
+				<div id="WindowToolbar" class="fl">					
+					<a href="javascript:;" onclick="webkitWinModule.closeWin()" type="button" class="btnCloseApp twhite" data-toggle="tooltip" data-placement="bottom" title="Close">
+						<i class="ion-close-round"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.minimizeWin()" type="button" class="btnMinimize" data-toggle="tooltip" data-placement="bottom" title="Minimize">
+						<i class="glyphicon glyphicon-minus"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.maximizeWin()" type="button" class="btnToggleFullScreen" data-toggle="tooltip" data-placement="bottom" title="Maximize">
+						<i class="glyphicon glyphicon-fullscreen"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.reloadWin()" type="button" class="btnReloadApp" data-toggle="tooltip" data-placement="bottom" title="Reload Application">
+						<i class="ion-refresh"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.showDevTool()" type="button" class="btnDevToolbar" data-toggle="tooltip" data-placement="bottom" title="Developer Toolbar">
+						<i class="ion-gear-b"></i>
+					</a>
+				</div>
+				<h3 class="text-muted alignR fr oswald w400 uppercasetext" style="-webkit-app-region: drag">Coder's Cubes : Dashboard</h3>				
+			</div>
+		</div>
+		<!-- END :: Window Toolbar -->
+		
+		<!-- START :: All the Handlebars Templates -->
+		<div id="handlebars-templates-wrapper">
+			
+		</div>
+		<!-- END :: All the Handlebars Templates -->
+		
+		<div class="loading-indicator top-bar">
+			<div class="loading-loader">
+				<i class="ion-loading-c eleinlineblock"></i>
+			</div>
+		</div>
+		
+		<!-- START :: Left Control Panel -->
+		<aside class="color wet-asphalt control-panel">
+			<a href="javascript:;" class="expand-icon-panel"><i class="ion-navicon-round"></i></a>
+			<p class="center-aligned nomargin">
+				<a href="index.html" class="logo"><img src="images/jrsnipp-logo-new.png" /></a>
+			</p>
+			<ul class="nomargin nopadding nobullets"><!---->
+				<!-- Menu items will be generated dynamically through JSON data and Handlebars -->
+			</ul>
+		</aside><!---->
+		<!-- START :: Left Control Panel -->
+		
+		<section class="home-dashboard-white marLRAuto">
+			<div class="grid-row">
+				<article class="grid-columns grid-col-twelve home-dashboard-header">
+					<div class="padding10px">
+						<h3 class="open-sans w300 nomargin">Code Cubes</h3>
+						<p class="">17 Jan 2014</p>
+						<p>
+							<a href="javascript:;" class="button bordered round medium thin border white">To-Do</a>  <span class="circle big color green">10</span>
+						</p>
+					</div>
+				</article>
+			</div>
+			<div class="">
+				<div class="alignC dispFlex rowWrap">
+					<article class="home-dashboard-white-box boxsize">
+						<div class="padding20px twhite yellow2">
+							<h3 class="open-sans w300 nomargin">To-Do <a href="tasks.html" class="fr"><i class="ion-share"></i></a></h3>
+							<p class="dashboard-icon alignC"><i class="dashboard-icon-todo"></i></p>
+							<p class="nomargin">
+								<span>Completed <em class="counts">10</em></span>
+								<span class="fr">All <em class="counts">10</em></span>
+							</p>
+						</div>
+					</article>
+					
+					<article class="home-dashboard-white-box boxsize">
+						<div class="padding20px twhite red5">
+							<h3 class="open-sans w300 nomargin">Snippets <a href="snippets.html" class="fr"><i class="ion-share"></i></a></h3>
+							<p class="dashboard-icon alignC"><i class="dashboard-icon-snippets"></i></p>
+							<p class="nomargin">
+								<span class="">All <em class="counts">10</em></span>
+							</p>
+						</div>
+					</article>
+					
+					<article class="home-dashboard-white-box boxsize">
+						<div class="padding20px twhite purple7">
+							<h3 class="open-sans w300 nomargin">Bookmarks <a href="bookmarks.html" class="fr"><i class="ion-share"></i></a></h3>
+							<p class="dashboard-icon alignC"><i class="dashboard-icon-bookmarks"></i></p>
+							<p class="nomargin">
+								<span class="">All <em class="counts">10</em></span>
+							</p>
+						</div>
+					</article>
+					
+					<article class="home-dashboard-white-box boxsize">
+						<div class="padding20px twhite color blue">
+							<h3 class="open-sans w300 nomargin">Web Tools <a href="webtools.html" class="fr"><i class="ion-share"></i></a></h3>
+							<p class="dashboard-icon alignC"><i class="dashboard-icon-webtools"></i></p>
+						</div>
+					</article>
+					
+					<article class="twhite home-dashboard-white-box boxsize">
+						<div class="home-dashboard-white-box-photos posRel">
+							<div class="padding20px posAbs lhalf dark50">
+								<h3 class="open-sans w300 nomargin">Photos <em class="counts color blue">10</em> <a href="inspirations.html" class="fr"><i class="ion-share"></i></a></h3>
+								<p class="dashboard-icon alignC"><i class="dashboard-icon-photos"></i></p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+		
+		
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/plugins/moment.js"></script>
+		
+		<script type="text/javascript" src="js/handlebars.helpers.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/jquery.form-validator.min.js"></script>
+		<script type="text/javascript" src="js/plugins/summernote.js"></script>
+		<script type="text/javascript" src="js/plugins/jPages.js"></script>
+		<script type="text/javascript" src="js/plugins/alertify.js"></script>
+		<script type="text/javascript" src="js/plugins/selectize.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.bootstrap-growl.min.js"></script>
+		<script type="text/javascript" src="js/plugins/highlight.pack.js"></script>
+		<script type="text/javascript" src="js/plugins/lightGallery.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/plugins/dropdowns-enhancement.js"></script>
+		<script type="text/javascript" src="js/plugins/bootstrap-colorpicker.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.fastLiveFilter.js"></script>
+		<script type="text/javascript" src="js/plugins/mousetrap.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.uploadfile.js"></script>
+		<script type="text/javascript" src="js/plugins/progress.min.js"></script>
+		
+		<script type="text/javascript" src="./database/snippets-languages.json"></script>
+		<script type="text/javascript" src="js/common-functions.js"></script>
+		<script type="text/javascript" src="js/modules-common-functions.js"></script>
+		<script type="text/javascript" src="/database/left-nav-panel.json"></script>
+		<script type="text/javascript">
+			webkitWinModule.init({});
+			generateLeftNavPanel(leftNavPanelObj);
+			showPageLoadProgress();
+			var loadJSONDataFiles = {
+				files : [
+				{id : 1, name : "snippets-tmpl", path : "templates/snippets-tmpl.html", filetype: "html", container : '#handlebars-templates-wrapper'  }
+				]
+			};
+			//loadJSONTemplate(loadJSONDataFiles);
+		</script>
+		<!--
+			<script src="js/modules/module-snippets.js"></script>
+		<script src="js/modules/module-temp.js"></script> -->
+		<script>
+			function fetchData(url, callback) {
+				var frame = window.document.createElement('iframe');
+				frame.onload = function() {
+					frame.onload = function() {
+						callback(frame.contentWindow.name);
+						frame.parentNode.removeChild(frame);
+					}
+					frame.src = 'about:blank';
+				}
+				frame.src = url;
+				window.document.body.appendChild(frame);
+			}
+			
+			// using it
+			
+			/*fetchData('http://localhost:3000/', function(response) {
+				console.log(response);
+			});*/
+		</script>
+		<script>
+			/*var win = window.open('http://localhost:3000/test.html');
+				win.nwGui = require('nw.gui');
+				window.close();
+			console.log(win.nwGui);*/
+		</script>
+	</body>
+</html>

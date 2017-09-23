@@ -1,0 +1,80 @@
+<!-- START : Asset Panel (Left Side Panel) Content -->
+
+<div id="assetPanelWrapper">
+	<header class="padding10px silver1" style="">
+		<!-- #BBC3CB, #e0e4e8, #D8DBDF, #ABB1B9 -->
+		<p class="center-aligned nomargin">
+			<a href="index.html" class="logo titillium"><span>.slicer</span><img src="images/test2-blank.png" /></a>
+		</p>
+		<!-- START :: Search Box -->
+		<div class="search-wrapper lhNormal boxsize">
+			<form id="frmSearch" name="frmSearch" class="posrelative">
+				<div class="input-group clearfix dispTable width100">
+					<input type="text" id="txtSearch" name="txtSearch" placeholder="Search Snippet" class="form-control" autofocus />
+					<a href="javascript:;" class="posabsolute lnkClearSearch" style="display:none;" onclick="clearSearch(this)">&times;</a>
+					
+					<div class="btn-group dispCell">
+						<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Title <span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><input type="radio" id="radioTitle" name="radioGrpFilterBy" value="title" checked><label for="radioTitle">Title</label></li>
+							<li><input type="radio" id="radioCategory" name="radioGrpFilterBy" value="category"><label for="radioCategory">Category</label></li>
+							<li><input type="radio" id="radioDate" name="radioGrpFilterBy" value="dateCreated"><label for="radioDate">Date</label></li>
+							<li><input type="radio" id="radioTags" name="radioGrpFilterBy" value="tags"><label for="radioTags">Tags</label></li>
+							<li><input type="radio" id="radioContent" name="radioGrpFilterBy" value="description"><label for="radioContent">Tags</label></li>
+							<li class="divider"></li>
+							<li><input type="radio" id="radioAll" name="radioGrpFilterBy" value="category"><label for="radioAll">All</label></li>
+						</ul>
+					</div>								
+					
+				</div>
+			</form>
+		</div>
+		<!-- END :: Search Box -->
+	</header>
+	
+	<div class="asset-controls style2 clearfix">
+		
+	</div>
+	
+	<div class="js-scrollbar" style="max-height:100%;">
+		<div class="panel-left">
+			<ol class="nomargin nopadding nobullets tasks-menu">
+				<li class="active">
+					<a href="javascript:;" class="boxsize"><i class="jicon jicon-tasks big jicon-categories"></i> Categories <span class="count filled count-total-categories">0</span></a>
+					<!-- START: Categories Listing -->
+					<article class="categories-section control-panel__content js-accordion-section">
+						<div class="" id="categories">
+							<div class="js-scrollbar" data-scrollbar-theme="light-2" style="max-height: 300px;">
+								<ul class="panel-categories nomargin nopadding nobullets">
+									<!-- // Dynamic Data Container // -->
+								</ul>
+							</div>
+						</div>
+					</article>
+					<!-- END: Categories Listing -->
+				</li>
+				<li>
+					<a href="javascript:;" class="boxsize"><i class="jicon jicon-tasks big jicon-tags"></i> Tags <span class="count filled count-total-tags">0</span></a>
+					<article class="tags-section control-panel__content js-accordion-section nopadding" style="display:none;">
+						<!-- START: Tags Listing -->
+						<div id="tags">
+							<div class="js-scrollbar" data-scrollbar-theme="light-2" style="max-height: 300px;">
+								<div class="tags-wrapper padding10px">
+									<!-- // Dynamic Data Container // -->
+								</div>
+							</div>
+						</div>
+						<!-- END: Tags Listing -->
+					</article>
+				</li>
+				<li>
+					<a href="javascript:;" class="lnkViewStarredList boxsize"><i class="jicon jicon-tasks big jicon-favourite"></i> Favourites <span class="count filled count-total-starred">0</span></a>
+				</li>
+				<li>
+					<a href="javascript:;" class="lnkSettings boxsize"><i class="jicon jicon-tasks big jicon-settings"></i> Settings</a>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- END : Asset Panel (Left Side Panel) Content -->

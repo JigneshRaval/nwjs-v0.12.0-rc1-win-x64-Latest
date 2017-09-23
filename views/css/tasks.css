@@ -1,0 +1,74 @@
+.tasks-wrapper__list {}
+.tasks-wrapper__list li.item { vertical-align: top; transition: all 0.3s ease-in-out; border-bottom: 1px solid #EEE; }
+.tasks-wrapper__list > li:hover { }
+.tasks-wrapper__list > li .grid-table .grid-cell { padding: 5px; }
+.tasks-wrapper__list.horizontal {}
+.tasks-wrapper__list.horizontal > li { width: 31%}
+.tasks-wrapper__list.horizontal .tasks-image { float: left; width: 35%; min-height: 260px; max-height: 260px; }
+.tasks-wrapper__list.horizontal .tasks-header, .tasks-wrapper__list.horizontal .tasks-content {margin-left: 35%; }
+.tasks-wrapper__list.horizontal .tasks-title { text-align: left; }
+.tasks-wrapper__list > li > h3 { margin: 0; padding: 10px; font-size: 16px; background-color: #CCC; text-transform: capitalize; }
+.tasks-wrapper__list .borderL-anim li.active:before { height: 100%; transition: all 0.3s ease-in-out 0s; visibility: visible; transform: scaleY(1); z-index: 1;}
+.tasks-wrapper__list li .js-expand-collapse { display: inline-block; width: 35px; height: 35px; line-height: 35px; text-align: center; cursor: pointer; transition: all 0.2s linear; border-right: 2px solid #EEE; color: #adbac4;  }
+.tasks-wrapper__list li.item:hover header span { border-right: 2px solid #B7B8D0; }
+.tasks-wrapper__list .js-expand-collapse i { display: inline-block; vertical-align: middle; font-size: 23px;  line-height: normal; transition: all 0.2s linear; }
+.tasks-wrapper__list li.active .js-expand-collapse i { transform: rotate(90deg);  }
+.tasks-wrapper__list li .js-expand-collapse:hover {  background-color: #079fff; color: #fff; }
+.tasks-wrapper__list li.active .js-expand-collapse {  background-color: #E33C3C; color: #fff;  }
+.tasks-wrapper__list li.active {}
+
+.task-list-header { font-weight: 500; font-size: 14px; }
+
+.tasks-image { max-height: 200px; min-height: 200px; overflow: hidden; }
+.tasks-image img { max-width: 100%; }
+.tasks-image .item-controls.style1 { background-color: #FFF; transform: translateX(10%);
+transition: all 0.5s ease 0s; opacity: 0; position: absolute; right: 0;top:0; z-index: 1; }
+.tasks-image .item-controls.style1 a { display: block; color: #93A0AE; padding: 0; text-align: center; line-height: 38px; width: 35px; }
+.tasks-image .item-controls.style1 a:hover { background-color: #158BFD; color: #FFF;}
+.tasks-image .item-controls.style1 i { font-size: 20px; vertical-align: middle; line-height: normal; }
+.tasks-image:hover .item-controls.style1 { transform: translateX(0%); opacity: 1;}
+
+.tasks-header {min-height: 135px;}
+
+.tasks-title { font-size: 18px; display: block; margin-bottom: 1em; text-transform: uppercase; text-align: center; position: relative; }
+/*
+	.tasks-title:before { content : ""; position: absolute; bottom: -2px; left: 0; height: 2px; width: 100%; background-color: #746CB7; transform: scale(0); transition: all 0.3s linear; }
+	.tasks-title:hover:before {transform: scale(1); background-color: #FF066A; }
+*/
+.tasks-title:hover, .tasks-title:active, .tasks-title:focus { text-decoration: none;} 
+
+.task-description { color: #888; }
+.task-more-details { font-size: 13px; background-color: #EEE; box-shadow: 0px 5px 11px -3px rgba(0,0,0,0.5) inset; }
+.metadata.date { font-size: 12px; color: #999; }
+
+.tasks-controls {  background-color: #FFF; line-height: 45px; }
+.tasks-controls a { display: inline-block; padding: 0px 10px; color: #AAA; }
+.tasks-controls a.active, .tasks-controls a:hover {background-color: #9B6EE4; color: #FFF;}
+.tasks-controls a i { font-size: 26px; vertical-align: middle; }
+.tasks-controls-title { padding: 0 10px; text-transform: capitalize; }
+
+
+.priority { display: inline-block; height: 12px; width: 12px; border-radius: 50px; vertical-align: middle; margin-right: 10px; }
+.priority.Critical { background-color: #BB1100; }
+.priority.High { background-color: #F55D00; }
+.priority.Normal { background-color: #F2CD00; }
+.priority.Low { background-color: #65D872; }
+.priority.Minor { background-color: #6FD7D8; }
+
+.tasks-default-image {}
+.tasks-default-image div { background-color: #EEE; border: 1px solid #CCC; min-height: 200px; }
+
+.pagination-wrapper.pagination-wrapper-footer { padding: 15px; }
+
+.control-panel__content { height: auto; }
+
+.panel-filter-tasks { padding: 10px; background-color: #E55050; color: #FFF; }
+.panel-filter-tasks h3 { font-size: 18px; font-weight: 500; margin: 0 0 10px 0; color: #FFF;}
+
+.control-panel__content li.active a, .control-panel__content li.active a:hover, .control-panel__content li.active a:focus, .control-panel__content li.active a:active { border-left: 3px solid #B6B5BE; }
+
+
+.page-tasks {}
+.page-tasks .panel-left { height: auto; }
+
+.panel-categories .tag-color { border-radius: 100px; height: 15px; width: 15px; }

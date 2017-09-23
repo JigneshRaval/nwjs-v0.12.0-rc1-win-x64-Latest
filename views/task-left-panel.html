@@ -1,0 +1,106 @@
+
+				<header class="padding10px silver1">
+					<p class="center-aligned nomargin">
+						<a href="index.html" class="logo"><img src="images/dev-allery-logo3.png" /></a>
+					</p>
+					<!-- START :: Search Box -->
+					<div class="search-wrapper lhNormal boxsize">
+						<form id="frmSearch" name="frmSearch" class="posrelative">
+							<div class="input-group dispTable width100">
+								<input type="text" id="txtSearch" name="txtSearch" placeholder="Search Tasks" class="form-control dispCell"  data-source="" />
+								<a href="javascript:;" class="posabsolute lnkClearSearch" style="display:none;" onclick="clearSearch(this)">&times;</a>
+								<div class="btn-group dispCell">
+									<button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+									<ul class="dropdown-menu filterby-dropdown">
+										<li><input type="radio" id="radioTitle" name="radioGrpFilterBy" value="title" checked="" /><label for="radioTitle">Title</label></li>
+										<li><input type="radio" id="radioCategory" name="radioGrpFilterBy" value="category"><label for="radioCategory">Category</label></li>
+										<li><input type="radio" id="radioStartDate" name="radioGrpFilterBy" value="startDate"><label for="radioStartDate">Start Date</label></li>
+										<li><input type="radio" id="radioDueDate" name="radioGrpFilterBy" value="dueDate"><label for="radioDueDate">Due Date</label></li>
+										<li><input type="radio" id="radioPriority" name="radioGrpFilterBy" value="priority"><label for="radioPriority">Priority</label></li>
+										<li><input type="radio" id="radioAssignedTo" name="radioGrpFilterBy" value="assignedTo"><label for="radioAssignedTo">Assigned To</label></li>
+										<li><input type="radio" id="radioAssignedTo" name="radioGrpFilterBy" value="taskStatus"><label for="radioAssignedTo">Status</label></li>
+										<li class="divider"></li>
+										<li><input type="radio" id="radioAll" name="radioGrpFilterBy" value="title"><label for="radioAll">All</label></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- END :: Search Box -->
+				</header>
+				
+				<div class="asset-controls style2 clearfix">
+					<div class="fr">
+						<a href="javascript:;" class="lnkAddNewTask boxsize button medium" data-toggle="tooltip" data-placement="top" title="Add New Task"><i class="jicon medium jicon-add-task"></i></a>
+						
+						<a href="javascript:;" class="lnkViewStarredList boxsize" data-toggle="tooltip" data-placement="top" title="Favourites" data-container="body"><i class="ion-star"></i></a>
+						
+						<a href="javascript:;" class="lnkToggleGridView boxsize" data-toggle="tooltip" data-placement="top" title="Toggle Grid View" data-container="body"><i class="ion-android-apps"></i></a>
+						
+						<a href="javascript:;" class="lnkReloadList boxsize" data-toggle="tooltip" data-placement="top" title="Refresh List" data-container="body" onclick="moduleTasks.listAllTasks('all');"><i class="ion-android-refresh"></i></a>
+					</div>
+				</div>
+				
+				<div class="js-scrollbar" style="max-height:500px; min-height: 500px;">
+					<!--===========================================
+						START : Categories and Tags Listing panel
+					===============================================-->
+					<div class="panel-left">
+						<ol class="nomargin nopadding nobullets tasks-menu">
+							<li class="active">
+								<a href="javascript:;" class="lnkViewArchived boxsize" onclick="moduleTasks.listAllTasks('all');"><i class="jicon jicon-tasks big jicon-alltasks"></i> All Tasks <span class="count filled count-all-tasks">0</span></a>
+							</li>
+							
+							<li>
+								<a href="javascript:;" class="lnkViewArchived boxsize" onclick="moduleTasks.listDueToday();"><i class="jicon jicon-tasks big jicon-clock"></i> Today <span class="count filled count-due-today">0</span></a>
+								</li>
+							
+							<li>
+								<a href="javascript:;" class="lnkViewArchived boxsize" onclick="moduleTasks.listArchivedTasks();"><i class="jicon jicon-tasks big jicon-archived"></i> Archived Tasks <span class="count filled count-archived-tasks">0</span></a>
+							</li>
+							
+							<li>
+								<a href="javascript:;" class="lnkShowCategories boxsize"><i class="jicon jicon-tasks big jicon-categories"></i> Categories <span class="count filled count-total-categories">0</span></a>
+								<article class="categories-section control-panel__content js-accordion-section" style="display:none;">
+									<!-- START: Categories Panel -->
+									<div class="" id="categories">
+										<div class="js-scrollbar" style="max-height: 300px;">
+											<ul class="panel-categories nomargin nopadding nobullets">
+												
+											</ul>
+										</div>
+										<br/>
+										<p class="alignC nomargin padding5px">
+											<a href="javascript:;" class="lnkAddAddNewCategory button medium" data-toggle="tooltip" data-placement="top" title="Add New Category"><i class="jicon medium jicon-add-category"></i> </a>
+										</p>
+										
+										<form id="frmAddNewCategory" name="frmAddNewCategory" class="padding10px color gray-light" style="display: none;">
+											<input type="hidden" name="hdnSelectedCategory" id="hdnSelectedCategory" value="" />
+											<div class="input-group">
+												<input type="text" name="txtAddCategory" id="txtAddCategory" class="form-control" placeholder="Add Category" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please provide category name" />
+												<div class="input-group-btn">
+													<button type="submit" class="btn btn-default" onclick="moduleCategories.addCat('addTaskCategory', 'listTaskCategory');"><i class="ion-plus"></i></button>
+												</div>
+											</div>
+											<br/>
+											<div class="input-group setCategoryColor" data-container=".setCategoryColor" data-color="#30B1FF">
+												<input type="text" name="txtCategoryColor" id="txtCategoryColor" class="form-control" placeholder="Select Tag Color" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please Select Color for the Category." value="#30B1FF" />
+												<span class="input-group-addon"><i></i></span>
+											</div>
+										</form>
+										
+									</div>
+									<!-- END: Categories Panel -->
+								</article>
+							</li>
+							<li>
+								<a href="javascript:;" class="lnkViewArchived boxsize"><i class="jicon jicon-tasks big jicon-settings"></i> Settings</a>
+							</li>
+						</ol>
+					</div>
+					<br/>
+					<br/>
+					<p class="alignC">
+						<a href="javascript:;" class="lnkAddNewTask boxsize button medium" data-toggle="tooltip" data-placement="top" title="Add New Task"><i class="jicon medium jicon-add-task"></i></a>
+					</p>
+				</div>

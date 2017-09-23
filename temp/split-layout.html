@@ -1,0 +1,261 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery-ui.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/snippets.css" />
+		<link rel="stylesheet" type="text/css" href="css/components.css" />
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		<link rel="stylesheet" type="text/css" href="css/split-panel.css" />
+		
+		<link rel="stylesheet" href="css/codemirror/codemirror.css" />
+		<link rel="stylesheet" href="css/codemirror/theme/ambiance.css" />
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery-ui.js"></script>
+		
+		<!-- CodeMirror : Core -->
+		<script src="js/plugins/codemirror.js"></script>
+		<!-- CodeMirror : Modes -->
+		<script src="js/codemirror/mode/xml/xml.js"></script>
+		<script src="js/codemirror/mode/javascript/javascript.js"></script>
+		<script src="js/codemirror/mode/css/css.js"></script>
+		<script src="js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<!-- CodeMirror : Addons -->
+		
+		<script src="js/codemirror/addon/fold/xml-fold.js"></script>
+		<script src="js/codemirror/addon/fold/foldcode.js"></script>
+		<script src="js/codemirror/addon/fold/foldgutter.js"></script>
+		<script src="js/codemirror/addon/edit/matchbrackets.js"></script>
+		
+		<script src="js/codemirror/addon/edit/matchtags.js"></script>
+		<script src="js/codemirror/addon/edit/closetag.js"></script>
+		<script src="js/codemirror/addon/emmet.js"></script>
+		
+		<script src="js/codemirror/addon/selection/active-line.js"></script>
+		
+		<script type="text/javascript">
+			jQuery(function($)
+			{
+				var $container = $('.panel-editors');
+				
+				console.log($container.height());
+				
+				
+				$('.panel-js').resizable({
+					handles: 'n'
+				});
+				$('.panel-css').resizable({
+					handles: 'n'
+				});
+				
+				/*
+					$('.panel-editors').resizable({
+					handles: 'e',
+					minWidth: 0,
+					create: function(event, ui){
+					setTimeout(function() {
+					//$('.ui-resizable-e span').trigger('click');
+					//$('body').find('.panel-view-area').css({"width" : "100%"});
+					}, 1000);
+					},
+					resize: function(event, ui){
+					}
+					});
+				*/
+				var topBoxesCon = $('.panel-editors');
+				var bodyWidth = $("body").width();
+				var widthReadout = $("#width-readout");
+				var dragCover = $("#editor-drag-cover");
+				
+				$('#resizer').trigger("drag");
+				
+				$('#resizer').draggable({
+					start : function () {
+						dragCover.show();
+					},
+					stop : function (t, e) {
+						dragCover.hide();
+					},
+					axis : "x",
+					drag : function (t, e) {						
+						topBoxesCon.width(e.offset.left);
+						widthReadout.text(Math.round(bodyWidth - e.offset.left) - 7 + "px")
+						console.log("Width :=", e.offset.left , "= ", topBoxesCon.width(), widthReadout.text());
+					},
+					containment : $(".page-wrap")
+				});
+				
+				
+				$('.ui-resizable-handle').append('<span class="ui-resizable-toggle"></span>');
+				
+				$('.ui-resizable-e span, .ui-resizable-w span, .resizer.vertical span').on('click', function() {
+					if(!$('.panel-editors').hasClass('panel-collapsed')) {
+						$('.panel-editors').addClass('panel-collapsed');
+						$('.panel-editors').animate({width: '35%'}, {duration: 500});
+					}
+					else {
+						$('.panel-editors').removeClass('panel-collapsed');
+						$('.panel-editors').animate({width: '0%'}, {duration: 500});
+					}
+				});
+				
+				$('.ui-resizable-n span').on('click', function() {
+					if(!$(this).closest('.panel-child').hasClass('panel-collapsed')) {
+						$(this).closest('.panel-child').addClass('panel-collapsed').animate({height: '100%'}, {duration: 500}).siblings('.panel-child').animate({height: '1%'}, {duration: 500});
+					}
+					else {
+						$(this).closest('.panel-child').removeClass('panel-collapsed').animate({height: '33.33%'}, {duration: 500}).siblings('.panel-child').animate({height: '33.33%'}, {duration: 500});
+						
+						//$(this).closest('.panel-child').removeClass('panel-collapsed').animate({height: '33.33%'}, {duration: 500}).siblings('.panel-child').animate({height: '33.33%'}, {duration: 500});
+					}
+				});
+				
+				$('.panel-expand').on('click', function() {
+					$(this).closest('.panel-child').toggleClass('panel-expanded');
+				});
+				
+				var codemirrorOpts = {
+					lineNumbers: true,
+					//mode: "text/html",
+					profile: 'xhtml',
+					styleActiveLine: true,
+					matchBrackets: true,
+					matchTags: {bothTags: true},
+					autoCloseTags: true,
+					foldCode : {scanUp :true},
+					foldGutter: true,
+					gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+					theme : "ambiance", // vibrant-ink, solarized dark, ambiance, lesser-dark
+					lineWrapping : true,
+					styleActiveLine: true,
+					onChange: function (inst, changes) {
+						//render();
+						console.log("Test onchange");
+					}
+				};
+				var mixedMode = {
+					name: "htmlmixed",
+					scriptTypes: [
+					{matches: /\/x-handlebars-template|\/x-mustache/i, mode: null},
+					{matches: /(text|application)\/(x-)?vb(a|script)/i, mode: "vbscript"}
+					]
+				};
+				
+				var htmlEditor = CodeMirror(document.getElementById("editor_html"), codemirrorOpts);
+				htmlEditor.setOption("mode", mixedMode);
+				
+				var cssEditor = CodeMirror(document.getElementById("editor_css"), codemirrorOpts);
+				cssEditor.setOption("mode", 'text/css');
+				
+				var jsEditor = CodeMirror(document.getElementById("editor_js"), codemirrorOpts);
+				jsEditor.setOption("mode", 'text/javascript');
+				//this.htmlEditor = CodeMirror.fromTextArea(document.getElementById("txtAreaHTML"), codemirrorOpts);
+				//this.htmlEditor.setOption("mode", mixedMode);
+				
+			});
+		</script>
+		
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="page-wrap">
+			<div class="panel-wrapper">
+				<section class="panel panel-editors posRel panel-collapsed">
+					<article class="panel-child panel-html">
+						<div class="panel-content posAbs cover-only">
+							<div class="panel-header clearfix">
+								<h3>HTML</h3>
+								<div class="panel-options">
+									<a href="javascript:;" class="panel-expand"><i class="ion-arrow-resize"></i></a>
+								</div>
+							</div>
+							
+							<pre class="editor-holder" id="editor_html"></pre>
+						</div>
+					</article>
+					
+					<article class="panel-child panel-css">
+						<div class="panel-content posAbs cover-only">
+							<div class="panel-header clearfix">
+								<h3>CSS</h3>
+								<div class="panel-options">
+									<a href="javascript:;" class="panel-expand"><i class="ion-arrow-resize"></i></a>
+								</div>
+							</div>
+							
+							<pre class="editor-holder" id="editor_css"></pre>
+						</div>
+					</article>
+					
+					<article class="panel-child panel-js">
+						<div class="panel-content posAbs cover-only">
+							<div class="panel-header clearfix">
+								<h3>JAVASCRIPT</h3>
+								<div class="panel-options">
+									<a href="javascript:;" class="panel-expand"><i class="ion-arrow-resize"></i></a>
+								</div>
+							</div>
+							
+							<pre class="editor-holder" id="editor_js"></pre>
+						</div>
+					</article>
+					
+				</section>
+				
+				<div  id="resizer" class="resizer vertical ui-draggable ui-draggable-handle"><span></span><div id="width-readout" class="width-readout">996px</div></div>
+				
+				<section class="panel panel-view-area panel-collapsed">
+					<!--<div style="width:100%">
+					<div class="live-view-wrapper posRel full-height">-->
+					<iframe id="iframe_result_view" class="" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts" allowtransparency="true" allowfullscreen="true" style="border:0;width: 100%;height:100%;" src="database/code-pans/svg_goo_animation.html"></iframe>
+					
+					<div id="editor-drag-cover" class="drag-cover"></div>
+					<!--</div>
+					</div>-->
+				</section>
+			</div>
+		</div>
+		
+		
+		
+		
+		<!--=========================
+			<div class="page-wrap twilight">
+			
+			<div class="boxes">
+				
+				<div class="top-boxes editor-parent">
+				</div>
+				
+				<div  id="resizer" class="resizer ui-draggable ui-draggable-handle"><span></span><div id="width-readout" class="width-readout">996px</div></div>
+				
+				
+				<div id="result_div" class="result"><iframe id="result9d3a89901d728e61aea00f8d31089cf11425889398198" src="Material%20Design%20App%20-%20Animated%20Tabs_files/index.htm" name="CodePen" allowfullscreen="true" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-forms" allowtransparency="true" class="result-iframe" style="height: 100%; width: 100%;"></iframe>
+
+					<section id="drawer" class="drawer">
+						
+					</section>
+					
+					<div id="loading-text" class="loading-text">
+						Loading
+						<span>
+							..................
+						</span>
+					</div>
+					
+					<div style="display: none;" id="editor-drag-cover" class="drag-cover"></div>
+					
+				</div>
+				
+			</div>
+		</div>
+		-->
+	</body>
+</html>

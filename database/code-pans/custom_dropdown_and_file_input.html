@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	<style class="code-editor-style">
+.input, .select, .textarea, .radio, .checkbox, .toggle, .button {
+	display: block;
+  position: relative;
+}
+label.input { display: block; position: relative; }
+.input-file .button {
+    float: none;
+    font-size: 13px;
+    height: 31px;
+    line-height: 31px;
+    margin: 0;
+    padding: 0 20px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  background-color: #ad3bc4;
+}
+.input-file .button input {
+    cursor: pointer;
+    font-size: 30px;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.input input, 
+.select select, 
+.textarea textarea {
+	    -moz-appearance: none;
+    background: none repeat scroll 0 0 #ffffff;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 2px;
+    box-sizing: border-box;
+    color: #404040;
+    display: block;
+    font: 15px/19px "Open Sans",Helvetica,Arial,sans-serif;
+    height: 39px;
+    outline: medium none;
+    padding: 8px 10px;
+    width: 100%;
+}
+
+select {
+	    -moz-appearance: menulist;
+    -moz-user-select: none;
+    background-color: -moz-combobox;
+    border-color: threedface;
+    border-style: inset;
+    border-width: 2px;
+    box-sizing: border-box;
+    color: -moz-comboboxtext;
+    cursor: default;
+    display: inline-block;
+    font: ;
+    line-height: normal !important;
+    margin: 0;
+    overflow: -moz-hidden-unscrollable;
+    page-break-inside: avoid;
+    text-align: start;
+    text-indent: 0;
+    text-shadow: none;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+}
+option {
+    -moz-user-select: none;
+    display: block;
+    float: none !important;
+    line-height: normal !important;
+    min-height: 1em;
+    position: static !important;
+    text-indent: 0;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+}
+.select i::before {
+    border-bottom: 4px solid #404040;
+    top: 0;
+}
+.select i::after, 
+.select i::before {
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    content: "";
+    position: absolute;
+    right: 0;
+}
+.select i::after {
+    border-top: 4px solid #404040;
+    bottom: 0;
+}
+.select i::after, 
+.select i::before {
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    content: "";
+    position: absolute;
+    right: 0;
+}
+.select i {
+    background: none repeat scroll 0 0 #ffffff;
+    box-shadow: 0 0 0 12px #ffffff;
+    height: 11px;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    width: 5px;
+}</style>
+</head>
+	<body>
+	<section>
+						<label class="label">File input</label>
+						<label class="input input-file" for="file">
+							<div class="button"><input type="file" onchange="this.parentNode.nextSibling.value = this.value" id="file">Browse</div><input type="text" readonly="">
+						</label>
+					</section>
+
+<label class="select">
+							<select>
+								<option value="0">Choose name</option>
+								<option value="1">Alexandra</option>
+								<option value="2">Alice</option>
+								<option value="3">Anastasia</option>
+								<option value="4">Avelina</option>
+							</select>
+							<i></i>
+						</label>
+<script id="userScript"></script>
+</body>
+	</html>

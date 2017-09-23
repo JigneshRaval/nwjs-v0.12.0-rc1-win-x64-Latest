@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Coder's Cubes : Bookmarks</title>
+		
+		<!-- Load All CSS Files here -->
+		<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-mfizz.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/summernote.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/hint.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jPages.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/selectize.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.snippet.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/prism.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.mCustomScrollbar.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.core.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/dropdowns-enhancement.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/uploadfile.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/lightGallery.css" />
+		
+		<link rel="stylesheet" type="text/css" title="default" id="styleSyntaxHighlighter" href="css/highlighter/default.css">
+		
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/bookmarks.css" />
+		<link rel="stylesheet" type="text/css" href="css/components.css" />		
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		
+		<!-- Load All JS Files here -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/node-webkit-fn.js"></script>
+		<!-- <script type="text/javascript" src="js/desktopNotification.js"></script> -->
+		
+		<script type="text/javascript">
+			function loadJSONTemplate(templatesPathObj) {				
+				//console.log(templatesPathObj);
+				$.each(templatesPathObj.files, function(key, value) {					
+					if(value.filetype == "json") {						
+						$('head').append('<script type="text/javascript" src="'+value.path+'"><\/script>');
+					}
+					else if(value.filetype == "html") {
+						console.log(value.path,value.container);
+						$(value.container).load(value.path);						
+					}
+				});
+			}
+			
+			var loadJSONDataFiles = {
+				files : [
+				{id : 1, name : "bookmarks-tmpl", path : "templates/bookmarks-tmpl.html", filetype: "html", container : '#handlebars-templates-wrapper'  }
+				]
+			};
+			
+			
+		</script>
+	</head>
+	
+    <body class="body-bg-1">
+		<div id='status' style='display: none;'></div>
+		<!-- START :: All the Handlebars Templates -->
+        <div id="handlebars-templates-wrapper">
+			
+		</div>
+		<script type="text/javascript">//loadJSONTemplate(loadJSONDataFiles);</script>
+		
+        <div class="loading-indicator top-bar">
+            <div class="loading-loader">
+                <i class="ion-loading-c eleinlineblock"></i>
+			</div>
+		</div>
+		
+		<!-- START :: Window Toolbar -->
+		<div class="app-controls grid-table twhite">
+			<div class="grid-table-row">
+				<h3 class="text-muted grid-cell grid-cell-nine malign" style="-webkit-app-region: drag">Coder's Cubes</h3>
+				<div id="WindowToolbar" class="grid-cell grid-cell-three">
+					<div class="fr">
+						<a href="javascript:;" onclick="webkitWinModule.minimizeWin()" type="button" class="btnMinimize" data-toggle="tooltip" data-placement="bottom" title="Minimize Application">
+							<i class="glyphicon glyphicon-minus"></i>
+						</a>
+						
+						<a href="javascript:;" onclick="webkitWinModule.maximizeWin()" type="button" class="btnToggleFullScreen" data-toggle="tooltip" data-placement="bottom" title="Maximize Application">
+							<i class="glyphicon glyphicon-fullscreen"></i>
+						</a>
+						
+						<a href="javascript:;" onclick="webkitWinModule.reloadWin()" type="button" class="btnClose" data-toggle="tooltip" data-placement="bottom" title="Reload Application">
+							<i class="ion-refresh"></i>
+						</a>
+						<a href="javascript:;" onclick="webkitWinModule.showDevTool()" type="button" class="btnClose" data-toggle="tooltip" data-placement="bottom" title="Developer Toolbar">
+							<i class="ion-gear-b"></i>
+						</a>
+						<a href="javascript:;" onclick="webkitWinModule.closeWin()" type="button" class="btnClose color red twhite" data-toggle="tooltip" data-placement="bottom" title="Close Application">
+							<i class="ion-close-round"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END :: Window Toolbar -->
+		
+		<!-- START :: Result List Area -->
+		<div class="posRel">
+			<div class="scrollbar">
+				<div class="handle">
+					<div class="mousearea"></div>
+				</div>
+			</div>
+			
+			<div class="frame" id="basic">
+				<div class="slidee clearfix">
+					<div class="slidee-child">
+						<ul id="bookmarks-wrapper__list" class="bookmarks-wrapper__list nomargin nopadding nobullets borderB-anim clearfix horizontal">
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 1</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+							
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">{{this.title}}</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+								</li><li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 3</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+							
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 4</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+								</li><li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 5</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+							
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 6</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					
+					<div class="slidee-child">
+						<ul id="bookmarks-wrapper__list" class="bookmarks-wrapper__list nomargin nopadding nobullets borderB-anim clearfix horizontal">
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 1.1</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+							
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">slide 8</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+								</li>
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">{{this.title}}</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+							
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">{{this.title}}</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+								</li><li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">{{this.title}}</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+							
+							<li class="item boxsize" data-snippet-id="{{this._id}}">
+								<div class="color white posRel borderB-anim-child">
+									<header class="posRel clearfix">
+										
+										<div class="bookmark-image" style="background: url(/database/uploads/images/bookmarks/{{this.images}}) no-repeat 0 0; background-size: cover;">
+											
+											<div class="item-controls style1">
+												<a href="javascript:;" onclick="moduleBookmarks.editBookmark('{{this.id}}', '{{this._id}}', '/database/uploads/images/bookmarks/{{this.images}}')" data-toggle="modal" data-target="#modalAddBookmarkForm" data-snippet-id="{{this.id}}" data-image-path="/database/uploads/images/bookmarks/{{this.images}}"><i class="ion-edit" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+												
+												<a href="javascript:;" onclick="moduleBookmarks.deleteBookmark('{{this.id}}', '{{this._id}}')" data-snippet-id="{{this.id}}"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+											</div>
+										</div>
+										
+										<div class="bookmark-header padding10px">
+											<a class="bookmark-title" href="javascript:;" target="_blank" onclick="webkitWinModule.openURLinDefaultBrowser('{{this.url}}');">{{this.title}}</a>
+											
+											<a href="javascript:;" class="metadata date uppercasetext"><i class="fa fa-clock-o"></i>
+												{{#dateFormat this.dateCreated format="DD MMM YYYY"}}
+												{{this}}
+												{{/dateFormat}}
+											</a>
+											
+											<div class="make-favourite posRel eleinlineblock nomargin">
+												
+												<input type="checkbox" id="chkStarred_{{this._id}}" name="chkStarred_{{this._id}}" data-snippet-id="{{this._id}}" {{#compare this.isStarred "==" "true"}}checked="{{this.isStarred}}" {{/compare}}/>
+												
+												<label for="chkStarred_{{this._id}}" class="chkStarred"><i class="ion-ios-star-outline" data-toggle="tooltip" data-placement="top" data-container="body" title="Mark as Favourite"></i></label>
+											</div>
+											
+										</div>
+										
+										<div class="bookmark-content padding10px minh100px">
+											{{#if this.description}}
+											
+											<div class="bookmark-description posrelative" data-toggle="more-less-content" data-strip-method="byChar" data-strip-value="100">
+												<div class="more-content">{{{this.description}}}</div>
+											</div>
+											
+											{{/if}}
+										</div>
+									</header>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<ul class="pages"></ul>
+			
+			<div class="controls center">
+				<button class="btn prevPage"><i class="icon-chevron-left"></i><i class="icon-chevron-left"></i> page</button>
+				
+				<div class="btn-group">
+					<button class="btn pause"><i class="icon-pause"></i> pause</button>
+					<button class="btn resume"><i class="icon-play"></i> resume</button>
+					<button class="btn toggle"><i class="icon-pause"></i> toggle</button>
+				</div>
+				
+				<button class="btn nextPage">page <i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></button>
+			</div>
+			
+		</div>
+		<!-- END :: Result List Area -->
+		
+		
+        <div class="grid-table grid-table-fixed main-area-wrapper">
+            <div class="grid-table-row">
+                <div class="grid-cell talign color wet-asphalt control-panel">
+                    <p class="center-aligned nomargin">
+                        <a href="index.html" class="logo"><img src="images/jrsnipp-logo-new.png" /></a>
+					</p>
+					
+					
+                    <aside class="js-accordion-section">
+                        <!--<span class="logo"><img src="images/jrsnipp-logo-new.png" /></span>-->
+                        <ul class="nomargin nopadding nobullets">
+                            <li>
+                                <a href="snippets.html"><i class="jicon-snippets"></i>
+                                    <span><em class="arrow small arrow-left"></em>Snippets</span>
+								</a>
+                                <div class="control-panel-subnav">
+                                    <ol>
+                                        <li>
+                                            <a href="#" class="button medium color green lnkAddNewSnippet" data-toggle="modal" data-target="#modalAddSnippetForm"><i class="ion-plus"></i> Add New Snippet</a>
+										</li>
+									</ol>
+								</div>
+							</li>
+                            <li>
+                                <a href="javascript:;"><i class="jicon-favourite"></i>
+                                    <span><em class="arrow small arrow-left"></em> Favourites</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="tasks.html"><i class="jicon-tasks"></i>
+                                    <span><em class="arrow small arrow-left"></em> Tasks</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="inspirations.html"><i class="jicon-inspirations"></i>
+                                    <span><em class="arrow small arrow-left"></em> Inspirations</span>
+								</a>
+							</li>
+                            <li class="active">
+                                <a href="javascript:;"><i class="jicon-bookmarks"></i>
+                                    <span><em class="arrow small arrow-left"></em> Bookmarks</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="webtools.html"><i class="jicon-webtools"></i>
+                                    <span><em class="arrow small arrow-left"></em> Web Tools</span>
+								</a>
+							</li>
+                            <li>
+                                <a href="javascript:;"><i class="jicon-stats"></i>
+                                    <span><em class="arrow small arrow-left"></em> Stats</span>
+								</a>
+							</li>
+							<li>
+                                <a href="javascript:;" class="lnkShowFooterPanel"><i class="jicon-stats"></i>
+                                    <span><em class="arrow small arrow-left"></em> More</span>
+								</a>
+							</li>
+						</ul>
+					</aside>
+					
+				</div>
+                <div class="grid-cell grid-cell-ten talign">
+                    <div class="main-wrapper">
+                        <!--================================
+                            START : Snippets Listing View
+						====================================-->
+                        <section class="content-wrapper posRel full-height">
+							
+                            <article class="bookmarks-wrapper posRel full-height">
+								
+								
+								
+								
+                                <div class="grid-table full-height">
+                                    <div class="grid-table-row">
+										
+                                        <!-- START :: Column -->
+                                        <div class="grid-cell grid-cell-three talign color white" style="display:none;">
+											
+                                            <!-- START : Content Header -->
+                                            <article class="content-header clearfix">
+												
+                                                <!-- START :: Pagination Top -->
+                                                <div class="pagination-wrapper nopadding">
+                                                    <div class="grid-row green9">
+                                                        <div class="grid-columns grid-col-seven center-aligned">
+                                                            <!-- wrapped custom buttons for easier styling -->
+                                                            <div class="padding10px">
+                                                                <div class="custom-pagination-btns">
+                                                                    <a href="javascript:;" class="prevPage twhite"><i class="ion-chevron-left"></i></a>
+                                                                    <span class="pagination-legend twhite"></span>
+                                                                    <a href="javascript:;" class="nextPage twhite"><i class="ion-chevron-right"></i></a>
+																</div>
+															</div>
+															
+														</div>
+														
+                                                        <div class="grid-columns grid-col-five alignR">
+                                                            <a href="javascript:;" class="lnkShowSearchPanel"><i class="ion-android-search"></i></a>
+														</div>
+														
+													</div>
+													
+                                                    <div class="search-wrapper margin10px" style="display: none;">
+                                                        <form id="frmSearch" name="frmSearch" class="posrelative">
+                                                            <div class="input-group">
+                                                                <div class="btn-group">
+                                                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Filter by <span class="caret"></span></button>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><input type="radio" id="radioTitle" name="radioGrpFilterBy" value="title"><label for="radioTitle">Title</label></li>
+                                                                        <li><input type="radio" id="radioCategory" name="radioGrpFilterBy" value="category"><label for="radioCategory">Category</label></li>
+                                                                        <li><input type="radio" id="radioDate" name="radioGrpFilterBy" value="date"><label for="radioDate">Date</label></li>
+                                                                        <li><input type="radio" id="radioTags" name="radioGrpFilterBy" value="tags"><label for="radioTags">Tags</label></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><input type="radio" id="radioAll" name="radioGrpFilterBy" value="all"><label for="radioAll">All</label></li>
+																	</ul>
+																</div>
+																
+                                                                <input type="text" id="txtSearch" name="txtSearch" placeholder="Search Snippet" class="form-control" autofocus />
+                                                                <a href="javascript:;" class="posabsolute lnkClearSearch" style="display:none;" onclick="clearSearch(this)">&times;</a>
+															</div><!-- /input-group -->
+														</form>
+													</div>
+													
+												</div>
+                                                <!-- END :: Pagination Top -->
+												
+											</article>
+                                            <!-- END : Content Header -->
+										</div>
+                                        <!-- END :: Column -->
+										
+                                        <!-- START :: Column -->
+                                        <div class="grid-cell grid-cell-eight talign posRel">
+                                            <!-- START :: Header Section -->
+                                            <header class="main-header posRel clearfix">
+                                                <span class="main-header-title titillium w500 fontSize18em fl eleinlineblock">Bookmarks</span>
+                                                <ul class="header-controls nomargin nopadding nobullets fr">
+                                                    <li>
+                                                        <a href="javascript:;" data-toggle="dropdown"><i class="jicon-apps" data-toggle="tooltip" data-placement="bottom" title="Explore Applications"></i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-apps" role="menu" aria-labelledby="dLabel">
+                                                            <ul class="nomargin nopadding nobullets clearfix">
+                                                                <li class="active">
+                                                                    <a href="snippets.html"><i class="jicon-snippets"></i>
+                                                                        <span>Snippets</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;" title="Category"><i class="jicon-cat"></i>
+                                                                        <span>Categories</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;" title="Tags"><i class="jicon-tags"></i>
+                                                                        <span>Tags</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;"><i class="jicon-favourite"></i>
+                                                                        <span>Favourites</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="tasks.html"><i class="jicon-tasks"></i>
+                                                                        <span>Tasks</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="inspirations.html"><i class="jicon-gallery"></i>
+                                                                        <span>Inspirations</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="bookmarks.html"><i class="jicon-bookmarks"></i>
+                                                                        <span>Bookmarks</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="webtools.html"><i class="jicon-webtools"></i>
+                                                                        <span>Web Tools</span>
+																	</a>
+																</li>
+                                                                <li>
+                                                                    <a href="javascript:;"><i class="jicon-stats"></i>
+                                                                        <span>Stats</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</li>
+                                                    <li>
+                                                        <a href="javascript:;" data-toggle="dropdown"><i class="jicon-settings" data-toggle="tooltip" data-placement="bottom" title="View Settings"></i></a>
+                                                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+                                                            <li><a href="#" class="lnkOpenModalManageCategories" data-toggle="modal" data-target="#modalManageCategories"><i class="ion-folder fontSize15em"></i> Manage Categories</a></li>
+                                                            <li><a href="#" data-toggle="modal" data-target="#modalManageTags"><i class="ion-ios-pricetag fontSize15em"></i> Manage Tags</a></li>
+                                                            <li><a href="javascript:;"  class="lnkOpenModal_Settings"><i class="ion-ios-gear fontSize15em"></i> Settings</a></li>
+														</ul>
+													</li>
+                                                    <li>
+                                                        <a href="javascript:;" class="expand-icon-panel" data-toggle="tooltip" data-placement="bottom" title="View Categories and Tags"><i class="ion-navicon-round"></i></a>
+													</li>
+												</ul>
+											</header>
+                                            <!-- END :: Header Section -->
+											
+											
+											<!-- <div class="bookmark-controls style1 clearfix ">
+												<a href="javascript:;" class="lnkAddNewBookmark boxsize" data-toggle="tooltip" data-placement="top" title="Add New Bookmark"><i class="ion-plus"></i></a>
+												<a href="javascript:;" class="lnkAddNewSnippet boxsize" data-toggle="tooltip" data-placement="top" title="Bookmark Settings"><i class="ion-settings"></i></a>
+												<a href="javascript:;" class="lnkAddNewSnippet boxsize" data-toggle="tooltip" data-placement="top" title="Refresh List"><i class="ion-loop"></i></a>
+											</div> -->
+											
+											
+                                            <div class="grid-table full-height">
+                                                <div class="grid-table-row">
+                                                    <div class="grid-cell grid-cell-nine talign">
+														<div class="bookmark-controls style2 clearfix">
+															<div class="fr">
+																<a href="javascript:;" class="lnkAddNewBookmark boxsize" data-toggle="tooltip" data-placement="top" title="Add New Bookmark" data-container="body"><i class="ion-plus"></i></a>
+																
+																<a href="javascript:;" class="lnkToggleGridView boxsize" data-toggle="tooltip" data-placement="top" title="Toggle Grid View" data-container="body"><i class="ion-android-apps"></i></a>
+																
+																<a href="javascript:;" class="lnkReloadList boxsize" data-toggle="tooltip" data-placement="top" title="Refresh List" data-container="body" onclick="moduleBookmarks.listAllBookmarks('all');"><i class="ion-android-refresh"></i></a>
+															</div>
+															<div class="fr">
+																<div class="pagination-wrapper alignC padding10px">
+																	<div class="holder" id="holder-bookmarks"></div>
+																</div>
+															</div>
+														</div>
+														
+														
+														
+														
+														<!--
+															<div class="pagination-wrapper pagination-wrapper-footer padding15px alignC purple7 twhite posRel">
+															<div class="holder" id="holder-bookmarks"></div>
+															</div>
+														-->
+													</div>
+													<div class="grid-cell talign color wet-asphalt panel-left width20">
+														
+														<div class="">
+															<!--===========================================
+																START : Categories and Tags Listing panel
+															===============================================-->
+															<h3 class="active"><!-- <i class="ion-chevron-down"></i> --> <span>Categories</span> <i class="ion-plus fr" data-toggle="tooltip" title="Add New Category" data-placement="left"></i></h3>
+															<article class="categories-section control-panel__content js-accordion-section">
+																<!-- START: Categories Panel -->
+																<div class="" id="categories">
+																	<!-- <h3 class="titillium w500 fontSize15em padding10px nomargin">Categories</h3> -->
+																	<form id="frmAddNewCategory" name="frmAddNewCategory" class="padding10px color gray-light" style="display: none;">
+																		<input type="hidden" name="hdnSelectedCategory" id="hdnSelectedCategory" value="" />
+																		<div class="input-group">
+																			<input type="text" name="txtAddCategory" id="txtAddCategory" class="form-control" placeholder="Add Category" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please provide category name" />
+																			<div class="input-group-btn">
+																				<button type="submit" class="btn btn-default" onclick="moduleBookmarks.addCategory();"><i class="ion-plus"></i></button>
+																				
+																			</div><!-- /btn-group -->
+																		</div><!-- /input-group -->
+																	</form>
+																	<div class="js-scrollbar" style="max-height: 300px;">
+																		<ul class="panel-categories nomargin nopadding nobullets">
+																			
+																		</ul>
+																	</div>
+																</div>
+																<!-- END: Categories Panel -->
+															</article>
+															
+															<!-- START: Tags Panel -->
+															<!--
+																<h3 class="active"><span>Tags</span> <i class="ion-plus fr" data-toggle="tooltip" title="Add New Tag" data-placement="left"></i></h3>
+																<article class="tags-section control-panel__content js-accordion-section">
+																
+																<div class="tab-pane" id="tags">
+																<form id="frmAddNewTag" name="frmAddNewTag" class="padding10px color gray-light" style="display: none;">
+																<div class="input-group">
+																<input type="text" name="txtAddTag" id="txtAddTag" class="form-control" placeholder="Add Tag" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please provide valid tag name" />
+																
+																<div class="input-group-btn">
+																<button type="submit" class="btn btn-default" onclick="moduleBookmarks.addSingleTag();"><i class="ion-plus"></i></button>
+																</div>
+																</div>
+																<br/>
+																<div class="input-group setTagColor">
+																<input type="text" name="txtTagColor" id="txtTagColor" class="form-control" placeholder="Select Tag Color" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please Select Color for the tag." />
+																<span class="input-group-addon"><i></i></span>
+																</div>
+																</form>
+																
+																<div class="tags-wrapper padding10px">
+																<a href="javascript:;" class="tag tag-css">CSS</a>
+																<a href="javascript:;" class="tag tag-js">JavaScript</a>
+																<a href="javascript:;" class="tag tag-bootstrap">Bootstrap</a>
+																<a href="javascript:;" class="tag tag-scss">SASS</a>
+																</div>
+																</div>
+																
+																</article>
+															-->
+															<!-- END: Categories Panel -->
+															
+															<!--===========================================
+																START : Categories and Tags Listing panel
+															===============================================-->
+														</div>
+														
+													</div>
+												</div>
+											</div>
+											
+											
+										</div>
+										<!-- END :: Column -->
+									</div>
+								</div>
+								
+							</article>
+						</section>
+						<!--================================
+							END : Snippets Listing View
+						====================================-->
+						
+						<!-- START : Footer -->
+						<footer class="footer-wrapper">
+							<div class="grid-row">
+								<div class="grid-columns grid-col-ten">
+									<p>Copyright 2014 Your name</p>
+								</div>
+								<div class="grid-columns grid-col-two alignR">
+									<a href="javascript:;" class="lnkHideFooterPanel"><i class="ion-chevron-left"></i></a>
+								</div>
+							</div>
+							
+						</footer>
+						<!-- END : Footer -->
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript" src="js/handlebars-v2.0.0.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/plugins/moment.js"></script>		
+		<script type="text/javascript" src="js/handlebars.helpers.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/jquery.form-validator.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="js/plugins/summernote.js"></script>
+		<script type="text/javascript" src="js/plugins/jPages.js"></script>
+		<script type="text/javascript" src="js/plugins/alertify.js"></script>
+		<script type="text/javascript" src="js/plugins/selectize.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.bootstrap-growl.min.js"></script>
+		<script type="text/javascript" src="js/plugins/highlight.pack.js"></script>
+		<script type="text/javascript" src="js/plugins/lightGallery.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/sly.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/plugins/dropdowns-enhancement.js"></script>
+		<script type="text/javascript" src="js/plugins/bootstrap-colorpicker.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.fastLiveFilter.js"></script>
+		<script type="text/javascript" src="js/plugins/mousetrap.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.uploadfile.js"></script>
+		<!-- <script type="text/javascript" src="js/common-functions.js"></script>
+		<script type="text/javascript" src="js/modules-common-functions.js"></script> -->
+		
+		<script type="text/javascript">
+			//webkitWinModule.init({});
+			
+			$(document).ready(function() {
+				setTimeout(function() {
+				initSlySlider('#basic');
+				}, 3000);
+			});
+			
+			function initSlySlider(sliderId) {
+				var $frame  = $(sliderId);
+				var $slidee = $frame.children('.slidee').eq(0);
+				var $wrap   = $frame.parent();
+				console.log($wrap);
+				// Call Sly on frame
+				$frame.sly({
+					horizontal: 1,
+					itemNav: 'basic',
+					//smart: 1,
+					activateOn: 'click',
+					mouseDragging: 1,
+					touchDragging: 1,
+					releaseSwing: 1,
+					startAt: 0,
+					scrollBar: $wrap.find('.scrollbar'),
+					scrollBy: 1,
+					pagesBar: $wrap.find('.pages'),
+					activatePageOn: 'click',
+					speed: 300,
+					elasticBounds: 1,
+					easing: 'easeOutExpo',
+					dragHandle: 1,
+					dynamicHandle: 1,
+					clickBar: 1,
+					// Cycling
+					cycleBy: 'pages',
+					cycleInterval: 1000,
+					pauseOnHover: 1,
+					startPaused: 1,
+					keyboardNavBy : 'page',
+					
+					// Buttons
+					forward: $wrap.find('.forward'),
+					backward: $wrap.find('.backward'),
+					prev: $wrap.find('.prev'),
+					next: $wrap.find('.next'),
+					prevPage: $wrap.find('.prevPage'),
+					nextPage: $wrap.find('.nextPage')
+				});
+				
+			}
+		</script>
+		
+		<!-- 	<script src="js/modules/module-bookmarks.js"></script> -->
+		
+		
+		
+		
+		
+	</body>
+</html>

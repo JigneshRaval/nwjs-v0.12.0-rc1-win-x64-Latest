@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Coder's Cubes : Bookmarks</title>
+		
+		<!-- Load All CSS Files here -->
+		<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-mfizz.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/summernote.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/hint.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/jPages.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/selectize.default.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.mCustomScrollbar.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.core.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/alertify.bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/dropdowns-enhancement.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/uploadfile.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins/slick.css"/>
+		<link rel="stylesheet" type="text/css" href="css/plugins/slick-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="css/plugins/jquery.autocomplete.css" />
+		
+		<link rel="stylesheet" href="css/codemirror/codemirror.css" />
+		<link rel="stylesheet" href="css/codemirror/theme/ambiance.css" />
+		<link rel="stylesheet" href="css/codemirror/theme/vibrant-ink.css">
+		<link rel="stylesheet" href="css/codemirror/theme/lesser-dark.css">
+		<link rel="stylesheet" href="css/codemirror/theme/solarized.css">
+		<link rel="stylesheet" href="js/codemirror/addon/fold/foldgutter.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/code-pen.css" />
+		<link rel="stylesheet" type="text/css" href="css/plugins-custom.css" />
+		<link rel="stylesheet" type="text/css" href="css/split-panel.css" />
+		<link rel="stylesheet" type="text/css" href="css/components.css" />
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		
+		<!-- Load All JS Files here -->
+		<script type="text/javascript" src="../database/left-nav-panel.json"></script>
+		<script type="text/javascript" src="../database/snippets-languages.json"></script>
+		<script type="text/javascript" src="../database/syntax-highlighters.json"></script>
+		<script type="text/javascript" src="../database/libraries.json"></script> <!-- CSS, JS, jQuery Libraries -->
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/node-webkit-fn.js"></script>
+		<script type="text/javascript" src="js/common-onload-functions.js"></script>
+		<script type="text/javascript" src="js/plugins/codemirror.js"></script>
+		
+		<script type="text/javascript">
+			var loadJSONDataFiles = {
+				files : [
+				{id : 1, name : "codepen-tmpl", path : "templates/codepens-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 2, name : "tags-tmpl", path : "templates/tags-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 3, name : "categories-tmpl", path : "templates/categories-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 4, name : "libraries-tmpl", path : "templates/libraries-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' },
+				{id : 5, name : "assets-panel-tmpl", path : "templates/assets-panel-tmpl.hb", filetype: "html", container : '#handlebars-templates-wrapper' }
+				]
+			};
+		</script>
+		
+		<script>
+			cachedScriptsArr.apply(arryCommonScripts, 
+			["/plugins/slick.js", 
+			"/plugins/jquery.paginate.my.js",
+			"/codemirror/mode/xml/xml.js",
+			"/codemirror/mode/javascript/javascript.js",
+			"/codemirror/mode/css/css.js",
+			"/codemirror/mode/htmlmixed/htmlmixed.js",			
+			"/codemirror/addon/fold/xml-fold.js",
+			"/codemirror/addon/fold/foldcode.js",
+			"/codemirror/addon/fold/foldgutter.js",
+			"/codemirror/addon/edit/matchbrackets.js",			
+			"/codemirror/addon/edit/matchtags.js",
+			"/codemirror/addon/edit/closetag.js",
+			"/codemirror/addon/emmet.js",			
+			"/codemirror/addon/selection/active-line.js",
+			"/common-functions.js", 
+			"/modules-common-functions.js",
+			"/modules/module-codepens.js" ]);
+			
+			$.getScript( arryCommonScripts , function( jqXhr ) {
+			//console.log("jqXhr :: ", jqXhr );				
+			});
+		</script>
+		<style>
+			.CodeMirror { max-height: 200px; }
+		</style>
+	</head>
+	
+	<body class="webtools-page opened">
+		<div id='status' style='display: none;'></div>
+		
+		<!-- START :: Window Toolbar -->
+		<div class="top-edge">
+			<div class="app-controls" style="display: block;">
+				<div id="WindowToolbar" class="fl">
+					<a href="javascript:;" onclick="webkitWinModule.closeWin()" type="button" class="btnCloseApp twhite" data-toggle="tooltip" data-placement="bottom" title="Close">
+						<i class="ion-close-round"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.minimizeWin()" type="button" class="btnMinimize" data-toggle="tooltip" data-placement="bottom" title="Minimize">
+						<i class="glyphicon glyphicon-minus"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.maximizeWin()" type="button" class="btnToggleFullScreen" data-toggle="tooltip" data-placement="bottom" title="Maximize">
+						<i class="glyphicon glyphicon-fullscreen"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.reloadWin()" type="button" class="btnReloadApp" data-toggle="tooltip" data-placement="bottom" title="Reload Application">
+						<i class="ion-refresh"></i>
+					</a>
+					
+					<a href="javascript:;" onclick="webkitWinModule.showDevTool()" type="button" class="btnDevToolbar" data-toggle="tooltip" data-placement="bottom" title="Developer Toolbar">
+						<i class="ion-gear-b"></i>
+					</a>
+				</div>
+				<h3 class="text-muted alignR fr oswald w400 uppercasetext" style="-webkit-app-region: drag">Coder's Cubes : Bookmarks</h3>
+			</div>
+		</div>
+		<!-- END :: Window Toolbar -->
+		
+		<link rel="import" href="imports/modals-overlays.html">
+		<link rel="import" href="imports/asset-panel.html">
+		
+		<!-- START :: All the Handlebars Templates -->
+		<div id="handlebars-templates-wrapper">
+			
+		</div>
+		<script type="text/javascript">
+			loadJSONTemplate(loadJSONDataFiles);
+			//showPageLoadProgress();
+		</script>
+		<!-- END :: All the Handlebars Templates -->
+		
+		<div class="loading-indicator top-bar">
+			<div class="loading-loader">
+				<i class="ion-loading-c eleinlineblock"></i>
+			</div>
+		</div>
+		
+		
+		
+		<div class="content-area-wrapper posAbs cover">
+			<!--===========================================
+				START : Categories and Tags Listing panel
+			===============================================-->
+			<input type="hidden" name="hdnPenName" id="hdnPenName" value="" />
+			<section class="assets-panel flex-item color10 posRel">
+				
+			</section>
+			
+			<!--===========================================
+				END : Categories and Tags Listing panel
+			===============================================-->
+			<section class="webtools-wrapper posRel flex-item order2">
+				<!-- START :: Header Section -->
+				<header class="main-header posRel clearfix purple7">
+					<a href="javascript:;" class="expand-icon-panel fl"><i class="ion-navicon-round"></i></a>
+					<span class="main-header-title oswald w300 uppercasetext fontSize15em fl eleinlineblock">WebTools</span>
+					<ul class="header-controls nomargin nopadding nobullets fr">
+						<li>
+							<a href="snippets.html" class="">Snippets</a>
+						</li>
+						<li>
+							<a href="bookmarks.html" class="">Bookmarks</a>
+						</li>
+						<li>
+							<a href="tasks.html" class="">Tasks</a>
+						</li>
+						<li>
+							<a href="inspirations.html" class="">Inspirations</a>
+						</li>
+						<li>
+							<a href="webtools.html" class="" data-toggle="dropdown">WebTools</a>
+							<ul class="dropdown-menu nomargin nopadding nobullets clearfix">
+								<li>
+									<a href="webtools.html"><i class="jicon-snippets"></i>
+										<span>Codepen</span>
+									</a>
+								</li>
+								<li>
+									<a href="tool-sass.html"><i class="jicon-snippets"></i>
+										<span>SASS</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:;" data-toggle="dropdown"><i class="jicon-apps" data-toggle="tooltip" data-placement="bottom" title="Explore Applications"></i></a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-apps" role="menu" aria-labelledby="dLabel">
+								<ul class="nomargin nopadding nobullets clearfix">
+									<li class="active">
+										<a href="snippets.html"><i class="jicon-snippets"></i>
+											<span>Snippets</span>
+										</a>
+									</li>
+									<li>
+										<a href="bookmarks.html"><i class="jicon-bookmarks"></i>
+											<span>Bookmarks</span>
+										</a>
+									</li>
+									<li>
+										<a href="tasks.html"><i class="jicon-tasks"></i>
+											<span>Tasks</span>
+										</a>
+									</li>
+									<li>
+										<a href="inspirations.html"><i class="jicon-gallery"></i>
+											<span>Inspirations</span>
+										</a>
+									</li>
+									
+									<li>
+										<a href="webtools.html"><i class="jicon-webtools"></i>
+											<span>Web Tools</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;"><i class="jicon-stats"></i>
+											<span>Stats</span>
+										</a>
+									</li>
+									<!-- <li>
+										<a href="javascript:;" title="Category"><i class="jicon-cat"></i>
+										<span>Categories</span>
+										</a>
+										</li>
+										<li>
+										<a href="javascript:;" title="Tags"><i class="jicon-tags"></i>
+										<span>Tags</span>
+										</a>
+									</li>-->
+									<li>
+										<a href="javascript:;"><i class="jicon-favourite"></i>
+											<span>Favourites</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:;" class="lnkOpenModal_Settings"><i class="jicon-settings" data-toggle="tooltip" data-placement="bottom" title="View Settings"></i></a>
+						</li>
+					</ul>
+				</header>
+				<!-- END :: Header Section -->	
+				<!-- START :: Result List Area -->
+				<div class="result-area-wrapper posRel">
+					<a href="javascript:;" class="close-result-view">&times;</a>
+					<div id="slick-data-wrapper">
+						<div class="slick-slider-content">
+							
+						</div>
+					</div>
+				</div>
+				<!-- END :: Result List Area -->
+				<!-- START :: Editor -->
+				<div class="page-wrap full-height active">
+					<div class="panel-wrapper">
+						<section class="panel panel-editors posRel panel-collapsed">
+							<article class="panel-child panel-html">
+								<div class="panel-content posAbs cover-only">
+									<div class="panel-header clearfix">
+										<h3>HTML</h3>
+										<div class="panel-options">
+											<a href="javascript:;" class="panel-expand" data-toggle="tooltip" data-placement="bottom" title="Expand" data-container="body"><i class="ion-arrow-resize"></i></a>
+										</div>
+									</div>
+									
+									<pre class="editor-holder" id="editor_html"></pre>
+								</div>
+							</article>
+							
+							<article class="panel-child panel-css">
+								<div class="panel-content posAbs cover-only">
+									<div class="panel-header clearfix">
+										<h3>CSS</h3>
+										<div class="panel-options">
+											<a href="javascript:;" class="panel-expand" data-toggle="tooltip" data-placement="bottom" title="Expand" data-container="body"><i class="ion-arrow-resize"></i></a>
+										</div>
+									</div>
+									
+									<pre class="editor-holder" id="editor_css"></pre>
+								</div>
+							</article>
+							
+							<article class="panel-child panel-js">
+								<div class="panel-content posAbs cover-only">
+									<div class="panel-header clearfix">
+										<h3>JAVASCRIPT</h3>
+										<div class="panel-options">
+											<a href="javascript:;" class="panel-expand" data-toggle="tooltip" data-placement="bottom" title="Expand" data-container="body"><i class="ion-arrow-resize"></i></a>
+										</div>
+									</div>
+									
+									<pre class="editor-holder" id="editor_js"></pre>
+								</div>
+							</article>
+							
+						</section>
+						
+						<div  id="resizer" class="resizer vertical ui-draggable ui-draggable-handle"><span></span><div id="width-readout" class="width-readout">996px</div></div>
+						
+						<section class="panel panel-view-area panel-collapsed">
+							<!--<div style="width:100%">
+							<div class="live-view-wrapper posRel full-height">-->
+							<iframe id="iframe_result_view" class="" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts" allowtransparency="true" allowfullscreen="true" style="border:0;width: 100%;height:100%;" src=""></iframe>
+							
+							<div id="editor-drag-cover" class="drag-cover"></div>
+							<!--</div>
+							</div>-->
+						</section>
+					</div>
+				</div>
+				<!-- END :: Editor -->
+				
+			</section>
+			
+		</div>
+		
+		
+		
+		<iframe id="iframeTempLoadPenContent" style="display:none;"></iframe>
+		
+		<script>
+			// HTML5 :: Include one html file into another and display
+			var arrImportHTMLFiles = [
+			{ contentId : ['#modalAddEditCodePenForm', '#modalSettings'], bindArea : 'body' },
+			{ contentId : ['#assetPanelWrapper'], bindArea : '.assets-panel' }
+			];
+			
+			includeModalOverlays(arrImportHTMLFiles);	
+			// Common Application Functions like Window Minimize, Close, Maximize
+			webkitWinModule.init({});
+			
+			// Generate Left Navigation Sticky panel
+			generateLeftNavPanel(leftNavPanelObj);
+		</script>
+		
+		<!-- 
+		<script type="text/javascript" src="js/handlebars-v3.0.0.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/plugins/moment.js"></script>
+		<script type="text/javascript" src="js/handlebars.helpers.js"></script>
+		
+		<script type="text/javascript" src="js/plugins/jquery.form-validator.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="js/plugins/summernote.js"></script>
+		<script type="text/javascript" src="js/plugins/jPages.js"></script>
+		<script type="text/javascript" src="js/plugins/alertify.js"></script>
+		<script type="text/javascript" src="js/plugins/selectize.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.bootstrap-growl.min.js"></script>
+		<script type="text/javascript" src="js/plugins/highlight.pack.js"></script>		
+		<script type="text/javascript" src="js/plugins/slick.js"></script>		
+		
+		<script type="text/javascript" src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/plugins/dropdowns-enhancement.js"></script>
+		<script type="text/javascript" src="js/plugins/bootstrap-colorpicker.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.fastLiveFilter.js"></script>
+		<script type="text/javascript" src="js/plugins/mousetrap.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery.uploadfile.js"></script>
+		<script type="text/javascript" src="js/common-functions.js"></script>
+		<script type="text/javascript" src="js/modules-common-functions.js"></script>		
+		
+		<script src="js/codemirror/mode/xml/xml.js"></script>
+		<script src="js/codemirror/mode/javascript/javascript.js"></script>
+		<script src="js/codemirror/mode/css/css.js"></script>
+		<script src="js/codemirror/mode/htmlmixed/htmlmixed.js"></script>		
+		
+		<script src="js/codemirror/addon/fold/xml-fold.js"></script>
+		<script src="js/codemirror/addon/fold/foldcode.js"></script>
+		<script src="js/codemirror/addon/fold/foldgutter.js"></script>
+		<script src="js/codemirror/addon/edit/matchbrackets.js"></script>
+		
+		<script src="js/codemirror/addon/edit/matchtags.js"></script>
+		<script src="js/codemirror/addon/edit/closetag.js"></script>
+		<script src="js/codemirror/addon/emmet.js"></script>
+		
+		<script src="js/codemirror/addon/selection/active-line.js"></script>
+		<script src="js/modules/module-categories.js"></script>
+		<script src="js/modules/module-tags.js"></script>
+		<script src="js/modules/module-codepens.js"></script> -->
+		
+		
+		<script>
+			$(function() {
+				$('.panel-js').resizable({
+					handles: 'n'
+				});
+				$('.panel-css').resizable({
+					handles: 'n'
+				});				
+				
+				var topBoxesCon = $('.panel-editors');
+				var bodyWidth = $(".webtools-wrapper").width() - 7;
+				var widthReadout = $("#width-readout");
+				var dragCover = $("#editor-drag-cover");
+				
+				$('#resizer').trigger("drag");
+				
+				$('#resizer').draggable({
+					iframeFix: true,
+					create: function( event, ui ) {
+						console.log("bodyWidth :===", bodyWidth);
+					},
+					start : function () {
+						dragCover.show();
+					},
+					stop : function (t, e) {
+						dragCover.hide();
+					},
+					axis : "x",
+					drag : function (t, e) {	
+						var offset1 = e.offset.left - $('.webtools-wrapper').offset().left;
+						console.log("Offset :===", offset1, e.offset.left, $('.webtools-wrapper').offset().left)
+						
+						if(offset1 > 1 || offset1 < bodyWidth) {
+							topBoxesCon.width(offset1);
+							widthReadout.text(Math.round(bodyWidth - e.offset.left) - 7 + "px");
+						}
+						else {
+							
+						}
+					},
+					containment : $(".webtools-wrapper")
+				});
+				
+				$('.ui-resizable-handle').append('<span class="ui-resizable-toggle"></span>');
+				
+				$('.ui-resizable-e span, .ui-resizable-w span, .resizer.vertical span').on('click', function() {
+					if(!$('.panel-editors').hasClass('panel-collapsed')) {
+						$('.panel-editors').addClass('panel-collapsed');
+						$('.panel-editors').animate({width: '35%'}, {duration: 500});
+					}
+					else {
+						$('.panel-editors').removeClass('panel-collapsed');
+						$('.panel-editors').animate({width: '0%'}, {duration: 500});
+					}
+				});
+				
+				$('.ui-resizable-n span').on('click', function() {
+					if(!$(this).closest('.panel-child').hasClass('panel-collapsed')) {
+						$(this).closest('.panel-child').addClass('panel-collapsed').animate({height: '100%'}, {duration: 500}).siblings('.panel-child').animate({height: '1%'}, {duration: 500});
+					}
+					else {
+						$(this).closest('.panel-child').removeClass('panel-collapsed').animate({height: '33.33%'}, {duration: 500}).siblings('.panel-child').animate({height: '33.33%'}, {duration: 500});
+					}
+				});
+				
+				$('.panel-expand').on('click', function() {
+					$(this).closest('.panel-child').toggleClass('panel-expanded');
+				});
+				
+			});
+		</script>
+	</body>
+</html>		

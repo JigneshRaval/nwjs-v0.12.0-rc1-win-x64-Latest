@@ -1,0 +1,649 @@
+<!-- START : ADD EDIT Snippet Form Modal -->
+<div class="modal fade" id="modalAddSnippetForm" tabindex="-1" role="dialog" aria-labelledby="modalAddSnippetFormLabel" aria-hidden="true">
+	<div class="modal-dialog width80">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="modalAddSnippetFormLabel">Add New Snippet</h4>
+			</div>
+			<form name="frmAddSnippet" id="frmAddSnippet" action="addSnippet" method="POST" role="form">
+				<div class="modal-body">
+					
+					<div class="row">
+						<div class="col-md-6">
+							
+							<input type="hidden" name="hdnSnippetId" id="hdnSnippetId" value="0" data-form-field="_id"/>
+							<input type="hidden" name="hdnMode" id="hdnMode" value="add"/>
+							<div class="form-group">
+								<label for="txtSnippetTitle">Title</label>
+								<input type="text" class="form-control" id="txtSnippetTitle" name="txtSnippetTitle" placeholder="Title" data-form-field="title" data-validation="required" maxlength="150" data-validation-length="max150" data-validation-error-msg="Please provide title">
+							</div>
+							
+							<div class="form-group">
+								<label for="txtRefSite">Website</label>
+								<input type="text" class="form-control" id="txtRefSite" name="txtRefSite" placeholder="Reference URL or Website" data-form-field="refSite">
+							</div>
+							
+							<div class="form-group">
+								<label for="optCategories">Category</label>
+								<select name="optCategories" id="optCategories" data-form-field="categoryId" placeholder="Select category">
+									<option value="">Select category</option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtTags">Tags</label>
+								<input type="text" placeholder="Select or Add Tags" id="txtTags" name="txtTags" data-form-field="tags" />
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaSnippetDescription">Description</label>
+								<textarea class="form-control summernote" name="txtareaSnippetDescription" id="txtareaSnippetDescription" data-form-field="description" rows="5"></textarea>
+							</div>
+							
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="txtareaCode1">Code Block</label>
+								<select class="optLanguages" name="optLanguages1" id="optLanguages1" data-form-field="codes[0].codeLanguage">
+									
+								</select>
+								<textarea class="form-control codeFont" name="txtareaCode1" id="txtareaCode1" data-form-field="codes[0].code" rows="5"></textarea>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaCode2">Code Block</label>
+								<select class="optLanguages" name="optLanguages2" id="optLanguages2" data-form-field="codes[1].codeLanguage">
+									
+								</select>
+								<textarea class="form-control codeFont" name="txtareaCode2" id="txtareaCode2" data-form-field="codes[1].code" rows="5"></textarea>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaCode3">Code Block</label>
+								<select class="optLanguages" name="optLanguages3" id="optLanguages3" data-form-field="codes[2].codeLanguage">
+									
+								</select>
+								<textarea class="form-control codeFont" name="txtareaCode3" id="txtareaCode3" data-form-field="codes[2].code" rows="5"></textarea>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaNote">Note</label>
+								<textarea class="form-control" name="txtareaNote" id="txtareaNote" data-form-field="note" rows="5"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" id="btnAddSnippet" name="btnAddSnippet" class="btn btn-primary" onclick="moduleSnippets.addSnippet()" value="Save" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- END : Add Snippet Form Modal -->
+
+<!-- START : TASKS :: Add EDIT Tasks Form Modal -->
+<div class="modal fade" id="modalAddEditTasksForm" tabindex="-1" role="dialog" aria-labelledby="modalAddEditTasksFormLabel" aria-hidden="false">
+	<div class="modal-dialog width80">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="modalAddEditTasksFormLabel">Add New Task</h4>
+			</div>
+			<form name="frmAddEditTask" id="frmAddEditTask" action="addEditTask" method="POST" role="form">
+				<div class="modal-body">
+					
+					<div class="row">
+						<div class="col-md-6">
+							
+							<input type="hidden" name="hdnTaskId" id="hdnTaskId" value="0" data-form-field="_id"/>
+							<input type="hidden" name="hdnMode" id="hdnMode" value="add"/>
+							
+							<div class="grid-row">
+								<div class="grid-columns grid-col-eight">
+									<div class="form-group">
+										<label for="txtTaskTitle">Task Title</label>
+										<input type="text" class="form-control" id="txtTaskTitle" name="txtTaskTitle" placeholder="Title" data-form-field="title" data-validation="required" maxlength="100" data-validation-length="max100" data-validation-error-msg="Please provide title">
+									</div>
+								</div>
+								<div class="grid-columns grid-col-four">
+									<div class="form-group">
+										<label for="optTaskReminder">Remind me</label>
+										<select name="optTaskReminder" id="optTaskReminder" data-form-field="remindMe" placeholder="Assign to" class="form-control">
+											<option value="">Select</option>
+											<option value="Hourly">Hourly</option>
+											<option value="Daily">Daily</option>
+											<option value="Weekly">Weekly</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<!-- <div class="form-group">
+								<label for="txtareaSubTasks">Add Sub Tasks <i class="ion-information-circled" data-toggle="tooltip" data-placement="top" title="Type your sub tasks each in a line"></i></label>
+								<textarea class="form-control" name="txtareaSubTasks" id="txtareaSubTasks" data-form-field="subTasks" rows="5"></textarea>
+								<em>List your sub tasks each in a single line.</em>
+							</div> -->
+							
+							<div class="form-group">
+								<label for="txtareaTaskDescription">Description</label>
+								<textarea class="form-control summernote" name="txtareaTaskDescription" id="txtareaTaskDescription" data-form-field="description" rows="5"></textarea>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="optCategories">Category</label>
+										<select name="optCategories" id="optCategories" data-form-field="categoryId" placeholder="Select category">
+											<option value="">Select category</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="optTaskPriority">Priority</label>
+										<select name="optTaskPriority" id="optTaskPriority" data-form-field="priority" placeholder="Select Priority" class="form-control">
+											<option value="">Select Priority</option>
+											<option value="Critical">Critical</option>
+											<option value="High">High</option>
+											<option value="Normal">Normal</option>
+											<option value="Low">Low</option>
+											<option value="Minor">Minor</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="txtareaCode1">Start Date</label>
+										<!-- Date Picker : Start -->
+										<div class="datepicker-input input-group date-picker" id="dateTaskStartDate">
+											<span class="input-group-addon datepickerbutton">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+											<input type="text" name="txtTaskSrartDate" id="txtTaskSrartDate" data-mask="99/99/9999 99:99 aa" class="action-date-input form-control" placeholder="DD/MM/YYYY HH:MM AM|PM" data-form-field="startDate" />
+											<!-- <input type="text" id="txtSrartDate" id="txtSrartDate" data-validation="custom" data-validation-regexp="^(\d{2})\/(\d{2})\/(\d{4})\s([0]\d|[1][0-2]):([0-5]\d)\s?(?:AM|PM)$" data-mask="99/99/9999 99:99" class="action-date-input form-control" placeholder="DD/MM/YYYY HH:MM" data-validation-error-msg="Please provide valid date." /> -->
+											<span class="input-group-addon date-picker-clear" data-toggle="tooltip" data-original-title="Clear Date">
+												<span class="glyphicon glyphicon-remove"></span>
+											</span>
+										</div>
+										<!-- Date Picker : End -->
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="txtareaCode2">Due Date</label>
+										<!-- Date Picker : Start -->
+										<div class="input-group date-picker" id="dateTaskDueDate">
+											<span class="input-group-addon datepickerbutton">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+											<input type="text" name="txtTaskDueDate" id="txtTaskDueDate" data-mask="99/99/9999 99:99 aa" class="action-date-input form-control" placeholder="DD/MM/YYYY HH:MM AM|PM" data-form-field="dueDate" />
+											<span class="input-group-addon date-picker-clear" data-toggle="tooltip" data-original-title="Clear Date">
+												<span class="glyphicon glyphicon-remove"></span>
+											</span>
+										</div>
+										<!-- Date Picker : End -->
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="optTaskAssignedTo">Assigned To</label>
+										<select name="optTaskAssignedTo" id="optTaskAssignedTo" data-form-field="assignedTo" placeholder="Assign to" class="form-control">
+											<option value="">Assign to</option>
+											<option value="Modi">Modi</option>
+											<option value="Jayesh">Jayesh</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="txtTaskEstTime">Estimated Time</label>
+										<input type="text" placeholder="Estimated Time" id="txtTaskEstTime" name="txtTaskEstTime" data-form-field="estimatedTime" data-mask="99.99"/> Hrs.
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="sliderTaskProgress">Progress</label>
+								<div class="range-slider-wrapper">
+									<div class="slider-task-progress thin light"></div>
+									<!-- <span id="slider-task-progress-value" class="example-val">0</span> -->
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtTags">Tags</label>
+								<input type="text" placeholder="Select or Add Tags" id="txtTags" name="txtTags" data-form-field="tags" class="form-control"/>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaNote">Note</label>
+								<textarea class="form-control" name="txtareaNote" id="txtareaNote" data-form-field="note" rows="5"></textarea>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" id="btnAddEditTask" name="btnAddEditTask" class="btn btn-primary" onclick="moduleTasks.addEditTask()" value="Save" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- END : TASKS :: Add EDIT Tasks Form Modal -->
+
+<!-- START : Bookmarks :: Add EDIT Bookmark Form Modal -->
+<div class="modal fade" id="modalAddBookmarkForm" tabindex="-1" role="dialog" aria-labelledby="modalAddBookmarkFormLabel" aria-hidden="true">
+	<div class="modal-dialog width70">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="modalAddBookmarkFormLabel">Add New Bookmark</h4>
+			</div>
+			
+			<div class="modal-body">
+				
+				
+				<div class="row">
+					<form name="frmAddEditBookmark" id="frmAddEditBookmark" action="addEditBookmark" method="POST" role="form">
+						<input type="hidden" name="hdnBookmarkId" id="hdnBookmarkId" value="0" data-form-field="_id"/>
+						<input type="hidden" name="hdnMode" id="hdnMode" value="add"/>
+						<div class="col-md-7">
+							<div class="form-group">
+								<label for="txtBookmarkURL">Bookmark URL <i class="ion-information-circled" data-toggle="tooltip" data-placement="top" title="Paste URL below"></i></label>
+								<input type="url" class="form-control" id="txtBookmarkURL" name="txtBookmarkURL" placeholder="Paste URL Here" data-form-field="url" data-validation="required" data-validation-error-msg="Please provide url" onblur="moduleBookmarks.getURLDetails();" tabindex="-1" />
+							</div>
+							
+							<div class="form-group">
+								<label for="txtBookmarkTitle">Title</label>
+								<input type="text" class="form-control" id="txtBookmarkTitle" name="txtBookmarkTitle" placeholder="Title" data-form-field="title" data-validation="required" data-validation-error-msg="Please provide url" />
+							</div>
+							
+							<div class="form-group">
+								<label for="optCategories">Category</label>
+								<select name="optCategories" id="optCategories" data-form-field="categoryId" placeholder="Select category">
+									<option value="">Select category</option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtTags">Tags</label>
+								<input type="text" placeholder="Select or Add Tags" id="txtTags" name="txtTags" data-form-field="tags" />
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaBookmarkDescription">Description</label>
+								<textarea class="form-control" name="txtareaBookmarkDescription" id="txtareaBookmarkDescription" data-form-field="description" rows="5"></textarea>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtareaNote">Note</label>
+								<textarea class="form-control" name="txtareaNote" id="txtareaNote" data-form-field="note" rows="5"></textarea>
+							</div>
+							<p><input type="submit" id="btnAddSnippet" name="btnAddSnippet" class="btn btn-primary" onclick="moduleBookmarks.addEditBookmark()" value="Save" /></p>
+						</div>
+					</form>
+					<div class="col-md-5">
+						<div class="help-block">
+							<i class="ion-information-circled" data-toggle="tooltip" data-placement="top" title="Paste URL below"></i>
+							Paste URL in the "URL" field on the Left side (which you want to keep as bookmark) and press "Tab" key. It will automatically fetch data from the given website URL like Title, Image, Keywords and Description.
+						</div>
+						<div class="bookmark-default-image form-group">
+							<label for="imagePreview">Bookmark Image</label>
+							<input type="text" value="" id="uploadImageURL" name="uploadImageURL" placeholder="Upload Image using URL" class="form-control" data-form-field="imagePath" onblur="moduleBookmarks.checkDefaultImg();" />
+							<div class="posRel">
+								<img src="" data-form-field="imagePath" id="imagePreview" style="max-width: 100%;"/>
+								<p class="alignC nomargin posAbs cover dark50"><a href="javascript:;" class="lnkChangeDefaultImage twhite">Change Image</a></p>
+							</div>
+						</div>
+						<div class="attachments-upload">
+							<div class="padding25px color white">
+								<div id="fileuploader">Upload</div>
+							</div>
+							<p class="alignC padding10px"><a href="javascript:;" id="startUpload" class="button medium color green">Start Upload</a></p>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+<!-- END : Bookmarks :: Add EDIT Bookmark Form Modal -->
+
+<!-- START : Add Edit Codepen Form Modal -->
+<div class="modal fade" id="modalAddEditCodePenForm" tabindex="-1" role="dialog" aria-labelledby="modalAddEditCodePenFormLabel" aria-hidden="true">
+	<div class="modal-dialog width70">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="modalAddEditCodePenFormLabel">Create New Code Pen</h4>
+			</div>
+			<form name="frmAddEditCodePen" id="frmAddEditCodePen" action="addEditCodepen" method="POST" role="form">
+				<div class="modal-body">
+					<input type="hidden" name="hdnCodepenId" id="hdnCodepenId" value="0" data-form-field="_id"/>
+					<input type="hidden" name="hdnMode" id="hdnMode" value="add"/>
+					
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="form-group">
+								<label for="txtCodepenName">Codepen Name</label>
+								<input type="text" class="form-control" id="txtCodepenName" name="txtCodepenName" placeholder="Pen Name" data-form-field="title" data-validation="required" data-validation-error-msg="Please provide pen name"/>
+								<input type="text" class="form-control" id="txtCodepenFileName" name="txtCodepenFileName" placeholder="Pen Name" data-form-field="penName" disabled/>
+								
+							</div>
+							
+							<div class="form-group">
+								<label for="optCategories">Category</label>
+								<select name="optCategories" id="optCategories" data-form-field="categoryId" placeholder="Select category">
+									<option value="">Select category</option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="txtTags">Tags</label>
+								<input type="text" placeholder="Select or Add Tags" id="txtTags" name="txtTags" data-form-field="keywords" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="form-group">
+								<label for="txtareaPenDescription">Description</label>
+								<textarea class="form-control" name="txtareaPenDescription" id="txtareaPenDescription" data-form-field="description" rows="5"></textarea>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" id="btnAddSnippet" name="btnAddSnippet" class="btn btn-primary" onclick="codeEditorModule.addEditCodepen()" value="Save" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- END : Add Edit Codepen Form Modal -->
+
+<!-- START : Add Snippet Form Modal -->
+<div class="modal fade" id="modalAddEditInspirations" tabindex="-1" role="dialog" aria-labelledby="modalAddEditInspirationsLabel" aria-hidden="true">
+	<div class="modal-dialog width70">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="modalAddEditInspirationsLabel">Upload Images</h4>
+			</div>
+			<form name="frmAddEditInspirations" id="frmAddEditInspirations" action="addEditInspirations" method="POST" role="form">
+				<div class="modal-body">
+					<input type="hidden" name="hdnInspirationsId" id="hdnInspirationsId" value="0" data-form-field="_id"/>
+					<input type="hidden" name="hdnMode" id="hdnMode" value="add"/>
+					
+					
+					<div role="tabpanel">
+						
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#tabUploadImages" aria-controls="home" role="tab" data-toggle="tab">Upload Images</a></li>
+							<li role="presentation"><a href="#tabUploadFromURL" aria-controls="profile" role="tab" data-toggle="tab">Upload using URL</a></li>
+						</ul>
+						
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="tabUploadImages">
+								<div class="row">
+									<div class="col-md-5">
+										<div class="form-group">
+											<label for="optCategories">Category</label>
+											<select name="optCategories" id="optCategories" data-form-field="categoryId" placeholder="Select category">
+												<option value="">Select category</option>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label for="txtBookmarkKeywords">Keywords</label>
+											<input type="text" class="form-control" placeholder="Select or Add Tags" id="txtBookmarkKeywords" name="txtBookmarkKeywords" data-form-field="Keywords" />
+										</div>
+										
+										<div class="form-group">
+											<label for="txtareaBookmarkDescription">Description</label>
+											<textarea class="form-control" name="txtareaBookmarkDescription" id="txtareaBookmarkDescription" data-form-field="description" rows="5"></textarea>
+										</div>
+										
+									</div>
+									<div class="col-md-7">
+										<div class="attachments-upload">
+											<div class="padding25px color white">
+												<!-- <h4 class="fancy-title bline small posRel noTmargin w500">Upload Images <i class="ion-close-circled fr"></i></h4> -->
+												
+												<div id="fileuploader">Upload</div>
+												
+												<!-- <p class="alignC padding10px"><a href="javascript:;" id="startUpload" class="button medium color green">Start Upload</a></p> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="tabUploadFromURL">
+								<!-- <div class="help-block">
+									<i class="ion-information-circled" data-toggle="tooltip" data-placement="top" title="Paste URL below"></i>
+									Paste URL in the "URL" field on the Left side (which you want to keep as bookmark) and press "Tab" key. It will automatically fetch data from the given website URL like Title, Image, Keywords and Description.
+								</div> -->
+								<div class="bookmark-default-image form-group">
+									<label for="imagePreview">Bookmark Image</label>
+									<input type="text" value="" id="uploadImageURL" name="uploadImageURL" placeholder="Upload Image using URL" class="form-control" data-form-field="" />
+									<br/>
+									<div class="posRel">
+										<img src="" id="imagePreview" style="max-width: 100%;"/>
+										<p class="alignC nomargin posAbs cover dark50"><a href="javascript:;" class="lnkChangeDefaultImage twhite">Change Image</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" id="btnUploadInspirations" name="btnUploadInspirations" class="btn btn-primary" value="Save" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- END : Add Snippet Form Modal -->
+
+
+<!-- START : Settings Modal -->
+<div class="modal fade" id="modalSettings" tabindex="-1" role="dialog" aria-labelledby="modalSettingsLabel" aria-hidden="true">
+	<div class="modal-dialog width80">
+		<div class="modal-content">
+			
+			<!-- <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="modalSettingsLabel">Settings</h4>
+			</div> -->
+			
+			
+			<div class="modal-body nopadding">
+				<button type="button" class="close posAbs posTR" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				
+				<div role="tabpanel" class="tabs-left">
+					<div class="grid-table grid-table-fixed">
+						<div class="grid-table-row">
+							<div class="grid-cell grid-cell-three talign color wet-asphalt">
+								<div class="color blue twhite">
+									<h3 class="nomargin padding20px titillium w300">Settings</h3>
+								</div>
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#tabManageCat" aria-controls="tabManageCat" role="tab" data-toggle="tab"><i class="ion-ios-folder"></i> Manage Categories</a></li>
+									<li role="presentation"><a href="#tabManageTags" aria-controls="tabManageTags" role="tab" data-toggle="tab"><i class="ion-ios-pricetags"></i> Manage Tags</a></li>
+									<li role="presentation"><a href="#tabSynHighlighter" aria-controls="tabSynHighlighter" role="tab" data-toggle="tab"><i class="ion-code-working"></i> Syntax Highlighter</a></li>
+									<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="ion-ios-person"></i> Profile</a></li>
+									<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><i class="ion-ios-email"></i> Messages</a></li>
+									<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="ion-ios-toggle"></i> Other</a></li>
+								</ul>
+							</div>
+							
+							<div class="grid-cell grid-cell-nine talign">
+								<!-- Tab panes -->
+								<div class="tab-content">
+									
+									<!-- START :: Tab Content :: Manage Categories -->
+									<div role="tabpanel" class="tab-pane active" id="tabManageCat">
+										<h3 class="nomargin padding20px titillium w300 color4">Manage Categories</h3>
+										
+										<div class="grid-row eq-height">
+											<div class="grid-columns grid-col-eight">
+												<ul class="manage-categories-listing datalist-table two-col nomargin padding20px nobullets clearfix borderL-anim" id="manage-categories__listing">
+													
+												</ul>
+												
+												<div class="pagination-wrapper center-aligned">
+													<div class="holder" id="holder-category"></div>
+												</div>
+												<br/>
+											</div>
+											<div class="grid-columns grid-col-four color gray-light">
+												
+												<div class="padding15px clearfix">
+													<strong>Edit Category</strong>
+													<form name="frmEditCategory" id="frmEditCategory" action="editCategory" method="POST" role="form">
+														<div class="form-group">
+															<!-- <label for="txtEditTag">Category Name</label> -->
+															<input type="text" name="txtEditCategory" id="txtEditCategory" class="form-control" placeholder="Category Name" />
+														</div>
+														<div class="form-group">
+															<!-- <label for="txtEditCatColor">Category Color</label> -->
+															<div class="input-group editCategoryColor" data-container=".editCategoryColor" data-color="#0B9CF5">
+																<input type="text" name="txtEditCatColor" id="txtEditCatColor" class="form-control" placeholder="Category Color" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please Select Color for the category." value="#0B9CF5" />
+																<span class="input-group-addon"><i></i></span>
+															</div>
+														</div>
+														<div class="form-group alignC">
+															<button type="button" class="button medium color blue" id="btnSaveEditaedCat">Save</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									<!-- END :: Tab Content :: Manage Categories -->
+									
+									<!-- START :: Tab Content :: Manage Tags -->
+									<div role="tabpanel" class="tab-pane" id="tabManageTags">
+										<h3 class="nomargin padding20px titillium w300 color4">Manage Tags</h3>
+										
+										<div class="grid-row eq-height">
+											<div class="grid-columns grid-col-eight">
+												<ul class="manage-tags-listing datalist-table two-col nomargin padding20px nobullets clearfix borderL-anim" id="manage-tags__listing">
+													
+												</ul>
+												
+												<div class="pagination-wrapper center-aligned">
+													<div class="holder" id="holder-tags"></div>
+												</div>
+												<br/>
+											</div>
+											<div class="grid-columns grid-col-four color gray-light">
+												
+												<div class="padding15px clearfix">
+													<strong>Edit Tag</strong>
+													<form name="frmEditTag" id="frmEditTag" action="editTag" method="POST" role="form">
+														<div class="form-group">
+															<!-- <label for="txtEditTag">Tag Name</label> -->
+															<input type="text" name="txtEditTag" id="txtEditTag" class="form-control" placeholder="Tag Name" />
+														</div>
+														<div class="form-group">
+															<!-- <label for="txtEditTagColor">Tag Color</label> -->
+															<div class="input-group editTagColor" data-container=".editTagColor" data-color="#0B9CF5">
+																<input type="text" name="txtEditTagColor" id="txtEditTagColor" class="form-control" placeholder="Edit Tag Color" data-validation="required" maxlength="30" data-validation-length="max30" data-validation-error-msg="Please Select Color for the tag." value="#0B9CF5" />
+																<span class="input-group-addon"><i></i></span>
+															</div>
+														</div>
+														<div class="form-group alignC">
+															<button type="button" class="button medium color blue" id="btnSaveEditaedTag">Save</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- END :: Tab Content :: Manage Tags -->
+									
+									<!-- START :: Tab Content :: Syntax Highlighter -->
+									<div role="tabpanel" class="tab-pane" id="tabSynHighlighter">
+										<h3 class="nomargin padding20px titillium w300 color4">Syntax Highlighter</h3>
+										<div class="grid-row">
+											<div class="grid-columns grid-col-six">
+												<div class="js-scrollbar" style="max-height: 400px;">
+													<div class="synHighlighters-list-container">
+														
+													</div>
+												</div>
+											</div>
+											
+											<div class="grid-columns grid-col-six">
+												<h4 class="titillium w400">Preview of Selected Theme</h4>
+												<pre><code></code></pre>
+											</div>
+										</div>
+										<p class="alignR">
+											<button type="button" class="btn btn-default" id="btnSaveSettings">Save</button>
+										</p>
+									</div>
+									<!-- END :: Tab Content :: Syntax Highlighter -->
+									
+									<!-- START :: Tab Content :: Syntax Highlighter -->
+									<div role="tabpanel" class="tab-pane" id="profile">
+										<h3 class="nomargin padding20px titillium w300 color4">Syntax Highlighter</h3>
+									</div>
+									<!-- END :: Tab Content :: Syntax Highlighter -->
+									
+									<!-- START :: Tab Content :: Syntax Highlighter -->
+									<div role="tabpanel" class="tab-pane" id="messages">
+										<h3 class="nomargin padding20px titillium w300 color4">Syntax Highlighter</h3>
+									</div>
+									<!-- END :: Tab Content :: Syntax Highlighter -->
+									
+									<div role="tabpanel" class="tab-pane" id="settings">...</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="modal-footer">
+				
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div> -->
+			
+		</div>
+	</div>
+</div>
+<!-- END : Settings Modal -->
